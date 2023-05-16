@@ -52,6 +52,7 @@ Table comments {
 }
 
 Table forum_comments {
+    id int [pk, increment]
     forum_id int [ref: > forums.id]
-    user_id int [ref: > users.id]
+    comment_id int [ref: > comments.id]
 }
