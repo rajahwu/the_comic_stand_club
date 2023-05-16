@@ -11,7 +11,7 @@ class Club(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(2000))
     image_url = db.Column(db.String(255))
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     

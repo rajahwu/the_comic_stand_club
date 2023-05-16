@@ -8,8 +8,8 @@ class ForumComment(db.Model):
         __table_args__ = {'schema': SCHEMA}
         
     id = db.Column(db.Integer, primary_key=True)
-    comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("comment.id")))
-    forum_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("forum.id")))
+    comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("comments.id")))
+    forum_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("forums.id")))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     
