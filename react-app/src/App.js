@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import { Navigation, SignupFormPage, LoginFormPage } from "./components";
-import { SplashPage } from "./pages";
+import { SplashPage, FeedPage } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +20,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <SplashPage />
+          </Route>
+          <Route exact path="/feed">
+            <FeedPage />
           </Route>
           <Route path="/login">
             <LoginFormPage />

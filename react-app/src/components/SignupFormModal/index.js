@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import { Redirect } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -21,6 +22,7 @@ function SignupFormModal() {
 				setErrors(data);
 			} else {
 				closeModal();
+				return <Redirect to="/feed" />
 			}
 		} else {
 			setErrors([
