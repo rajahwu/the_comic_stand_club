@@ -26,7 +26,7 @@ Table stands {
     name varchar
     description varchar
     characters varchar
-    user_id int [ref: > users.id]
+    owner_id int [ref: > users.id]
     created_at timestamp [default: `now()`]
     updated_at timestamp [default: `now()`]
 }
@@ -35,20 +35,21 @@ Table club_memberships {
     id int [pk, increment]
     club_id int [ref: > clubs.id]
     user_id int [ref: > users.id]
+    admin bool [default: false]
 }
 
 Table forums {
     id int [pk , increment]
     name varchar [not null, note: "unique to club"]
     description varchar
-    club_id int [not null]
+    club_id int [not null, ref: > clubs.id]
     public bool [default: true]
 }
 
 Table comments {
     id int [pk, increment]
     text varchar [not null]
-    user_id int [not null]
+    user_id int [not null, ref: > users.id]
 }
 
 Table forum_comments {
