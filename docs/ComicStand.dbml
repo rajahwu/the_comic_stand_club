@@ -1,0 +1,57 @@
+Project The_Comic_Stand_Club {
+    databse_type: 'PostgresSQL'
+}
+
+Table users {
+    id int [pk, increment]
+    username varchar [not null, unique]
+    email varchar [not null, unique]
+    hashed_password varchar
+    created_at timestamp [default: `now()`]
+    updated_at timestamp [default: `now()`]
+}
+
+Table clubs {
+    id int [pk, increment]
+    name varchar [not null, unique]
+    description varchar
+    image_url varchar
+    owner_id int [ref: > users.id]
+    created_at timestamp [default: `now()`]
+    updated_at timestamp [default: `now()`]
+}
+
+Table stands {
+    id int [pk, increment]
+    name varchar
+    description varchar
+    characters varchar
+    user_id int [ref: > users.id]
+    created_at timestamp [default: `now()`]
+    updated_at timestamp [default: `now()`]
+}
+
+Table club_memberships {
+    id int [pk, increment]
+    club_id int [ref: > clubs.id]
+    user_id int [ref: > users.id]
+}
+
+Table forums {
+    id int [pk , increment]
+    name varchar [not null, note: "unique to club"]
+    description varchar
+    club_id int [not null]
+    public bool [default: true]
+}
+
+Table comments {
+    id int [pk, increment]
+    text varchar [not null]
+    user_id int [not null]
+}
+
+Table forum_comments {
+    forum_id int [ref: > forums.id]
+    user_id int [ref: > users.id]
+}
