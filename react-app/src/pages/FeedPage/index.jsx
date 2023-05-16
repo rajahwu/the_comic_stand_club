@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom"
@@ -17,7 +16,8 @@ export default function FeedPage() {
     return (
     <>
     <h1>Feed Page</h1>
-    <Link to="/">Home</Link>
+    <button onClick={() => history.push("/clubs/new")}>Start a Group</button>
+    <button style={{cursor: "not-allowed"}}>Build a Stand</button>
     </>
     )
 }

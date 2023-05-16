@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import { Navigation, SignupFormPage, LoginFormPage } from "./components";
-import { SplashPage, FeedPage } from "./pages";
+import { SplashPage, FeedPage, CreatePage } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +18,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/clubs/new">
+            <CreatePage />
+          </Route>
           <Route exact path="/">
             <SplashPage />
           </Route>
