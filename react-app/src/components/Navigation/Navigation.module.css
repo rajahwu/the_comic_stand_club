@@ -1,0 +1,23 @@
+.profile-dropdown {
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.nav-bar>ul {
+  list-style-type: none;
+  direction: flex;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-right: 100px;
+}
