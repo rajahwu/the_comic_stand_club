@@ -13,6 +13,13 @@ export default function FeedPage() {
         }
     }, [sessionUser])
 
+
+    useEffect(() => {
+        fetch("/api/clubs")
+        .then(data => data.json())
+        .then(data => console.log(data))
+    })
+
     return (
     <>
     <h1>Feed Page</h1>
