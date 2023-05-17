@@ -11,8 +11,15 @@ export default function ContentPage() {
   const clubId = locaton.pathname[locaton.pathname.length - 1];
   const contentType = locaton.pathname.split("/")[1];
   const clubs = useSelector((state) => state.clubs.allClubs);
-  const currentClub = clubs[clubId];
+  const sessionUser = useSelector((state) => state.session.user);
 
+  const currentClub = clubs[clubId];
+  
+  useEffect(() => {
+    if (!sessionUser) {
+      return history.push("/");
+    }
+  }, [sessionUser, history]);
 
   useEffect(() => {
     dispatch(getAllClubsThunk());

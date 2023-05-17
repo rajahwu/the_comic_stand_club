@@ -11,10 +11,9 @@ export default function FeedPage() {
 
   useEffect(() => {
     if (!sessionUser) {
-      console.log("splash page session user", sessionUser);
       return history.push("/");
     }
-  }, [sessionUser]);
+  }, [sessionUser, history]);
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
