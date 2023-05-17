@@ -38,7 +38,6 @@ export const createNewClubThunk = (club) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log("create new club dispatch data", data)
     if (data.errors) {
       return;
     }

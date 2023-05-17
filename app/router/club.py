@@ -29,7 +29,34 @@ def new():
         db.session.commit()
         return club.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
+
+@club_routes.route("/<int:id>", methods=["PUT"])
+def edit_route(id):
+    club = Club.query.get(id)
+    
+    form = CreateClubForm()
+    
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        club.name=form.data["clubName"],
+        club.description=form.data["description"],
+        club.image_url=form.data["imageUrl"],
+        club.owner_id=current_user.id
+        db.session.commit()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}
+    
+
      
+@club_routes.route("/<int:id>", methods=["DELETE"]) 
+def delete_club(id):
+    club = Club.query.get(id)
+    if club:
+        db.session.delete(club)
+        db.session.commit()
+        return {f"message": "Club {id} successfully deleted"}
+    else:
+        return {"message": "Club not found"}
 
 @club_routes.route("/<int:id>")
 @login_required
