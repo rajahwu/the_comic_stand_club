@@ -8,11 +8,9 @@ function createPageTitle(location) {
   let title;
   if (location.pathname === "/clubs-new") {
     title = "Start a new club";
-  }
-  else if (/\/club\/\d\/edit/.test(location.pathname)) {
-    title = "Edit club"
-  }
-  else title = "Create Page"
+  } else if (/\/club\/\d\/edit/.test(location.pathname)) {
+    title = "Edit club";
+  } else title = "Create Page";
   return title;
 }
 
@@ -22,18 +20,17 @@ export default function CreatePage() {
   const location = useLocation();
   const clubs = useSelector((state) => state.clubs.allClubs);
 
-  const clubId = clubs[location.pathname.split("/")[2]]?.id
-  
-  useEffect(() => {
-    if(clubId) {
-      const currentClub = clubs[clubId]
-      setClubName(currentClub.name)
-      setDescription(currentClub.description)
-      setImageUrl(currentClub.imageUrl)
-    }
-  }, [clubId, clubs])
+  const clubId = clubs[location.pathname.split("/")[2]]?.id;
 
-  
+  useEffect(() => {
+    if (clubId) {
+      const currentClub = clubs[clubId];
+      setClubName(currentClub.name);
+      setDescription(currentClub.description);
+      setImageUrl(currentClub.imageUrl);
+    }
+  }, [clubId, clubs]);
+
   const title = createPageTitle(location);
   const [clubName, setClubName] = useState("");
   const [description, setDescription] = useState("");
@@ -86,10 +83,20 @@ export default function CreatePage() {
             return errors;
           }
 
-          await dispatch(createNewClubThunk(formData));
-          console.log("Start a club forms data", formData);
-          history.push("/feed");
-          return formData;
+          if (clubId) {
+            await fetch(`/api/clubs/${clubId}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            });
+            history.push("/feed");
+            return formData;
+          } else {
+            await dispatch(createNewClubThunk(formData));
+            console.log("Start a club forms data", formData);
+            history.push("/feed");
+            return formData;
+          }
         }}
       >
         <label>
