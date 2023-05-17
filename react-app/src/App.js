@@ -26,6 +26,9 @@ function App() {
           <Route exact path="/club/:clubId">
             <ContentPage />
           </Route>
+          <Route exact path="/club/:clubId/edit">
+            <CreatePage />
+          </Route>
           <Route exact path="/">
             <SplashPage />
           </Route>

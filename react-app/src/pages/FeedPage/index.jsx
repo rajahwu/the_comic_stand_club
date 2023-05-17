@@ -30,7 +30,7 @@ export default function FeedPage() {
         {clubs && Object.values(clubs).map((club, index) => (
           <div key={index}
           onClick={e => history.push(`/club/${club.id}`)}
-          style={{border: "3px solid black", margin:"15px", cursor: "pointer" }}
+          style={{width: "30vw", border: "3px solid black", margin:"15px", cursor: "pointer" }}
           >
             <p>{club.id}</p>
             <p>{club.name}</p>
