@@ -35,14 +35,16 @@ def edit_route(id):
     club = Club.query.get(id)
     
     form = CreateClubForm()
-    
+    # new_club = request.json
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        club.name=form.data["clubName"],
-        club.description=form.data["description"],
-        club.image_url=form.data["imageUrl"],
-        club.owner_id=current_user.id
+        club.name=form.data["clubName"]
+        club.description=form.data["description"]
+        club.image_url=form.data["imageUrl"]
+    #     club.owner_id=current_user.id
         db.session.commit()
+        
+        return {"club", club.to_dict()}
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
     
