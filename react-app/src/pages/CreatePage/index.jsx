@@ -1,31 +1,39 @@
-import { Link } from "react-router-dom";
-import { useLocation, useHistory } from "react-router-dom";
-import { useState } from "react";
-import CreatePageCSS from "./CreatePage.module.css";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewClubThunk } from "../../store/club";
-import { useEffect } from "react";
+import { getAllClubsThunk, createNewClubThunk } from "../../store/club";
+import CreatePageCSS from "./CreatePage.module.css";
 
 function createPageTitle(location) {
   let title;
-  switch (location.pathname) {
-    case "/clubs-new": {
-      title = "Start a new club";
-      break;
-    }
-    default: {
-      title = "Create Page";
-    }
+  if (location.pathname === "/clubs-new") {
+    title = "Start a new club";
   }
+  else if (/\/club\/\d\/edit/.test(location.pathname)) {
+    title = "Edit club"
+  }
+  else title = "Create Page"
   return title;
 }
 
 export default function CreatePage() {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const user = useSelector(state => state.session.user)
-
+  const history = useHistory();
   const location = useLocation();
+  const clubs = useSelector((state) => state.clubs.allClubs);
+
+  const clubId = clubs[location.pathname.split("/")[2]]?.id
+  
+  useEffect(() => {
+    if(clubId) {
+      const currentClub = clubs[clubId]
+      setClubName(currentClub.name)
+      setDescription(currentClub.description)
+      setImageUrl(currentClub.imageUrl)
+    }
+  }, [clubId, clubs])
+
+  
   const title = createPageTitle(location);
   const [clubName, setClubName] = useState("");
   const [description, setDescription] = useState("");
@@ -37,7 +45,9 @@ export default function CreatePage() {
     errors: 0,
   });
 
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(getAllClubsThunk());
+  }, []);
 
   return (
     <>
@@ -49,7 +59,6 @@ export default function CreatePage() {
             clubName,
             description,
             imageUrl,
-            
           };
 
           e.preventDefault();
@@ -79,7 +88,7 @@ export default function CreatePage() {
 
           await dispatch(createNewClubThunk(formData));
           console.log("Start a club forms data", formData);
-          history.push("/feed")
+          history.push("/feed");
           return formData;
         }}
       >
