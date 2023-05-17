@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom"
+import { getAllClubsThunk } from "../../store/club"
 
 export default function FeedPage() {
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    const groups = useSelector(state => state.club?.allClubs)
     const history = useHistory()
 
     useEffect(() => {
@@ -15,10 +18,12 @@ export default function FeedPage() {
 
 
     useEffect(() => {
-        fetch("/api/clubs")
-        .then(data => data.json())
-        .then(data => console.log(data))
-    })
+        // fetch("/api/clubs")
+        // .then(data => data.json())
+        // .then(data => console.log(data))
+        dispatch(getAllClubsThunk())
+
+    }, [])
 
     return (
     <>
