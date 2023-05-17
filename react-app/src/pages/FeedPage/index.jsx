@@ -17,9 +17,6 @@ export default function FeedPage() {
   }, [sessionUser]);
 
   useEffect(() => {
-    // fetch("/api/clubs")
-    // .then(data => data.json())
-    // .then(data => console.log(data))
     dispatch(getAllClubsThunk());
     console.log("feed clubs value: ", clubs);
   }, []);

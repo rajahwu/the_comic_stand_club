@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <a href="../docs/index.html">Docs</a>
+      <a href="../docs/index.html" target="_blank">API_Docs</a>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
