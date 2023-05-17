@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
+import { getMarvelCharacters } from "../../resources/marvel";
+import { CharacterCard } from "../../components";
 
 async function fetchRSS() {
   try {
@@ -17,12 +19,33 @@ async function fetchRSS() {
   }
 }
 
+const SearchBar = ({searchTerms, setSearchTerms}) => {
+
+  const handleClick = () => {}
+  return (
+    <form>
+      <input
+        name="startsWith"
+        type="text"
+        placeholder="starts with"
+        value={searchTerms.startsWith ? searchTerms.startsWith : ""}
+        onChange={(e) =>
+          setSearchTerms({ searchTerms, ...{ startsWith: e.target.value } })
+        }
+      />
+      <button onClick={handleClick}>Search</button>
+    </form>
+  );
+}
+
 export default function FeedPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const clubs = useSelector((state) => state.clubs.allClubs);
-  const history = useHistory();
   const [rssFeed, setRssFeed] = useState([]);
+  const [searchTerms, setSearchTerms] = useState({})
+  const [comicCharacters, setComicCharactes] = useState([])
 
   useEffect(() => {
     if (!sessionUser) {
@@ -32,25 +55,55 @@ export default function FeedPage() {
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchRssData = async () => {
+      try {
+        const feed = await fetchRSS();
+        setRssFeed(feed);
+        // console.log("Rss data: ", feed);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchRssData();
   }, []);
 
   useEffect(() => {
-   const fetchRssData = async () => {
-    try {
-      const feed = await fetchRSS()
-      setRssFeed(feed)
-      console.log("Rss data: ", feed)
+    const fetchComicCharacters = async () => {
+     try {
+    const comiccharacters = await getMarvelCharacters()
+    setComicCharactes(comiccharacters.data.results)
+      console.log(comiccharacters.data.results)
     } catch (error) {
       console.error(error)
+    } 
+    
+      
     }
-   }
-   fetchRssData()
-  }, []);
+    fetchComicCharacters()
+  },[])
 
   return (
     <div style={{ display: "flex" }}>
       <div>
-        <h1>Feed Page</h1>
+        <div>
+          <h2>Character Select</h2>
+          <SearchBar searchTerms={searchTerms} setSearchTerms={searchTerms} />
+          {comicCharacters.slice(0,5).map((entry, i) => (
+            <div key={i}>
+            <CharacterCard
+              id={entry.id}
+              title={entry.name}
+              imageUrl={`${entry.thumbnail.path}.${entry.thumbnail.extension}`}
+              description={entry.description}
+              urls={entry.urls}
+            />
+            </div>
+          ))}
+        </div>
+        <h2>Feed Page</h2>
         <button onClick={() => history.push("/clubs-new")}>Start a Club</button>
         <button style={{ cursor: "not-allowed" }}>Build a Stand</button>
         <div>
@@ -73,8 +126,13 @@ export default function FeedPage() {
         </div>
       </div>
       <div>
-        <h1>News Feed</h1>
-        {rssFeed.length && rssFeed?.map((entry, i) => <a key={i} href={entry.link} target="_blank" rel="noreferrer"><p>{entry.title}</p></a>)}
+        <h2>News Feed</h2>
+        {rssFeed.length &&
+          rssFeed?.map((entry, i) => (
+            <a key={i} href={entry.link} target="_blank" rel="noreferrer">
+              <p>{entry.title}</p>
+            </a>
+          ))}
       </div>
     </div>
   );
