@@ -13,7 +13,7 @@ def clubs():
     clubs = Club.query.all()
     return {'clubs': [club.to_dict() for club in clubs] }
 
-@club_routes.route("/new")
+@club_routes.route("/new", methods=["POST"])
 def new():
     form = CreateClubForm()
     
@@ -25,9 +25,8 @@ def new():
             image_url=form.data["imageUrl"],
             owner_id=current_user.id
         )
-        # db.session.add(club)
-        # db.session.commit()
-        print(club)
+        db.session.add(club)
+        db.session.commit()
         return club.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
      

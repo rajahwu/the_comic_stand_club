@@ -24,11 +24,14 @@ export default function FeedPage() {
   return (
     <>
       <h1>Feed Page</h1>
-      <button onClick={() => history.push("/clubs-new")}>Start a Group</button>
+      <button onClick={() => history.push("/clubs-new")}>Start a Club</button>
       <button style={{ cursor: "not-allowed" }}>Build a Stand</button>
       <div>
         {clubs && Object.values(clubs).map((club, index) => (
-          <div key={index}>
+          <div key={index}
+          onClick={e => history.push(`/club/${club.id}`)}
+          style={{border: "3px solid black", margin:"15px", cursor: "pointer" }}
+          >
             <p>{club.id}</p>
             <p>{club.name}</p>
           </div>

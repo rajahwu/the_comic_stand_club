@@ -7,4 +7,5 @@ class CreateClubForm(FlaskForm):
     clubName = StringField(
         'clubname', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
-    ownerId = StringField('ownerId', validators=[DataRequired()])
+    imageUrl = StringField('imageUrl')
+    # ownerId = StringField('ownerId', validators=[DataRequired()])
