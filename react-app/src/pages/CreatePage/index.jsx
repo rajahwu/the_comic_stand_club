@@ -7,7 +7,7 @@ import { useEffect } from "react";
 function createPageTitle(location) {
   let title;
   switch (location.pathname) {
-    case "/clubs/new": {
+    case "/clubs-new": {
       title = "Start a new club";
       break;
     }

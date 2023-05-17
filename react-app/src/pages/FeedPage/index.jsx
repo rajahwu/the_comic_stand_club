@@ -24,7 +24,7 @@ export default function FeedPage() {
   return (
     <>
       <h1>Feed Page</h1>
-      <button onClick={() => history.push("/clubs/new")}>Start a Group</button>
+      <button onClick={() => history.push("/clubs-new")}>Start a Group</button>
       <button style={{ cursor: "not-allowed" }}>Build a Stand</button>
       <div>
         {clubs && Object.values(clubs).map((club, index) => (

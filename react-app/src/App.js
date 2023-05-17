@@ -18,7 +18,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/clubs/new">
+          <Route exact path="/clubs-new">
             <CreatePage />
           </Route>
           <Route exact path="/">
