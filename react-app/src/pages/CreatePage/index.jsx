@@ -19,8 +19,14 @@ export default function CreatePage() {
   const history = useHistory();
   const location = useLocation();
   const clubs = useSelector((state) => state.clubs.allClubs);
-
+  const sessionUser = useSelector((state) => state.session.user);
+  
   const clubId = clubs[location.pathname.split("/")[2]]?.id;
+  useEffect(() => {
+    if (!sessionUser) {
+      return history.push("/");
+    }
+  }, [sessionUser, history]);
 
   useEffect(() => {
     if (clubId) {

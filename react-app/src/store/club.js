@@ -1,7 +1,5 @@
 const GET_ALL_CLUBS = "clubs/GET_ALL_CLUBS";
-// const GET_CURRENT_CLUB = "clubs/GET_CURRENT_CLUB";
 const CREATE_CLUB = "clubs/CREATE_CLUB";
-// const DELETE_CLUB = "clubs/DELETE_CLUB";
 
 const getAllClubs = (clubs) => ({
   type: GET_ALL_CLUBS,
@@ -44,7 +42,7 @@ export const createNewClubThunk = (club) => async (dispatch) => {
     dispatch(createNewClub);
   }
 };
-const initialState = { allClubs: {}, currentClub: {} };
+const initialState = { allClubs: {} };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -52,7 +50,6 @@ export default function reducer(state = initialState, action) {
       const newState = {
         ...state,
         allClubs: { ...state.clubs },
-        currentClub: { ...state.currentClub },
       };
       action.payload.clubs.forEach(
         (club) => (newState.allClubs[club.id] = club)
@@ -65,9 +62,7 @@ export default function reducer(state = initialState, action) {
       const newState = {
         ...state,
         allClubs: { ...state.clubs },
-        currentClub: { ...state.currentClub },
       };
-     newState.currentClub = action.payload.club
      newState.allClubs[action.payload.club.id] = action.payload.club
       return newState;
     }
