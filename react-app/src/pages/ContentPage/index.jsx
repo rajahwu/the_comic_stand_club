@@ -1,20 +1,28 @@
 import { Link } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllClubsThunk } from "../../store/club";
 
 export default function ContentPage() {
   const history = useHistory();
   const locaton = useLocation();
+  const dispatch = useDispatch();
   const clubId = locaton.pathname[locaton.pathname.length - 1];
   const contentType = locaton.pathname.split("/")[1];
-  const clubs = useSelector(state => state.clubs.allClubs)
-  console.log(clubs)
+  const clubs = useSelector((state) => state.clubs.allClubs);
+  const currentClub = clubs[clubId];
+
+
+  useEffect(() => {
+    dispatch(getAllClubsThunk());
+  }, []);
+
   return (
     <div>
-      <h1>{contentType} content page</h1>
-      {/* {Object.values(clubs[locaton.pathname.length -1]).map(entry => <p>{entry}</p>)} */}
-      <p>ClubId : {clubId}</p>
-      <p>Path: {locaton.pathname}</p>
+      <h1>{currentClub.name} content page</h1>
+      <p>Club Id : {clubId}</p>
+      <p>Description: {currentClub?.description}</p>
       <div>
         <button onClick={(e) => history.push(`/${contentType}/${clubId}/edit`)}>
           Edit
