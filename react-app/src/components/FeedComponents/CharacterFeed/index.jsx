@@ -2,7 +2,7 @@
 // TODO Get API Response (COMIC_CHARACTERS)
 
 import { useEffect, useState } from "react";
-import CharacterCard from "../../CharacterCard";
+import {CharacterCard} from "../.."
 import { getMarvelCharacters } from "../../../resources/marvel";
 
 const SearchBar = ({ searchTerms, setSearchTerms }) => {

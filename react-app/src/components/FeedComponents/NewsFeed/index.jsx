@@ -18,16 +18,19 @@ export default function NewsFeed() {
   const [rssFeed, setRssFeed] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchRssData = async () => {
       try {
         const feed = await fetchRSS();
-        setRssFeed(feed);
-        // console.log("Rss data: ", feed);
+        if (isMounted) setRssFeed(feed);
       } catch (error) {
         console.error(error);
       }
     };
     fetchRssData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
   return (
     <div className="news-feed">
