@@ -5,16 +5,17 @@ import { getAllClubsThunk } from "../../store/club";
 import { useBouncer } from "../../hooks";
 
 export default function ContentPage() {
+  useBouncer("logout");
   const history = useHistory();
   const locaton = useLocation();
   const dispatch = useDispatch();
-  const clubId = locaton.pathname[locaton.pathname.length - 1];
+
   const contentType = locaton.pathname.split("/")[1];
+  const clubId = locaton.pathname[locaton.pathname.length - 1];
   const clubs = useSelector((state) => state.clubs.allClubs);
 
   const currentClub = clubs[clubId];
 
-  useBouncer("logout");
 
   useEffect(() => {
     dispatch(getAllClubsThunk());

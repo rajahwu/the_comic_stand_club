@@ -44,7 +44,7 @@ def edit_route(id):
     #     club.owner_id=current_user.id
         db.session.commit()
         
-        return {"club", club.to_dict()}
+        return {"club": club.to_dict()}
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
     

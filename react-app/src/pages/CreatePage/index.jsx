@@ -16,13 +16,25 @@ function createPageTitle(location) {
 }
 
 export default function CreatePage() {
+  useBouncer("logout")
+
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+  
   const clubs = useSelector((state) => state.clubs.allClubs);
   const clubId = clubs[location.pathname.split("/")[2]]?.id;
+  const title = createPageTitle(location);
 
-  useBouncer("logout")
+  const [clubName, setClubName] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [errors, setErrors] = useState({
+    clubName: "",
+    description: "",
+    imageUrl: "",
+    errors: 0,
+  });
 
   useEffect(() => {
     if (clubId) {
@@ -33,16 +45,6 @@ export default function CreatePage() {
     }
   }, [clubId, clubs]);
 
-  const title = createPageTitle(location);
-  const [clubName, setClubName] = useState("");
-  const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [errors, setErrors] = useState({
-    clubName: "",
-    description: "",
-    imageUrl: "",
-    errors: 0,
-  });
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
