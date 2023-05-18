@@ -15,6 +15,8 @@ class Club(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     
+    memberships = db.relationship("ClubMembership", back_populates="club", cascade="all, delete-orphan")
+    
     def to_dict(self):
         return {
             'id': self.id,

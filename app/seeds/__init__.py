@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .clubs import seed_clubs, undo_clubs
+from .memberships import undo_memberships
 
 from app.models.db import db, environment, SCHEMA
 
@@ -17,6 +18,7 @@ def seed():
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_memberships()
         undo_clubs()
         undo_users()
     seed_users()
@@ -30,4 +32,10 @@ def undo():
     undo_clubs()
     undo_users()
     # Add other undo functions here
+    
+@seed_commands.command('nuke')
+def nuke_data():    
+    undo_memberships()
+    undo_clubs()
+    undo_users
     

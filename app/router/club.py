@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.forms import CreateClubForm
-from app.models import db, Club
+from app.models import db, Club, ClubMembership
 from app.api.auth_routes import validation_errors_to_error_messages
 
 club_routes = Blueprint('clubs', __name__)
@@ -27,6 +27,18 @@ def new():
         )
         db.session.add(club)
         db.session.commit()
+        
+        membership = ClubMembership(
+            club_id=club.id,
+            user_id=current_user.id,
+            admin=True,
+            status="member"
+        )
+        
+        db.session.add(membership)
+        db.session.commit()
+        
+        
         return club.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
@@ -43,8 +55,8 @@ def edit_route(id):
         club.image_url=form.data["imageUrl"]
     #     club.owner_id=current_user.id
         db.session.commit()
-        
-        return {"club": club.to_dict()}
+      
+        return club.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
     
@@ -56,6 +68,7 @@ def delete_club(id):
     if club:
         db.session.delete(club)
         db.session.commit()
+    
         return {f"message": "Club {id} successfully deleted"}
     else:
         return {"message": "Club not found"}
