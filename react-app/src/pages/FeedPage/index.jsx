@@ -2,8 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
-import { getMarvelCharacters } from "../../resources/marvel";
-import { CharacterCard } from "../../components";
+import { CharacterSelect } from "../../components";
 
 async function fetchRSS() {
   try {
@@ -19,32 +18,12 @@ async function fetchRSS() {
   }
 }
 
-const SearchBar = ({ searchTerms, setSearchTerms }) => {
-  const handleClick = () => {};
-  return (
-    <form>
-      <input
-        name="startsWith"
-        type="text"
-        placeholder="starts with"
-        value={searchTerms.startsWith ? searchTerms.startsWith : ""}
-        onChange={(e) =>
-          setSearchTerms({ searchTerms, ...{ startsWith: e.target.value } })
-        }
-      />
-      <button onClick={handleClick}>Search</button>
-    </form>
-  );
-};
-
 export default function FeedPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const clubs = useSelector((state) => state.clubs.allClubs);
   const [rssFeed, setRssFeed] = useState([]);
-  const [searchTerms, setSearchTerms] = useState({});
-  const [comicCharacters, setComicCharactes] = useState([]);
 
   useEffect(() => {
     if (!sessionUser) {
@@ -69,36 +48,11 @@ export default function FeedPage() {
     fetchRssData();
   }, []);
 
-  useEffect(() => {
-    const fetchComicCharacters = async () => {
-      try {
-        const comiccharacters = await getMarvelCharacters();
-        setComicCharactes(comiccharacters.data.results);
-        console.log(comiccharacters.data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchComicCharacters();
-  }, []);
-
   return (
+
     <div style={{ display: "flex" }}>
-      <div className="character-feed" style={{ width: "25vw" }}>
-        <h2>Character Select</h2>
-        <SearchBar searchTerms={searchTerms} setSearchTerms={searchTerms} />
-        {comicCharacters.slice(0, 5).map((entry, i) => (
-          <div key={i}>
-            <CharacterCard
-              id={entry.id}
-              title={entry.name}
-              imageUrl={`${entry.thumbnail.path}.${entry.thumbnail.extension}`}
-              description={entry.description}
-              urls={entry.urls}
-            />
-          </div>
-        ))}
-      </div>
+      
+      <CharacterSelect />
 
       <div className="clubs-feed">
         <h2>Club Feed</h2>

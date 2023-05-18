@@ -4,5 +4,13 @@ import SignupFormPage from "./SignupFormPage";
 import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
 import CharacterCard from "./CharacterCard";
+import CharacterSelect from "./CharacterSelect";
 
-export { Navigation, SignupFormModal, SignupFormPage, LoginFormModal, LoginFormPage, CharacterCard }
+export { 
+    Navigation, 
+    SignupFormModal, 
+    SignupFormPage, 
+    LoginFormModal, 
+    LoginFormPage, 
+    CharacterCard, 
+    CharacterSelect }
