@@ -23,7 +23,6 @@ export default function NewsFeed() {
       try {
         const feed = await fetchRSS();
         if (isMounted) setRssFeed(feed);
-        // console.log("Rss data: ", feed);
       } catch (error) {
         console.error(error);
       }
