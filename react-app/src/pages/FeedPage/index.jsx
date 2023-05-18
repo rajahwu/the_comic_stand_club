@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
-import { CharacterSelect } from "../../components";
+import { CharacterFeed } from "../../components";
 
 async function fetchRSS() {
   try {
@@ -52,7 +52,7 @@ export default function FeedPage() {
 
     <div style={{ display: "flex" }}>
       
-      <CharacterSelect />
+      <CharacterFeed />
 
       <div className="clubs-feed">
         <h2>Club Feed</h2>

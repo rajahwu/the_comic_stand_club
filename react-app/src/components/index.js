@@ -4,13 +4,13 @@ import SignupFormPage from "./SignupFormPage";
 import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
 import CharacterCard from "./CharacterCard";
-import CharacterSelect from "./CharacterSelect";
+import CharacterFeed from "./CharacterFeed";
 
 export { 
-    Navigation, 
     SignupFormModal, 
     SignupFormPage, 
     LoginFormModal, 
     LoginFormPage, 
+    Navigation, 
     CharacterCard, 
-    CharacterSelect }
+    CharacterFeed }

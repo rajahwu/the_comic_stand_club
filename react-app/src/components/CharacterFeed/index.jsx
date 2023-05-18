@@ -24,7 +24,7 @@ const SearchBar = ({ searchTerms, setSearchTerms }) => {
   );
 };
 
-export default function CharacterSelect() {
+export default function CharacterFeed() {
   const [searchQueryString, setSearchQueryString] = useState({});
   const [comicCharacters, setComicCharacters] = useState([]);
 
