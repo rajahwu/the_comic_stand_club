@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClubsThunk } from "../../store/club";
+import { getAllClubsThunk } from "../../../store/club";
 import { useHistory } from "react-router-dom";
 
 export default function ClubFeed() {
-const dispatch = useDispatch()
-const clubs = useSelector((state) => state.clubs.allClubs);
-const history = useHistory();
+  const dispatch = useDispatch();
+  const clubs = useSelector((state) => state.clubs.allClubs);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
   }, [dispatch]);
-
 
   return (
     <div className="clubs-feed">
@@ -55,8 +54,26 @@ const history = useHistory();
                 cursor: "pointer",
               }}
             >
-              <p>{club.id}</p>
-              <p>{club.name}</p>
+              {/* <p>{club.id}</p> */}
+              <p style={{ display: "inline-block" }}>
+                <img
+                  style={{ borderRadius: "50%" }}
+                  width={50}
+                  height={50}
+                  src={club.imageUrl}
+                  alt="club"
+                />
+              </p>
+              <p
+                style={{
+                  display: "inline-block",
+                  marginLeft: "50px",
+                  fontSize: "2rem",
+                }}
+              >
+                {club.name}
+              </p>
+              <p>{club.description}</p>
             </div>
           ))}
       </div>
