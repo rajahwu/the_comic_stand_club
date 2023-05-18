@@ -31,5 +31,5 @@ class ClubMembership(db.Model):
             'updatedAt': self.updated_at
         }
 
-    def __reper__(self):
+    def __repr__(self):
         return f'<ClubMembership id: {self.id}, club_id: {self.club_id} user_id: {self.user_id} admin: {self.admin} created at: {self.created_at}>'
