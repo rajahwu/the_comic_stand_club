@@ -5,6 +5,7 @@ import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
 import CharacterCard from "./CharacterCard";
 import CharacterFeed from "./CharacterFeed";
+import ClubFeed from "./ClubFeed";
 import NewsFeed from "./NewsFeed";
 
 export { 
@@ -15,5 +16,6 @@ export {
     Navigation, 
     CharacterCard, 
     CharacterFeed,
+    ClubFeed,
     NewsFeed
 }

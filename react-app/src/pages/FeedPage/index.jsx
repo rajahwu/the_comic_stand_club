@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
-import { CharacterFeed, NewsFeed } from "../../components";
+import { CharacterFeed, ClubFeed, NewsFeed } from "../../components";
 
 async function fetchRSS() {
   try {
@@ -49,71 +49,10 @@ export default function FeedPage() {
   }, []);
 
   return (
-
     <div style={{ display: "flex" }}>
-      
       <CharacterFeed />
-
-      <div className="clubs-feed">
-        <h2>Club Feed</h2>
-        <button
-          style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
-            backgroundColor: "red",
-            color: "white"
-          }}
-          onClick={() => history.push("/clubs-new")}
-        >
-          Start a Club
-        </button>
-        <button
-          style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
-            cursor: "not-allowed",
-            backgroundColor: "green",
-            color: "white"
-          }}
-        >
-          Build a Stand
-        </button>
-        <div>
-          {clubs &&
-            Object.values(clubs).map((club, index) => (
-              <div
-                key={index}
-                onClick={(e) => history.push(`/club/${club.id}`)}
-                style={{
-                  width: "30vw",
-                  border: "3px solid black",
-                  margin: "15px",
-                  cursor: "pointer",
-                }}
-              >
-                <p>{club.id}</p>
-                <p>{club.name}</p>
-              </div>
-            ))}
-        </div>
-      </div>
+      <ClubFeed clubs={clubs} />
       <NewsFeed rssFeed={rssFeed} />
-
-{/* 
-      <div className="news-feed">
-        <h2>News Feed</h2>
-        {rssFeed.length &&
-          rssFeed?.map((entry, i) => (
-            <a key={i} href={entry.link} target="_blank" rel="noreferrer">
-              <p>{entry.title}</p>
-            </a>
-          ))}
-      </div> */}
-
     </div>
   );
 }
