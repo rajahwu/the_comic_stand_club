@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
-import { CharacterFeed } from "../../components";
+import { CharacterFeed, NewsFeed } from "../../components";
 
 async function fetchRSS() {
   try {
@@ -101,7 +101,9 @@ export default function FeedPage() {
             ))}
         </div>
       </div>
+      <NewsFeed rssFeed={rssFeed} />
 
+{/* 
       <div className="news-feed">
         <h2>News Feed</h2>
         {rssFeed.length &&
@@ -110,7 +112,8 @@ export default function FeedPage() {
               <p>{entry.title}</p>
             </a>
           ))}
-      </div>
+      </div> */}
+
     </div>
   );
 }

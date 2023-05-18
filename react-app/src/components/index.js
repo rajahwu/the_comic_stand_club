@@ -5,6 +5,7 @@ import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
 import CharacterCard from "./CharacterCard";
 import CharacterFeed from "./CharacterFeed";
+import NewsFeed from "./NewsFeed";
 
 export { 
     SignupFormModal, 
@@ -13,4 +14,6 @@ export {
     LoginFormPage, 
     Navigation, 
     CharacterCard, 
-    CharacterFeed }
+    CharacterFeed,
+    NewsFeed
+}
