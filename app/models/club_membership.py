@@ -9,10 +9,8 @@ class ClubMembership(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    club_id = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod("clubs.id")))
-    user_id = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod("users.id")))
+    club_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("clubs.id")))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     admin = db.Column(db.Boolean, default=False)
     status = db.Column(db.String(50), default="pending")
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
