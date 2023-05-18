@@ -3,6 +3,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk, createNewClubThunk } from "../../store/club";
 import CreatePageCSS from "./CreatePage.module.css";
+import { useBouncer } from "../../hooks";
 
 function createPageTitle(location) {
   let title;
@@ -19,14 +20,9 @@ export default function CreatePage() {
   const history = useHistory();
   const location = useLocation();
   const clubs = useSelector((state) => state.clubs.allClubs);
-  const sessionUser = useSelector((state) => state.session.user);
-  
   const clubId = clubs[location.pathname.split("/")[2]]?.id;
-  useEffect(() => {
-    if (!sessionUser) {
-      return history.push("/");
-    }
-  }, [sessionUser, history]);
+
+  useBouncer("logout")
 
   useEffect(() => {
     if (clubId) {
@@ -50,7 +46,7 @@ export default function CreatePage() {
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -98,7 +94,7 @@ export default function CreatePage() {
             history.push("/feed");
             return formData;
           } else {
-            await dispatch(createNewClubThunk(formData));
+            dispatch(createNewClubThunk(formData));
             console.log("Start a club forms data", formData);
             history.push("/feed");
             return formData;
