@@ -54,8 +54,26 @@ export default function ClubFeed() {
                 cursor: "pointer",
               }}
             >
-              <p>{club.id}</p>
-              <p>{club.name}</p>
+              {/* <p>{club.id}</p> */}
+              <p style={{ display: "inline-block" }}>
+                <img
+                  style={{ borderRadius: "50%" }}
+                  width={50}
+                  height={50}
+                  src={club.imageUrl}
+                  alt="club"
+                />
+              </p>
+              <p
+                style={{
+                  display: "inline-block",
+                  marginLeft: "50px",
+                  fontSize: "2rem",
+                }}
+              >
+                {club.name}
+              </p>
+              <p>{club.description}</p>
             </div>
           ))}
       </div>
