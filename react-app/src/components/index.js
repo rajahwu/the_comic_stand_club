@@ -3,6 +3,7 @@ import SignupFormModal from "./SignupFormModal";
 import SignupFormPage from "./SignupFormPage";
 import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
+import OpenModalButton from "./OpenModalButton";
 import CharacterCard from "./CharacterCard";
 import CharacterFeed from "./CharacterFeed";
 import ClubFeed from "./ClubFeed";
@@ -12,7 +13,8 @@ export {
     SignupFormModal, 
     SignupFormPage, 
     LoginFormModal, 
-    LoginFormPage, 
+    LoginFormPage,
+    OpenModalButton, 
     Navigation, 
     CharacterCard, 
     CharacterFeed,

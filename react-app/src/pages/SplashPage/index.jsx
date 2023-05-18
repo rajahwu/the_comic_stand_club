@@ -1,43 +1,42 @@
-import OpenModalButton from "../../components/OpenModalButton"
-import { LoginFormModal, SignupFormModal } from "../../components"
-import SplashPageCSS from "./SplashPage.module.css"
-import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
-import { useHistory } from "react-router-dom"
-import { login } from "../../store/session"
-
-
+import { useDispatch } from "react-redux";
+import { login } from "../../store/session";
+import { useBouncer } from "../../hooks";
+import {
+  LoginFormModal,
+  SignupFormModal,
+  OpenModalButton,
+} from "../../components";
+import SplashPageCSS from "./SplashPage.module.css";
 
 export default function SplashPage() {
-    const sessionUser = useSelector(state => state.session.user)
-    const history = useHistory()
-    const dispatch = useDispatch()
-    const closeMenu = () => {
-        return
-    }
+  const dispatch = useDispatch();
+  const closeMenu = () => {
+    return;
+  };
 
-    useEffect(() => {
-        if (sessionUser) {
-            return history.push("/feed")
-        }
-    }, [sessionUser, history])
+  useBouncer("login");
 
-    return (
-        <div className={SplashPageCSS.container}>
-            <OpenModalButton
-            buttonText="Sign Up"
-            onItemClick={closeMenu}
-            modalComponent={<SignupFormModal />} />
+  return (
+    <div className={SplashPageCSS.container}>
+      <OpenModalButton
+        buttonText="Sign Up"
+        onItemClick={closeMenu}
+        modalComponent={<SignupFormModal />}
+      />
 
-            <OpenModalButton
-            buttonText="Login"
-            onItemClick={closeMenu}
-            modalComponent={<LoginFormModal />}
-             />
+      <OpenModalButton
+        buttonText="Login"
+        onItemClick={closeMenu}
+        modalComponent={<LoginFormModal />}
+      />
 
-             <button onClick={() => {
-                dispatch(login("demo@aa.io", "password"))
-             }}>Demo User</button>
-        </div>
-    )
+      <button
+        onClick={() => {
+          dispatch(login("demo@aa.io", "password"));
+        }}
+      >
+        Demo User
+      </button>
+    </div>
+  );
 }
