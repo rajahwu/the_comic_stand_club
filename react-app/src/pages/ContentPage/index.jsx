@@ -23,7 +23,7 @@ export default function ContentPage() {
 
   return (
     <div>
-      <h1>{currentClub.name} content page</h1>
+      <h1>{currentClub?.name} content page</h1>
       <p>Club Id : {clubId}</p>
       <p>Description: {currentClub?.description}</p>
       <div>
