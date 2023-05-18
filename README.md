@@ -1,131 +1,58 @@
-# The Comic Stand Club
+# README - Comic Stand Club
 
-Backend
+Welcome to the Comic Stand Club! This repository serves as a central hub for our community of comic book enthusiasts. Here, you will find information on how to contribute, guidelines for participation, and an overview of the project. Whether you're a seasoned comic collector or a passionate artist, we're thrilled to have you on board.
 
-```hash
-app
-├── __init__.py
-├── __pycache__
-│   ├── __init__.cpython-39.pyc
-│   └── config.cpython-39.pyc
-├── api
-│   ├── __pycache__
-│   │   ├── auth_routes.cpython-39.pyc
-│   │   └── user_routes.cpython-39.pyc
-│   ├── auth_routes.py
-│   └── user_routes.py
-├── config.py
-├── dev.db
-├── forms
-│   ├── __init__.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-39.pyc
-│   │   ├── login_form.cpython-39.pyc
-│   │   └── signup_form.cpython-39.pyc
-│   ├── create_club_form.py
-│   ├── login_form.py
-│   └── signup_form.py
-├── models
-│   ├── __init__.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-39.pyc
-│   │   ├── club.cpython-39.pyc
-│   │   ├── club_membership.cpython-39.pyc
-│   │   ├── comment.cpython-39.pyc
-│   │   ├── db.cpython-39.pyc
-│   │   ├── forum.cpython-39.pyc
-│   │   ├── forum_comment.cpython-39.pyc
-│   │   ├── stand.cpython-39.pyc
-│   │   └── user.cpython-39.pyc
-│   ├── club.py
-│   ├── club_membership.py
-│   ├── comment.py
-│   ├── db.py
-│   ├── forum.py
-│   ├── forum_comment.py
-│   ├── stand.py
-│   └── user.py
-├── router
-│   ├── __init__.py
-│   ├── club.py
-│   └── rss_feed.py
-└── seeds
-    ├── __init__.py
-    ├── __pycache__
-    │   ├── __init__.cpython-39.pyc
-    │   ├── clubs.cpython-39.pyc
-    │   └── users.cpython-39.pyc
-    ├── clubs.py
-    └── users.py
+## Table of Contents
 
-```
+- [About the Comic Stand Club](#about-the-comic-stand-club)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [Community Guidelines](#community-guidelines)
+- [Code of Conduct](#code-of-conduct)
+- [License](#license)
 
-Front End
+## About the Comic Stand Club
 
-```bash
-.
-├── App.js
-├── components
-│   ├── CharacterCard
-│   │   └── index.js
-│   ├── CharacterCardImage
-│   │   └── index.jsx
-│   ├── FeedComponents
-│   │   ├── CharacterFeed
-│   │   │   └── index.jsx
-│   │   ├── ClubFeed
-│   │   │   └── index.jsx
-│   │   ├── NewsFeed
-│   │   │   └── index.jsx
-│   │   └── index.js
-│   ├── LoginFormModal
-│   │   ├── LoginForm.css
-│   │   └── index.js
-│   ├── LoginFormPage
-│   │   ├── LoginForm.css
-│   │   └── index.js
-│   ├── Navigation
-│   │   ├── Navigation.module.css
-│   │   ├── ProfileButton.js
-│   │   └── index.js
-│   ├── OpenModalButton
-│   │   └── index.js
-│   ├── SignupFormModal
-│   │   ├── SignupForm.css
-│   │   └── index.js
-│   ├── SignupFormPage
-│   │   ├── SignupForm.css
-│   │   └── index.js
-│   ├── auth
-│   │   └── ProtectedRoute.js
-│   └── index.js
-├── context
-│   ├── Modal.css
-│   └── Modal.js
-├── hooks
-│   ├── index.js
-│   └── useBouncer.js
-├── index.css
-├── index.js
-├── pages
-│   ├── ContentPage
-│   │   └── index.jsx
-│   ├── CreatePage
-│   │   ├── CreatePage.module.css
-│   │   └── index.jsx
-│   ├── FeedPage
-│   │   └── index.jsx
-│   ├── SplashPage
-│   │   ├── SplashPage.module.css
-│   │   └── index.jsx
-│   └── index.js
-├── resources
-│   └── marvel.js
-├── store
-│   ├── club.js
-│   ├── index.js
-│   └── session.js
-└── utils
-    ├── marvelAPI.js
-    └── md5hash.js
-```
+The Comic Stand Club is an open community dedicated to the love and appreciation of comic books. Our goal is to foster an inclusive environment where comic enthusiasts can come together, discuss their favorite works, share recommendations, and collaborate on projects related to comics. Whether you're into superheroes, manga, graphic novels, or independent publications, this is the place to be.
+
+## Getting Started
+
+To get started with the Comic Stand Club, follow these steps:
+
+1. **Fork** this repository.
+2. **Clone** the forked repository to your local machine.
+3. **Create a new branch** for your contributions.
+4. Make your desired changes, whether it's adding new content, fixing bugs, or improving existing features.
+5. **Commit** your changes with clear and descriptive messages.
+6. **Push** your changes to your forked repository.
+7. Submit a **pull request** to the main repository, outlining the changes you've made.
+
+Our team will review your contributions and provide feedback. We appreciate your effort and look forward to working together!
+
+## Contributing
+
+We welcome contributions from everyone! Whether you're a writer, artist, developer, or just a comic enthusiast, there are many ways to get involved. Here are a few areas where you can contribute:
+
+- **Adding new comic reviews or recommendations**: Share your thoughts on your favorite comic books, provide recommendations, and help others discover new titles.
+- **Creating artwork**: Showcase your artistic skills by creating original comic illustrations or cover designs.
+- **Improving the website**: If you have web development skills, you can contribute by enhancing the functionality, design, or user experience of our website.
+
+Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed instructions on how to contribute.
+
+## Community Guidelines
+
+To ensure a positive and welcoming atmosphere for all members, we have established the following guidelines:
+
+1. **Respect**: Treat all members with respect and courtesy. We value diversity and encourage open-mindedness.
+2. **Constructive Communication**: Engage in constructive discussions and provide feedback in a helpful manner. Avoid personal attacks or offensive language.
+3. **Original Work**: When sharing artwork or content, make sure it is your own or properly credited to the original creator.
+4. **Appropriate Content**: Avoid sharing content that is explicit, offensive, or violates intellectual property rights.
+5. **Collaboration**: Encourage collaboration and teamwork. Help others, provide guidance, and be open to different perspectives.
+
+By participating in the Comic Stand Club, you agree to abide by these guidelines. Failure to do so may result in temporary or permanent removal from the community.
+
+## Code of Conduct
+
+We are committed to providing a safe and harassment-free environment for all members, and we expect everyone to follow our [Code of Conduct](CODE_OF_CONDUCT.md). This applies to all interactions within the community, including online discussions, events, and any other form of communication associated with the Comic Stand Club.
+
+If you witness or experience any behavior that violates our Code of Conduct, please report
