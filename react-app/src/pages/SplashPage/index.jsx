@@ -9,12 +9,11 @@ import {
 import SplashPageCSS from "./SplashPage.module.css";
 
 export default function SplashPage() {
+  useBouncer("login");
   const dispatch = useDispatch();
   const closeMenu = () => {
     return;
   };
-
-  useBouncer("login");
 
   return (
     <div className={SplashPageCSS.container}>
