@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClubsThunk } from "../../store/club";
+import { getAllClubsThunk } from "../../../store/club";
 import { useHistory } from "react-router-dom";
 
 export default function ClubFeed() {
-const dispatch = useDispatch()
-const clubs = useSelector((state) => state.clubs.allClubs);
-const history = useHistory();
+  const dispatch = useDispatch();
+  const clubs = useSelector((state) => state.clubs.allClubs);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
   }, [dispatch]);
-
 
   return (
     <div className="clubs-feed">

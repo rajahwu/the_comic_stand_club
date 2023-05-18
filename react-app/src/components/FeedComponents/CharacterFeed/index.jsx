@@ -2,8 +2,8 @@
 // TODO Get API Response (COMIC_CHARACTERS)
 
 import { useEffect, useState } from "react";
-import { CharacterCard } from "..";
-import { getMarvelCharacters } from "../../resources/marvel";
+import CharacterCard from "../../CharacterCard";
+import { getMarvelCharacters } from "../../../resources/marvel";
 
 const SearchBar = ({ searchTerms, setSearchTerms }) => {
   // TODO Handle Click
