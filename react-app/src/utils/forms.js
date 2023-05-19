@@ -28,7 +28,6 @@ export class CreateForm {
   }
 
   update = async () => {
-    console.log(!this.clubId);
     if (!this.clubId) return;
     const response = await fetch(`/api/clubs/${this.clubId}`, {
       method: "PUT",

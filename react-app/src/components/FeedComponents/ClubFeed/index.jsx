@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk } from "../../../store/club";
 import { useHistory } from "react-router-dom";
+import FeedCard from "../FeedCard";
 
 export default function ClubFeed() {
   const dispatch = useDispatch();
@@ -41,43 +42,8 @@ export default function ClubFeed() {
       >
         Build a Stand
       </button>
-      <div>
-        {clubs &&
-          Object.values(clubs).map((club, index) => (
-            <div
-              key={index}
-              onClick={(e) => history.push(`/club/${club.id}`)}
-              style={{
-                width: "30vw",
-                border: "3px solid black",
-                margin: "15px",
-                cursor: "pointer",
-              }}
-            >
-              {/* <p>{club.id}</p> */}
-              <p style={{ display: "inline-block" }}>
-                <img
-                  style={{ borderRadius: "50%" }}
-                  width={50}
-                  height={50}
-                  src={club.imageUrl}
-                  alt="club"
-                />
-              </p>
-              <p
-                style={{
-                  display: "inline-block",
-                  marginLeft: "50px",
-                  fontSize: "2rem",
-                }}
-              >
-                {club.name}
-              </p>
-              <p>{club.description}</p>
-            </div>
-          ))}
-      </div>
+
+      <FeedCard feed={clubs} feedUrl="/club"/>
     </div>
   );
 }
-
