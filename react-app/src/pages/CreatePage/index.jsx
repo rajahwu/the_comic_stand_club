@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk, createNewClubThunk } from "../../store/club";
 import { Link, useLocation, useHistory } from "react-router-dom";
 
-import { getFormType } from "../../utils/forms";
+
+import { CreateForm } from "../../utils/forms";
 
 import CreatePageCSS from "./CreatePage.module.css";
 
@@ -26,8 +27,10 @@ export default function CreatePage() {
     errors: 0,
   });
 
-  const formType = getFormType(location);
-  const title = formType["title"];
+  const createForm = new CreateForm(location)
+
+  const formType = createForm.type
+  const title = createForm.title;
 
   useEffect(() => {
     if (clubId) {
@@ -50,9 +53,12 @@ export default function CreatePage() {
       imageUrl,
     };
 
+    createForm.setFormData(formData)
+    // createForm.validate(errors)
+
     e.preventDefault();
-    const formErrors = formType["validator"](formData, errors);
-    if (Object.values(formErrors).length) {
+    const formErrors = createForm.validate(errors);
+    if (formErrors && Object.values(formErrors).length) {
       if (errors.clubName) setClubName("");
       if (errors.description) setDescription("");
       if (errors.imageUrl) setImageUrl("");

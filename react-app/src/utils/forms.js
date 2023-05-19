@@ -1,6 +1,6 @@
 export class CreateForm {
     constructor(location, formData = {}) {
-        if (/\/clubs-new/.testlocation.pathname) {
+        if (/\/clubs-new/.test(location.pathname)) {
             this.type = ["club", "new"]
             this.title = "Start a new club"
             this.validator = validateClub
@@ -13,13 +13,17 @@ export class CreateForm {
         this.formData = formData
     }
 
-    get type() {
-        return this.type
-    }
+    // get type() {
+    //     return this.type
+    // }
 
-    get title() {
-        return this.title
-    }
+    // get title() {
+    //     return this.title
+    // }
+
+    // get formData() {
+    //     return this.formData
+    // }
 
     setFormData(formData) {
         this.formData = formData
@@ -31,18 +35,18 @@ export class CreateForm {
 }
 
 
-export function getFormType(location) {
-    const formType = {};
-    if (location.pathname === "/clubs-new") {
-        formType["title"] = "Start a new club";
-        formType["validator"] = validateClub;
-    }
-    if (/\/club\/\d\/edit/.test(location.pathname)) {
-        formType["title"] = "Edit club";
-        formType["validator"] = validateClub;
-    }
-    return formType;
-}
+// export function getFormType(location) {
+//     const formType = {};
+//     if (location.pathname === "/clubs-new") {
+//         formType["title"] = "Start a new club";
+//         formType["validator"] = validateClub;
+//     }
+//     if (/\/club\/\d\/edit/.test(location.pathname)) {
+//         formType["title"] = "Edit club";
+//         formType["validator"] = validateClub;
+//     }
+//     return formType;
+// }
 
 function validateClub(formData, errors) {
     if (formData.clubName?.length <= 0) {
