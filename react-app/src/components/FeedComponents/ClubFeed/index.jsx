@@ -1,16 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk } from "../../../store/club";
+import { getAllStandsThunk } from "../../../store/stand";
 import { useHistory } from "react-router-dom";
 import FeedCard from "../FeedCard";
 
 export default function ClubFeed() {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
+  const stands = useSelector((state) => state.stands.allStands)
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
+    dispatch(getAllStandsThunk())
   }, [dispatch]);
 
   return (
@@ -24,6 +27,7 @@ export default function ClubFeed() {
           margin: "5px",
           backgroundColor: "red",
           color: "white",
+          cursor: "pointer"
         }}
         onClick={() => history.push("/clubs-new")}
       >
@@ -35,10 +39,11 @@ export default function ClubFeed() {
           height: "65px",
           width: "65px",
           margin: "5px",
-          cursor: "not-allowed",
           backgroundColor: "green",
           color: "white",
+          cursor: "pointer"
         }}
+        onClick={() => history.push("/stands-new")}
       >
         Build a Stand
       </button>

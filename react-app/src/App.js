@@ -29,6 +29,15 @@ function App() {
           <Route exact path="/club/:clubId/edit">
             <CreatePage />
           </Route>
+          <Route exact path="/stands-new">
+            <CreatePage />
+          </Route>
+          <Route exact path="/stand/:standId">
+            <ContentPage />
+          </Route>
+          <Route exact path="/stand/:standId/edit">
+            <CreatePage />
+          </Route>
           <Route exact path="/">
             <SplashPage />
           </Route>

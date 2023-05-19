@@ -2,17 +2,17 @@ import { MARVEL_API_KEY } from "../utils/marvelAPI";
 
 const baseUrl = `https://gateway.marvel.com:443/v1/public/`
 
-export async function getMarvelCharacters(searchTerms = { startsWith: "spider" }) {
+export async function getMarvelCharacters(signal, searchTerms = { startsWith: "spider" }) {
     const urlQueryParams = getQueryParams(searchTerms)
     const data = await fetch(
-        `${baseUrl}characters?${urlQueryParams.startsWith}&${MARVEL_API_KEY}`
+        `${baseUrl}characters?${urlQueryParams.startsWith}&${MARVEL_API_KEY}`, { signal }
     ).then((data) => data.json());
     return data;
 }
 
-export async function getMarvelCharactersById(characterId) {
+export async function getMarvelCharactersById(characterId, signal) {
     const data = await fetch(
-        `${baseUrl}characters/${characterId}?${MARVEL_API_KEY}`
+        `${baseUrl}characters/${characterId}?${MARVEL_API_KEY}`, { signal }
     ).then((data) => data.json())
     return data
 }

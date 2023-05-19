@@ -2,7 +2,7 @@
 // TODO Get API Response (COMIC_CHARACTERS)
 
 import { useEffect, useState } from "react";
-import {CharacterCard} from "../.."
+import { CharacterCard } from "../..";
 import { getMarvelCharacters } from "../../../resources/marvel";
 
 const SearchBar = ({ searchTerms, setSearchTerms }) => {
@@ -29,16 +29,18 @@ export default function CharacterFeed() {
   const [comicCharacters, setComicCharacters] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const {signal} = controller
     const fetchMarvelCharacters = async () => {
       try {
-        const comiccharacters = await getMarvelCharacters(searchQueryString);
+        const comiccharacters = await getMarvelCharacters(signal, searchQueryString);
         setComicCharacters(comiccharacters.data.results);
       } catch (errors) {
         console.error(errors);
       }
     };
-
     fetchMarvelCharacters();
+    return () => controller.abort();
   }, [searchQueryString]);
 
   return (
