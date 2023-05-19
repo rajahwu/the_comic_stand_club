@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getAllClubsThunk, createNewClubThunk } from "../../../store/club";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
+import { compose } from "redux";
 
 export default function ClubForm({ createForm }) {
   const dispatch = useDispatch();
@@ -12,8 +13,7 @@ export default function ClubForm({ createForm }) {
   const currentClub = clubs[createForm.clubId];
   const [clubName, setClubName] = useState(currentClub ? currentClub.name : "");
   const [description, setDescription] = useState(
-    currentClub ? currentClub.description
-    : ""
+    currentClub ? currentClub.description : ""
   );
   const [imageUrl, setImageUrl] = useState(
     currentClub ? currentClub.imageUrl : ""
@@ -48,10 +48,16 @@ export default function ClubForm({ createForm }) {
     }
 
     if (createForm.type[1] === "edit") {
-      createForm.update();
+      const status = createForm.update();
+      if (status.errors) {
+        setErrors(status.errors);
+        return;
+      }
       history.push("/feed");
       return createForm.formData;
-    } else {
+    }
+
+    if (createForm.type[1] === "new") {
       dispatch(createNewClubThunk(createForm.formData));
       console.log("Start a club forms data", createForm.formData);
       history.push("/feed");
