@@ -1,52 +1,42 @@
+import ClubForm from "../components/FormComponents/ClubForm";
+
 export class CreateForm {
     constructor(location, formData = {}) {
         if (/\/clubs-new/.test(location.pathname)) {
-            this.type = ["club", "new"]
-            this.title = "Start a new club"
-            this.validator = validateClub
+            this.type = ["club", "new"];
+            this.title = "Start a new club";
+            this.validator = validateClub;
         }
         if (/\/club\/\d\/edit/.test(location.pathname)) {
-            this.type = ["club, edit"]
-            this.title = "Edit club"
-            this.validator = validateClub
+            this.type = ["club, edit"];
+            this.title = "Edit club";
+            this.validator = validateClub;
+            this.clubId = location.pathname.split("/")[2];
         }
-        this.formData = formData
+
+        if (this.type[0] === "club") this.component = <ClubForm createForm={this} />;
+        // if (this.type[0] === "club") this.component = () => <h1>Hi</h1>;
+        this.formData = formData;
     }
 
-    // get type() {
-    //     return this.type
-    // }
-
-    // get title() {
-    //     return this.title
-    // }
-
-    // get formData() {
-    //     return this.formData
-    // }
-
     setFormData(formData) {
-        this.formData = formData
+        this.formData = formData;
     }
 
     validate(errors) {
-       return this.validator(this.formData, errors)
+        return this.validator(this.formData, errors);
+    }
+
+    update() {
+        if (!this.clubId) return;
+        fetch(`/api/clubs/${this.clubId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(this.formData),
+        });
+        return this.formData;
     }
 }
-
-
-// export function getFormType(location) {
-//     const formType = {};
-//     if (location.pathname === "/clubs-new") {
-//         formType["title"] = "Start a new club";
-//         formType["validator"] = validateClub;
-//     }
-//     if (/\/club\/\d\/edit/.test(location.pathname)) {
-//         formType["title"] = "Edit club";
-//         formType["validator"] = validateClub;
-//     }
-//     return formType;
-// }
 
 function validateClub(formData, errors) {
     if (formData.clubName?.length <= 0) {
