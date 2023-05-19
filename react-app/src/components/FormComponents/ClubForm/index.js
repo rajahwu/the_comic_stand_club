@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getAllClubsThunk, createNewClubThunk } from "../../../store/club";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
-import { compose } from "redux";
 
 export default function ClubForm({ createForm }) {
   const dispatch = useDispatch();
