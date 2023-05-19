@@ -15,6 +15,19 @@ export class CreateForm {
       this.clubId = location.pathname.split("/")[2];
       this.component = <ClubForm createForm={this} />;
     }
+    if (/\/stands-new/.test(location.pathname)) {
+      this.type = ["club", "new"];
+      this.title = "Build a new stand";
+      this.validator = validateClub;
+      this.component = <ClubForm createForm={this} />;
+    }
+    if (/\/stand\/\d\/edit/.test(location.pathname)) {
+      this.type = ["club", "edit"];
+      this.title = "Edit stand";
+      this.validator = validateClub;
+      this.clubId = location.pathname.split("/")[2];
+      this.component = <ClubForm createForm={this} />;
+    }
 
     this.formData = formData;
   }

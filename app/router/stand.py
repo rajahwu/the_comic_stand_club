@@ -8,8 +8,8 @@ stand_routes = Blueprint('stands', __name__)
 
 @stand_routes.route("/")
 def stands():
-    clubs = Stand.query.all()
-    return {'stands': [club.to_dict() for club in clubs] }
+    stands = Stand.query.all()
+    return {'stands': [stand.to_dict() for stand in stands] }
 
 @stand_routes.route("/new", methods=["POST"])
 def new():
@@ -31,15 +31,15 @@ def new():
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @stand_routes.route("/<int:id>", methods=["PUT"])
-def edit_route(id):
-    club = Stand.query.get(id)
+def edit_stand(id):
+    stand = Stand.query.get(id)
     
     form = CreateStandForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        club.name=form.data["clubName"]
-        club.description=form.data["description"]
-        club.image_url=form.data["imageUrl"]
+        stand.name=form.data["clubName"]
+        stand.description=form.data["description"]
+        stand.image_url=form.data["imageUrl"]
         db.session.commit()
       
         return stand.to_dict()
@@ -49,7 +49,7 @@ def edit_route(id):
 
      
 @stand_routes.route("/<int:id>", methods=["DELETE"]) 
-def delete_club(id):
+def delete_stand(id):
     stand = Stand.query.get(id)
     if stand:
         db.session.delete(stand)
@@ -62,5 +62,5 @@ def delete_club(id):
 @stand_routes.route("/<int:id>")
 @login_required
 def stand(id):
-    club = Stand.query.get(id)
+    stand = Stand.query.get(id)
     return stand.to_dict()
