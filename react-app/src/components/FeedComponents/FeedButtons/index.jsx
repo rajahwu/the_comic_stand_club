@@ -10,7 +10,9 @@ export default function FeedButtons({ children }) {
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
   const [activeFeed, setActiveFeed] = useState({ url: "/feed", type: "club" });
+  const [feed, setFeed] = useState(clubs)
   const history = useHistory();
+
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
@@ -30,7 +32,11 @@ export default function FeedButtons({ children }) {
           color: "white",
           cursor: "pointer",
         }}
-        onClick={() => setActiveFeed({ type: "club", url: "/clubs" })}
+        onClick={() => {
+            if(activeFeed.type === "club") history.push('/feed/clubs')
+            setActiveFeed({ type: "club", url: "/clubs" })
+            if(feed !== clubs) setFeed(clubs)
+            }}
       >
         Clubs
       </button>
@@ -44,7 +50,10 @@ export default function FeedButtons({ children }) {
           color: "white",
           cursor: "pointer",
         }}
-        onClick={() => setActiveFeed({ type: "stand", url: "stands" })}
+        onClick={() => {
+            setActiveFeed({ type: "stand", url: "stands" })
+            if(feed !== stands) setFeed(stands)
+            }}
       >
         Stands
       </button>
@@ -58,7 +67,10 @@ export default function FeedButtons({ children }) {
           color: "white",
           cursor: "pointer",
         }}
-        onClick={() => setActiveFeed({ type: "fourm", url: "fourms" })}
+        onClick={() => {
+            setActiveFeed({ type: "fourm", url: "fourms" })
+            // if(feed !== fourm) setFeed(fourm)
+            }}
       >
         Fourms
       </button>
@@ -77,7 +89,7 @@ export default function FeedButtons({ children }) {
         Create
       </button>
 
-      <FeedCard feed={clubs} feedUrl={`/${activeFeed.type}`} />
+      <FeedCard feed={feed} feedUrl={`/${activeFeed.type}`} />
     </div>
   );
 }
