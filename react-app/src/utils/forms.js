@@ -23,7 +23,7 @@ export class CreateForm {
         imageUrl: "imageUrl" 
       }
       this.validator = validateForm;
-      this.clubId = location.pathname.split("/")[2];
+      this.id = location.pathname.split("/")[2];
       this.component = <ClubForm createForm={this} />;
     }
     if (/\/stands-new/.test(location.pathname)) {
@@ -46,7 +46,7 @@ export class CreateForm {
         description: "description", 
         imageUrl: "imageUrl" }
       this.validator = validateForm;
-      this.clubId = location.pathname.split("/")[2];
+      this.id = location.pathname.split("/")[2];
       this.component = () => <StandForm createForm={this} />;
     }
 

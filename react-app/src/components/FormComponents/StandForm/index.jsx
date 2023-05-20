@@ -8,22 +8,22 @@ import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 export default function StandForm({ createForm }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const type = createForm.type[0];
 
-//   const stands = useSelector(
-//     (state) => state?.stands?.allStands
-//   );
-const stands = []
-
-  const currentStand = stands[createForm.id ? createForm.id : -1];
+  const stands = useSelector(
+    (state) => state.stands.allStands
+  );
+// const stands = []
+// console.log("stand form stand selectoer", stands)
+  const currentStand = stands ? stands[createForm.id] : {} 
+  // const currentStand = stands[createForm.id ? stands[createForm.id] : null];
   const [standName, setStandName] = useState(
-    currentStand ? currentStand.name : ""
+    currentStand ? currentStand?.name : ""
   );
   const [description, setDescription] = useState(
-    currentStand ? currentStand.description : ""
+    currentStand ? currentStand?.description : ""
   );
   const [characters, setCharacters] = useState(
-    currentStand ? currentStand.characters : []
+    currentStand ? currentStand?.characters : []
   );
   const [errors, setErrors] = useState({
     clubName: "",
@@ -48,7 +48,7 @@ const stands = []
     if (formErrors && Object.values(formErrors).length) {
       if (errors.standName) setStandName("");
       if (errors.description) setDescription("");
-      if (errors.imageUrl) setCharacters("");
+      if (errors.characters) setCharacters("");
       setErrors({ ...errors, ...formErrors });
       console.error("validate club errors", errors);
       return;
@@ -66,6 +66,12 @@ const stands = []
 
     if (createForm.type[1] === "new") {
     //   dispatch(createNewStandThunk(createForm.formData));
+      const status = createForm.create()
+      if(status.errors) {
+        setErrors(status.error)
+        return;
+      }
+
       console.log("Start a stand forms data", createForm.formData);
       history.push("/feed");
       return createForm.formData;
@@ -78,7 +84,7 @@ const stands = []
       <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
         <label>
           Characters
-          {<p>{errors?.imageUrl}</p>}
+          {<p>{errors?.characters}</p>}
         </label>
         <input
           type="text"
@@ -88,7 +94,7 @@ const stands = []
         />
         <label>
           Stand Name
-          {<p>{errors?.clubName}</p>}
+          {<p>{errors?.standName}</p>}
         </label>
         <input
           name="name"

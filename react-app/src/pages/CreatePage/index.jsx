@@ -6,6 +6,5 @@ export default function CreatePage() {
   useBouncer("logout");
   const location = useLocation();
   const createForm = new CreateForm(location)
-  const FormComponent = createForm.component
-  return FormComponent
+  return createForm.component
 }

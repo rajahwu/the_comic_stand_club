@@ -12,7 +12,6 @@ export default function ContentPage() {
 
   const contentType = locaton.pathname.split("/")[1];
   const clubId = locaton.pathname.split("/")[2];
-  // console.log(locaton.pathname.split("/"))
   const clubs = useSelector((state) => state.clubs.allClubs);
 
   const currentClub = clubs[clubId];
