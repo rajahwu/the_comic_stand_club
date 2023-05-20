@@ -1,4 +1,4 @@
-import ClubForm from "./ClubForm";
+import ClubForm from "./ClubForm"
+import StandForm from "./StandForm"
 
-
-export { ClubForm }
+export { ClubForm, StandForm }

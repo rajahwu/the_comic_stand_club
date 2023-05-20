@@ -1,4 +1,4 @@
-import ClubForm from "../components/FormComponents/ClubForm";
+import { ClubForm } from "../components/FormComponents";
 
 export class CreateForm {
   constructor(location, formData = {}) {
