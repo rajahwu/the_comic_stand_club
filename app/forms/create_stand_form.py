@@ -7,4 +7,4 @@ class CreateStandForm(FlaskForm):
     clubName = StringField(
         'clubname', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
-    imageUrl = StringField('imageUrl')
+    characters = StringField('characters')

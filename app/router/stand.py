@@ -20,7 +20,7 @@ def new():
         stand = CreateStandForm(
             name=form.data["clubName"],
             description=form.data["description"],
-            image_url=form.data["imageUrl"],
+            characters=form.data["characters"],
             owner_id=current_user.id
         )
         db.session.add(stand)
@@ -39,7 +39,7 @@ def edit_stand(id):
     if form.validate_on_submit():
         stand.name=form.data["clubName"]
         stand.description=form.data["description"]
-        stand.image_url=form.data["imageUrl"]
+        stand.characters=form.data["characters"]
         db.session.commit()
       
         return stand.to_dict()

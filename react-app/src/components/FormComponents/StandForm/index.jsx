@@ -22,8 +22,8 @@ const stands = []
   const [description, setDescription] = useState(
     currentStand ? currentStand.description : ""
   );
-  const [imageUrl, setImageUrl] = useState(
-    currentStand ? currentStand.imageUrl : ""
+  const [characters, setCharacters] = useState(
+    currentStand ? currentStand.characters : []
   );
   const [errors, setErrors] = useState({
     clubName: "",
@@ -41,14 +41,14 @@ const stands = []
     createForm.setFormData({
       standName,
       description,
-      imageUrl,
+      characters,
     });
 
     const formErrors = createForm.validate(errors);
     if (formErrors && Object.values(formErrors).length) {
       if (errors.standName) setStandName("");
       if (errors.description) setDescription("");
-      if (errors.imageUrl) setImageUrl("");
+      if (errors.imageUrl) setCharacters("");
       setErrors({ ...errors, ...formErrors });
       console.error("validate club errors", errors);
       return;
@@ -77,17 +77,17 @@ const stands = []
       <h1>{createForm.title}</h1>
       <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
         <label>
-          Club Image
+          Characters
           {<p>{errors?.imageUrl}</p>}
         </label>
         <input
           type="text"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          name="characters"
+          value={characters}
+          onChange={(e) => setCharacters(e.target.value)}
         />
         <label>
-          Club Name
+          Stand Name
           {<p>{errors?.clubName}</p>}
         </label>
         <input
@@ -97,7 +97,7 @@ const stands = []
           onChange={(e) => setStandName(e.target.value)}
         />
         <label>
-          Club Description
+          Stand Description
           {<p>{errors?.description}</p>}
         </label>
         <textarea
