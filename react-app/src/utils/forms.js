@@ -13,7 +13,7 @@ export class CreateForm {
       this.validator = validateForm;
       this.component = <ClubForm createForm={this} />;
     }
-    if (/\/club\/\d\/edit/.test(location.pathname)) {
+    if (/\/club\/\d{1,3}\/edit/.test(location.pathname)) {
       this.type = ["club", "edit"];
       this.title = "Edit club";
       this.state = { 
@@ -37,7 +37,7 @@ export class CreateForm {
       this.validator = validateForm;
       this.component = <StandForm createForm={this} />;
     }
-    if (/\/stand\/\d\/edit/.test(location.pathname)) {
+    if (/\/stand\/\d{1,3}\/edit/.test(location.pathname)) {
       this.type = ["stand", "edit"];
       this.title = "Edit stand";
       this.state = { 
@@ -62,6 +62,18 @@ export class CreateForm {
   validate(errors) {
     return this.validator(this.formData, errors);
   }
+
+  create = async () => {
+    console.log(this.state.method)
+    if (this.method !== "new") return;
+    const response = await fetch(`/api/${this.name}s/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.formData),
+    });
+    console.log("form create method created", response);
+    return response;
+  };
 
   update = async () => {
     if (!this.state.id) return;

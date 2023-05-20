@@ -46,7 +46,7 @@ export default function ClubForm({ createForm }) {
       return;
     }
 
-    if (createForm.type[1] === "edit") {
+    if (createForm.method === "edit") {
       const status = createForm.update();
       if (status.errors) {
         setErrors(status.errors);
@@ -56,8 +56,13 @@ export default function ClubForm({ createForm }) {
       return createForm.formData;
     }
 
-    if (createForm.type[1] === "new") {
-      dispatch(createNewClubThunk(createForm.formData));
+    if (createForm.method === "new") {
+      // dispatch(createNewClubThunk(createForm.formData));
+      const status = createForm.create()
+      if (status.errors) {
+        setErrors(status.errors)
+        return;
+      }
       console.log("Start a club forms data", createForm.formData);
       history.push("/feed");
       return createForm.formData;
