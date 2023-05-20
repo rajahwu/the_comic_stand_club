@@ -26,7 +26,7 @@ export class CreateForm {
       this.title = "Edit stand";
       this.validator = validateClub;
       this.clubId = location.pathname.split("/")[2];
-      this.component = <ClubForm createForm={this} />;
+      this.component = () => <ClubForm createForm={this} />;
     }
 
     this.formData = formData;

@@ -9,7 +9,7 @@ export default function FeedButtons({ children }) {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
-  const [activeFeed, setActiveFeed] = useState({ url: "/feed", type: "club" });
+  const [activeFeed, setActiveFeed] = useState({ url: "/clubs", type: "club" });
   const [feed, setFeed] = useState(clubs)
   const history = useHistory();
 
@@ -84,7 +84,7 @@ export default function FeedButtons({ children }) {
           color: "white",
           cursor: "pointer",
         }}
-        onClick={() => history.push(`${activeFeed?.url}-new`)}
+        onClick={() => history.push(`${activeFeed.url}-new`)}
       >
         Create
       </button>
