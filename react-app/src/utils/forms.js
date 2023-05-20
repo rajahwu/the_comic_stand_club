@@ -1,4 +1,4 @@
-import { ClubForm } from "../components/FormComponents";
+import { ClubForm, StandForm } from "../components/FormComponents";
 
 export class CreateForm {
   constructor(location, formData = {}) {
@@ -16,17 +16,17 @@ export class CreateForm {
       this.component = <ClubForm createForm={this} />;
     }
     if (/\/stands-new/.test(location.pathname)) {
-      this.type = ["club", "new"];
+      this.type = ["stand", "new"];
       this.title = "Build a new stand";
       this.validator = validateClub;
-      this.component = <ClubForm createForm={this} />;
+      this.component = <StandForm createForm={this} />;
     }
     if (/\/stand\/\d\/edit/.test(location.pathname)) {
-      this.type = ["club", "edit"];
+      this.type = ["stand", "edit"];
       this.title = "Edit stand";
       this.validator = validateClub;
       this.clubId = location.pathname.split("/")[2];
-      this.component = () => <ClubForm createForm={this} />;
+      this.component = () => <StandForm createForm={this} />;
     }
 
     this.formData = formData;

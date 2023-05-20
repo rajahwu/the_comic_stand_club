@@ -10,10 +10,12 @@ export default function StandForm({ createForm }) {
   const history = useHistory();
   const type = createForm.type[0];
 
-  const stands = useSelector(
-    (state) => state[`${type}s`][`all${type[0].toUpperCase()}${type.slice(0)}s`]
-  );
-  const currentStand = stands[createForm.standId];
+//   const stands = useSelector(
+//     (state) => state?.stands?.allStands
+//   );
+const stands = []
+
+  const currentStand = stands[createForm.id ? createForm.id : -1];
   const [standName, setStandName] = useState(
     currentStand ? currentStand.name : ""
   );
