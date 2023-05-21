@@ -5,12 +5,6 @@ import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
 import FeedCard from "../FeedCard";
 
-function getFeed(activeState, setState, clubs = {}, stands = {}, fourms={} ) {
-  if (activeState.type === "club") return clubs
-  if (activeState.type === "stand") return stands
-  if (activeState.type === "fourm") return fourms  
-}
-
 export default function FeedButtons({ children }) {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
@@ -39,7 +33,6 @@ export default function FeedButtons({ children }) {
         }}
         onClick={() => {
             // if(activeFeed.type === "club") history.push('/feed/clubs')
-            console.log("clubs on click clubs", clubs)
             setActiveFeed({ type: "club", url: "/clubs" })
             setFeed(clubs)
             }}
@@ -57,7 +50,6 @@ export default function FeedButtons({ children }) {
           cursor: "pointer",
         }}
         onClick={() => {
-            console.log("stands on click stands", stands)
             setActiveFeed({ type: "stand", url: "/stands" })
             setFeed(stands)
             }}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getAllClubsThunk, createNewClubThunk } from "../../../store/club";
+import { getAllClubsThunk } from "../../../store/club";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
 export default function ClubForm({ createForm }) {

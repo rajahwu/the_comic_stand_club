@@ -41,7 +41,7 @@ export default function StandForm({ createForm }) {
     createForm.setFormData({
       standName,
       description,
-      characters,
+      characters: characters.length ? characters.join(",") : "",
     });
 
     const formErrors = createForm.validate(errors);
@@ -50,7 +50,7 @@ export default function StandForm({ createForm }) {
       if (errors.description) setDescription("");
       if (errors.characters) setCharacters("");
       setErrors({ ...errors, ...formErrors });
-      console.error("validate club errors", errors);
+      console.error("validate stand errors", errors);
       return;
     }
 
@@ -67,6 +67,7 @@ export default function StandForm({ createForm }) {
     if (createForm.type[1] === "new") {
     //   dispatch(createNewStandThunk(createForm.formData));
       const status = createForm.create()
+      .then((response) => console.log("standForm create response", response))
       if(status.errors) {
         setErrors(status.error)
         return;

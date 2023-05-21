@@ -17,12 +17,13 @@ def new():
     
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        stand = CreateStandForm(
-            name=form.data["clubName"],
+        stand = Stand(
+            name=form.data["standName"],
             description=form.data["description"],
             characters=form.data["characters"],
             owner_id=current_user.id
         )
+        print("POST /stands/new",stand)
         db.session.add(stand)
         db.session.commit()
         

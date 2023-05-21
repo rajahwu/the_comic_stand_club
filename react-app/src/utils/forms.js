@@ -49,6 +49,7 @@ export class CreateForm {
       this.id = location.pathname.split("/")[2];
       this.component = () => <StandForm createForm={this} />;
     }
+
     this.name = this.type[0]
     this.method = this.type[1]
     this.formData = formData;
@@ -63,7 +64,7 @@ export class CreateForm {
   }
 
   create = async () => {
-    console.log(this.state.method)
+    console.log("create method", this.method)
     if (this.method !== "new") return;
     const response = await fetch(`/api/${this.name}s/new`, {
       method: "POST",
@@ -71,6 +72,7 @@ export class CreateForm {
       body: JSON.stringify(this.formData),
     });
     console.log("form create method created", response);
+    console.log("form create methond errors", response.errors);
     return response;
   };
 
