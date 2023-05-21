@@ -48,7 +48,7 @@ export class CreateForm {
       }
       this.validator = validateForm;
       this.id = location.pathname.split("/")[2];
-      this.component = () => <StandForm createForm={this} />;
+      this.component = <StandForm createForm={this} />;
     }
 
     this.name = this.type[0]
@@ -85,13 +85,20 @@ export class CreateForm {
 
   update = async () => {
     if (!this.state.id) return;
-    const response = await fetch(`/api/${this.name}s/${this.clubId}`, {
+    const response = await fetch(`/api/${this.name}s/${this.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.formData),
     });
-    console.log("form update method updated", response);
-    return response;
+
+    if (response.ok) {
+      const success = await response.json()
+      console.log("form update method updated", success)
+      return success
+    }
+    const errors = await response.json()
+    console.log("form update method updated errors", errors);
+    return errors;
   };
 }
 

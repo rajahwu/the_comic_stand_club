@@ -37,7 +37,7 @@ def edit_stand(id):
     form = CreateStandForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        stand.name=form.data["clubName"]
+        stand.name=form.data["standName"]
         stand.description=form.data["description"]
         stand.characters=form.data["characters"]
         db.session.commit()

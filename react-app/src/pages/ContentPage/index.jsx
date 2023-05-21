@@ -11,10 +11,11 @@ export default function ContentPage() {
   const dispatch = useDispatch();
 
   const contentType = locaton.pathname.split("/")[1];
-  const clubId = locaton.pathname.split("/")[2];
+  const id = locaton.pathname.split("/")[2];
   const clubs = useSelector((state) => state.clubs.allClubs);
+  const stands = useSelector((state) => state.stands.allStands);
 
-  const currentClub = clubs[clubId];
+  const currentContent = contentType === "club" ? clubs[id] : stands[id];
 
 
   useEffect(() => {
@@ -23,16 +24,16 @@ export default function ContentPage() {
 
   return (
     <div>
-      <h1>{currentClub?.name} content page</h1>
-      <p>Club Id : {clubId}</p>
-      <p>Description: {currentClub?.description}</p>
+      <h1>{currentContent?.name} content page</h1>
+      <p>Club Id : {id}</p>
+      <p>Description: {currentContent?.description}</p>
       <div>
-        <button onClick={(e) => history.push(`/${contentType}/${clubId}/edit`)}>
+        <button onClick={(e) => history.push(`/${contentType}/${id}/edit`)}>
           Edit
         </button>
         <button
           onClick={(e) => {
-            fetch(`/api/clubs/${clubId}`, {
+            fetch(`/api/${contentType}s/${id}`, {
               method: "DELETE",
             });
             history.push("/feed");
