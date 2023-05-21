@@ -32,7 +32,7 @@ export class CreateForm {
       this.state = { 
         name: "standName", 
         description: "description", 
-        imageUrl: "imageUrl" 
+        characters: "characters" 
       }
       this.validator = validateForm;
       this.component = <StandForm createForm={this} />;
@@ -44,15 +44,14 @@ export class CreateForm {
         id: location.pathname.split("/")[2], 
         name: "standName", 
         description: "description", 
-        imageUrl: "imageUrl" }
+        characters: "characters" }
       this.validator = validateForm;
       this.id = location.pathname.split("/")[2];
       this.component = () => <StandForm createForm={this} />;
     }
-
-    this.formData = formData;
     this.name = this.type[0]
     this.method = this.type[1]
+    this.formData = formData;
   }
 
   setFormData(formData) {
