@@ -5,10 +5,10 @@ export class CreateForm {
     if (/\/clubs-new/.test(location.pathname)) {
       this.type = ["club", "new"];
       this.title = "Start a new club";
-      this.state = { 
-        name: "clubName", 
-        description: "description", 
-        imageUrl: "imageUrl" 
+      this.state = {
+        name: "clubName",
+        description: "description",
+        imageUrl: "imageUrl"
       }
       this.validator = validateForm;
       this.component = <ClubForm createForm={this} />;
@@ -16,11 +16,11 @@ export class CreateForm {
     if (/\/club\/\d{1,3}\/edit/.test(location.pathname)) {
       this.type = ["club", "edit"];
       this.title = "Edit club";
-      this.state = { 
-        id: location.pathname.split("/")[2], 
-        name: "clubName", 
-        description: "description", 
-        imageUrl: "imageUrl" 
+      this.state = {
+        id: location.pathname.split("/")[2],
+        name: "clubName",
+        description: "description",
+        imageUrl: "imageUrl"
       }
       this.validator = validateForm;
       this.id = location.pathname.split("/")[2];
@@ -29,10 +29,10 @@ export class CreateForm {
     if (/\/stands-new/.test(location.pathname)) {
       this.type = ["stand", "new"];
       this.title = "Build a new stand";
-      this.state = { 
-        name: "standName", 
-        description: "description", 
-        characters: "characters" 
+      this.state = {
+        name: "standName",
+        description: "description",
+        characters: "characters"
       }
       this.validator = validateForm;
       this.component = <StandForm createForm={this} />;
@@ -40,11 +40,12 @@ export class CreateForm {
     if (/\/stand\/\d{1,3}\/edit/.test(location.pathname)) {
       this.type = ["stand", "edit"];
       this.title = "Edit stand";
-      this.state = { 
-        id: location.pathname.split("/")[2], 
-        name: "standName", 
-        description: "description", 
-        characters: "characters" }
+      this.state = {
+        id: location.pathname.split("/")[2],
+        name: "standName",
+        description: "description",
+        characters: "characters"
+      }
       this.validator = validateForm;
       this.id = location.pathname.split("/")[2];
       this.component = () => <StandForm createForm={this} />;
@@ -71,9 +72,15 @@ export class CreateForm {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.formData),
     });
-    console.log("form create method created", response);
-    console.log("form create methond errors", response.errors);
-    return response;
+
+    if (response.ok) {
+      const success = await response.json()
+      console.log("form create method created", success);
+      return success
+    }
+    const errors = response.json();
+    console.log("form create method created errors", errors);
+    return errors;
   };
 
   update = async () => {

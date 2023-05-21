@@ -9,7 +9,7 @@ export default function ClubForm({ createForm }) {
   const history = useHistory();
 
   const clubs = useSelector((state) => state.clubs.allClubs);
-  const currentClub = clubs[createForm.clubId];
+  const currentClub = clubs[createForm.id];
   const [clubName, setClubName] = useState(currentClub ? currentClub.name : "");
   const [description, setDescription] = useState(
     currentClub ? currentClub.description : ""

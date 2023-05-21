@@ -12,7 +12,7 @@ def stands():
     return {'stands': [stand.to_dict() for stand in stands] }
 
 @stand_routes.route("/new", methods=["POST"])
-def new():
+def new_stand():
     form = CreateStandForm()
     
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -23,7 +23,6 @@ def new():
             characters=form.data["characters"],
             owner_id=current_user.id
         )
-        print("POST /stands/new",stand)
         db.session.add(stand)
         db.session.commit()
         

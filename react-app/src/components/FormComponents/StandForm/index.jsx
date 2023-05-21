@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-// import { getAllClubsThunk, createNewClubThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
@@ -12,10 +11,8 @@ export default function StandForm({ createForm }) {
   const stands = useSelector(
     (state) => state.stands.allStands
   );
-// const stands = []
-// console.log("stand form stand selectoer", stands)
-  const currentStand = stands ? stands[createForm.id] : {} 
-  // const currentStand = stands[createForm.id ? stands[createForm.id] : null];
+  const currentStand = stands[createForm.id] 
+  
   const [standName, setStandName] = useState(
     currentStand ? currentStand?.name : ""
   );
@@ -26,9 +23,9 @@ export default function StandForm({ createForm }) {
     currentStand ? currentStand?.characters : []
   );
   const [errors, setErrors] = useState({
-    clubName: "",
+    standName: "",
     description: "",
-    imageUrl: "",
+    characters: "",
     errors: 0,
   });
 
@@ -41,7 +38,7 @@ export default function StandForm({ createForm }) {
     createForm.setFormData({
       standName,
       description,
-      characters: characters.length ? characters.join(",") : "",
+      characters: "characters",
     });
 
     const formErrors = createForm.validate(errors);
@@ -54,7 +51,7 @@ export default function StandForm({ createForm }) {
       return;
     }
 
-    if (createForm.type[1] === "edit") {
+    if (createForm.method === "edit") {
       const status = createForm.update();
       if (status.errors) {
         setErrors(status.errors);
@@ -64,10 +61,8 @@ export default function StandForm({ createForm }) {
       return createForm.formData;
     }
 
-    if (createForm.type[1] === "new") {
-    //   dispatch(createNewStandThunk(createForm.formData));
+    if (createForm.method === "new") {
       const status = createForm.create()
-      .then((response) => console.log("standForm create response", response))
       if(status.errors) {
         setErrors(status.error)
         return;
@@ -116,9 +111,9 @@ export default function StandForm({ createForm }) {
           type="submit"
           onClick={() => {
             setErrors({
-              clubName: "",
+              standName: "",
               description: "",
-              imageUrl: "",
+              characters: "",
               errors: 0,
             });
           }}
