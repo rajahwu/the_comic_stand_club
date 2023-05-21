@@ -1,4 +1,4 @@
-import { CharacterFeed, ClubFeed, NewsFeed } from "../../components";
+import { CharacterFeed, UserFeed, NewsFeed } from "../../components";
 import { useBouncer } from "../../hooks";
 
 export default function FeedPage() {
@@ -7,7 +7,7 @@ export default function FeedPage() {
   return (
     <div style={{ display: "flex" }}>
       <CharacterFeed />
-      <ClubFeed />
+      <UserFeed />
       <NewsFeed />
     </div>
   );

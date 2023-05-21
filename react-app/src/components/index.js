@@ -5,7 +5,7 @@ import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
 import OpenModalButton from "./OpenModalButton";
 import CharacterCard from "./CharacterCard";
-import { CharacterFeed, ClubFeed, NewsFeed } from "./FeedComponents";
+import { CharacterFeed, UserFeed, NewsFeed } from "./FeedComponents";
 
 export {
   SignupFormModal,
@@ -16,6 +16,6 @@ export {
   Navigation,
   CharacterCard,
   CharacterFeed,
-  ClubFeed,
+  UserFeed,
   NewsFeed,
 };

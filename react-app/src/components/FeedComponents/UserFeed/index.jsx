@@ -4,7 +4,7 @@ import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
 import FeedButtons from "../FeedButtons";
 
-export default function ClubFeed() {
+export default function UserFeed() {
   const dispatch = useDispatch();
 
   useEffect(() => {
