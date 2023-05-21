@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .clubs import seed_clubs, undo_clubs
 from .memberships import undo_memberships
+from .stands import seed_stands, undo_stands
 
 from app.models.db import db, environment, SCHEMA
 
@@ -32,6 +33,15 @@ def undo():
     undo_clubs()
     undo_users()
     # Add other undo functions here
+    
+    
+@seed_commands.command('stands')
+def stands():
+    seed_stands()
+
+@seed_commands.command('undo-stands')
+def stands_undo():
+    undo_stands()
     
 @seed_commands.command('nuke')
 def nuke_data():    

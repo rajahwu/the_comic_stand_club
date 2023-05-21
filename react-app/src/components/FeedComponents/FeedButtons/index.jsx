@@ -5,20 +5,28 @@ import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
 import FeedCard from "../FeedCard";
 
+function getFeed(activeState, setState, clubs = {}, stands = {}, fourms={} ) {
+  if (activeState.type === "club") return clubs
+  if (activeState.type === "stand") return stands
+  if (activeState.type === "fourm") return fourms  
+}
+
 export default function FeedButtons({ children }) {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
-  const stands = useSelector((state) => state.stands.allStands);
+  const stands = useSelector((state) => state.stands.allstands);
   const [activeFeed, setActiveFeed] = useState({ url: "/clubs", type: "club" });
-  const [feed, setFeed] = useState(clubs)
+  const [feed, setFeed] = useState({})
   const history = useHistory();
 
+  console.log("feed", feed)
+  console.log("stands", stands)
 
   useEffect(() => {
-    dispatch(getAllClubsThunk());
-    //   dispatch(getAllStandsThunk())
-  }, [dispatch]);
-
+    dispatch(getAllClubsThunk())
+    dispatch(getAllStandsThunk())
+  },[dispatch])
+  
   return (
     <div className="clubs-feed">
       <h2>Club Feed</h2>
@@ -33,9 +41,10 @@ export default function FeedButtons({ children }) {
           cursor: "pointer",
         }}
         onClick={() => {
-            if(activeFeed.type === "club") history.push('/feed/clubs')
+            // if(activeFeed.type === "club") history.push('/feed/clubs')
+            console.log("clubs on click clubs", clubs)
             setActiveFeed({ type: "club", url: "/clubs" })
-            if(feed !== clubs) setFeed(clubs)
+            setFeed(clubs)
             }}
       >
         Clubs
@@ -51,8 +60,9 @@ export default function FeedButtons({ children }) {
           cursor: "pointer",
         }}
         onClick={() => {
-            setActiveFeed({ type: "stand", url: "stands" })
-            if(feed !== stands) setFeed(stands)
+            console.log("stands on click stands", stands)
+            setActiveFeed({ type: "stand", url: "/stands" })
+            setFeed(stands)
             }}
       >
         Stands
@@ -65,10 +75,10 @@ export default function FeedButtons({ children }) {
           margin: "5px",
           backgroundColor: "red",
           color: "white",
-          cursor: "pointer",
+          cursor: "not-allowed",
         }}
         onClick={() => {
-            setActiveFeed({ type: "fourm", url: "fourms" })
+            setActiveFeed({ type: "fourm", url: "/fourms" })
             // if(feed !== fourm) setFeed(fourm)
             }}
       >
