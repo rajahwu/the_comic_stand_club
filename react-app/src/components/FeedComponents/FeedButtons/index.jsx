@@ -14,13 +14,10 @@ function getFeed(activeState, setState, clubs = {}, stands = {}, fourms={} ) {
 export default function FeedButtons({ children }) {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
-  const stands = useSelector((state) => state.stands.allstands);
+  const stands = useSelector((state) => state.stands.allStands);
   const [activeFeed, setActiveFeed] = useState({ url: "/clubs", type: "club" });
   const [feed, setFeed] = useState({})
   const history = useHistory();
-
-  console.log("feed", feed)
-  console.log("stands", stands)
 
   useEffect(() => {
     dispatch(getAllClubsThunk())
