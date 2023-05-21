@@ -1,3 +1,5 @@
+// TODO GET ViewState / POST Reactions(comment)
+
 import { CharacterFeed, UserFeed, NewsFeed } from "../../components";
 import { useBouncer } from "../../hooks";
 

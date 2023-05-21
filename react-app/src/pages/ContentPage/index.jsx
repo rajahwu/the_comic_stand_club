@@ -4,6 +4,22 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
 import { useBouncer } from "../../hooks";
 
+const ContentCard = ({ currentContent, contentType }) => {
+  return (
+    <div>
+      <div>
+        <h1>{currentContent?.name} content page</h1>
+        <p>
+          {contentType}Id : {currentContent.id}
+        </p>
+        <p>Description: {currentContent?.description}</p>
+      </div>
+
+      {/* <Link to="/feed">Back to feed</Link> */}
+    </div>
+  );
+};
+
 export default function ContentPage() {
   useBouncer("logout");
   const history = useHistory();
@@ -17,17 +33,16 @@ export default function ContentPage() {
 
   const currentContent = contentType === "club" ? clubs[id] : stands[id];
 
-
   useEffect(() => {
     dispatch(getAllClubsThunk());
   }, [dispatch]);
 
   return (
     <div>
-      <h1>{currentContent?.name} content page</h1>
-      <p>Club Id : {id}</p>
-      <p>Description: {currentContent?.description}</p>
+      <ContentCard contentType={contentType} currentContent={currentContent} />
       <div>
+
+
         <button onClick={(e) => history.push(`/${contentType}/${id}/edit`)}>
           Edit
         </button>

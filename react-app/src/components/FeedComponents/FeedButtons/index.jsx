@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
-import FeedCard from "../FeedCard";
+import FeedCards from "../FeedCards";
 
 export default function FeedButtons({ children }) {
   const dispatch = useDispatch();
@@ -89,7 +89,7 @@ export default function FeedButtons({ children }) {
         {activeFeed.type === "stand" ? "Create New Stand" : "Create New Club"}
       </button>
 
-      <FeedCard feed={feed} feedUrl={`/${activeFeed.type}`} />
+      <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
     </div>
   );
 }

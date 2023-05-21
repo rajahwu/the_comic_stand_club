@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import { Navigation, SignupFormPage, LoginFormPage } from "./components";
-import { SplashPage, FeedPage, CreatePage, ContentPage } from "./pages";
+import { SplashPage, FeedPage, CreatePage, ContentPage, AllContentPage } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +43,12 @@ function App() {
           </Route>
           <Route exact path="/feed">
             <FeedPage />
+          </Route>
+          <Route path="/feed/clubs">
+          <AllContentPage feedType="clubs" />
+          </Route>
+          <Route path="/feed/stands">
+            <AllContentPage feedType="stands" />
           </Route>
           <Route path="/login">
             <LoginFormPage />

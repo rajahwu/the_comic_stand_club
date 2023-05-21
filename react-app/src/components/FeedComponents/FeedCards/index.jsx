@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 
-export default function FeedCard({ feed, feedUrl }) {
+
+export default function FeedCards({ feed, feedUrl }) {
     const history = useHistory()
   return (
     <div>
