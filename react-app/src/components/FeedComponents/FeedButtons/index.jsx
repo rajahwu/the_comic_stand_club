@@ -32,12 +32,12 @@ export default function FeedButtons({ children }) {
           cursor: "pointer",
         }}
         onClick={() => {
-            // if(activeFeed.type === "club") history.push('/feed/clubs')
+            if(activeFeed.type === "club") history.push('/feed/clubs')
             setActiveFeed({ type: "club", url: "/clubs" })
             setFeed(clubs)
             }}
       >
-        Clubs
+        {activeFeed.type === "club" ? "View All Clubs" : "Clubs"}
       </button>
       <button
         style={{
@@ -50,11 +50,12 @@ export default function FeedButtons({ children }) {
           cursor: "pointer",
         }}
         onClick={() => {
+            if(activeFeed.type === "stand") history.push('/feed/stands')
             setActiveFeed({ type: "stand", url: "/stands" })
             setFeed(stands)
             }}
       >
-        Stands
+        {activeFeed.type === "stand" ? "View All Stands" : "Stands"}
       </button>
       <button
         style={{
@@ -85,7 +86,7 @@ export default function FeedButtons({ children }) {
         }}
         onClick={() => history.push(`${activeFeed.url}-new`)}
       >
-        Create
+        {activeFeed.type === "stand" ? "Create New Stand" : "Create New Club"}
       </button>
 
       <FeedCard feed={feed} feedUrl={`/${activeFeed.type}`} />
