@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
@@ -18,12 +18,14 @@ export default function ContentPage() {
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
   const characters = useSelector((state) => state.characters.characters);
-  const currentContent = contentType === "club" ? clubs[id] : stands[id];
-  
+
+  const currentContent = clubs ? contentType === "club" ? clubs[id] : stands[id] : null;
+
   useEffect(() => {
     dispatch(getAllClubsThunk());
     dispatch(getAllStandsThunk());
   }, [dispatch]);
+
 
   return (
     <div className={ContentCardCSS.container}>
@@ -33,7 +35,7 @@ export default function ContentPage() {
           <div>
             <select>
               <option value="">Add Character</option>
-              {Object.values(characters).slice(0,5).map((character, i) => (
+              {Object.values(characters).slice(0, 5).map((character, i) => (
                 <option key={i} value={character?.id}>
                   {character?.name}
                 </option>
