@@ -20,7 +20,7 @@ export default function FeedButtons({ children }) {
   
   return (
     <div className="clubs-feed">
-      <h2>Club Feed</h2>
+      <h2>User Feed</h2>
       <button
         style={{
           borderRadius: "50%",
