@@ -1,8 +1,11 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Figtree&family=Mynerve&family=PT+Serif&family=Ultra&display=swap');
+
 body {
     background-color: #1d1e26;
     color: #f2eadf;
     filter: grayscale(65%);
+    font-size: 18px;
 }
 
 a {
@@ -10,10 +13,18 @@ a {
     text-decoration: none;
 }
 
+p {
+    filter: brightness(200%);
+}
+
 a:hover {
     color: #577ef2;
 }
 
-/* .splash-page {
-    background-image: url(../assets/splash_page.jpg)
-} */
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Bangers', cursive;
+    color: #d9b811;
+    filter: brightness(200%);
+    letter-spacing: 0.3rem;
+    line-height: 1.5;
+}

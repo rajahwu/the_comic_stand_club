@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
 import { getAllStandsThunk } from "../../store/stand";
 import { ContentCard } from "../../components";
+import AllContentPageCSS from "./AllContentPage.module.css"
 
 export default function AllContentPage({ feedType }) {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function AllContentPage({ feedType }) {
   }, [dispatch, feedType]);
 
   return (
-    <>
+    <div className={AllContentPageCSS.container}>
       <Link to="/feed">Back to Feed</Link>
       <h1>All {feedType} Content Page</h1>
       <Link to={`/${feedType}-new`}>Create new {feedType}</Link>
@@ -42,6 +43,6 @@ export default function AllContentPage({ feedType }) {
         />
       ))}
       <Link to="/feed">Back to Feed</Link>
-    </>
+    </div>
   );
 }

@@ -17,28 +17,27 @@ export default function SplashPage() {
 
   return (
     <div className={SplashPageCSS.container}>
-    {/* <div className="splash-page"> */}
+      <div className="splash-page">
+        <OpenModalButton
+          buttonText="Sign Up"
+          onItemClick={closeMenu}
+          modalComponent={<SignupFormModal />}
+        />
 
-      <OpenModalButton
-        buttonText="Sign Up"
-        onItemClick={closeMenu}
-        modalComponent={<SignupFormModal />}
-      />
+        <OpenModalButton
+          buttonText="Login"
+          onItemClick={closeMenu}
+          modalComponent={<LoginFormModal />}
+        />
 
-      <OpenModalButton
-        buttonText="Login"
-        onItemClick={closeMenu}
-        modalComponent={<LoginFormModal />}
-      />
-
-      <button
-        onClick={() => {
-          dispatch(login("demo@aa.io", "password"));
-        }}
-      >
-        Demo User
-      </button>
-    {/* </div> */}
+        <button
+          onClick={() => {
+            dispatch(login("demo@aa.io", "password"));
+          }}
+        >
+          Demo User
+        </button>
+      </div>
     </div>
   );
 }

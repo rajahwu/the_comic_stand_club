@@ -5,6 +5,7 @@ import { getAllClubsThunk } from "../../store/club";
 import { getAllStandsThunk } from "../../store/stand";
 import { useBouncer } from "../../hooks";
 import { ContentCard } from "../../components";
+import ContentCardCSS from "./ContentPage.module.css";
 
 export default function ContentPage() {
   useBouncer("logout");
@@ -25,7 +26,7 @@ export default function ContentPage() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={ContentCardCSS.container}>
       <ContentCard contentType={contentType} currentContent={currentContent} />
       <div>
         <button onClick={(e) => history.push(`/${contentType}/${id}/edit`)}>
