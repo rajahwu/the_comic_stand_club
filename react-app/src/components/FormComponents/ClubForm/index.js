@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getAllClubsThunk } from "../../../store/club";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
 export default function ClubForm({ createForm }) {
-  const dispatch = useDispatch();
   const history = useHistory();
-
   const clubs = useSelector((state) => state.clubs.allClubs);
   const currentClub = clubs[createForm.id];
   const [clubName, setClubName] = useState(currentClub ? currentClub.name : "");
@@ -23,10 +20,6 @@ export default function ClubForm({ createForm }) {
     imageUrl: "",
     errors: 0,
   });
-
-  useEffect(() => {
-    dispatch(getAllClubsThunk());
-  }, [dispatch]);
 
   const handlSubmit = (e) => {
     e.preventDefault();
@@ -57,10 +50,9 @@ export default function ClubForm({ createForm }) {
     }
 
     if (createForm.method === "new") {
-      // dispatch(createNewClubThunk(createForm.formData));
-      const status = createForm.create()
+      const status = createForm.create();
       if (status.errors) {
-        setErrors(status.errors)
+        setErrors(status.errors);
         return;
       }
       console.log("Start a club forms data", createForm.formData);

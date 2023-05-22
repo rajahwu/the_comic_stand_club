@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState} from "react";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getAllStandsThunk } from "../../../store/stand";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
 export default function StandForm({ createForm }) {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const stands = useSelector(
@@ -28,10 +26,6 @@ export default function StandForm({ createForm }) {
     characters: "",
     errors: 0,
   });
-
-  useEffect(() => {
-    dispatch(getAllStandsThunk());
-  }, [dispatch]);
 
   const handlSubmit = (e) => {
     e.preventDefault();

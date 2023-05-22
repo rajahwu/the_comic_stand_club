@@ -24,7 +24,6 @@ function App() {
       <a href="../docs/index.html" target="_blank">
         API_Docs
       </a>
-
       {isLoaded && (
         <Switch>
           <BaseLayout isLoaded={isLoaded}>

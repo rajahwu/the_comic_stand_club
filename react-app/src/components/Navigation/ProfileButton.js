@@ -31,6 +31,7 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const handleLogout = (e) => {
+    console.log("logout clicked")
     e.preventDefault();
     dispatch(logout());
   };
@@ -39,7 +40,7 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div className={NavigationCSS.container}>
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
@@ -49,7 +50,7 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button onClick={handleLogout} style={{padding: "5px"}}>Log Out</button>
             </li>
           </>
         ) : (
@@ -68,7 +69,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 
