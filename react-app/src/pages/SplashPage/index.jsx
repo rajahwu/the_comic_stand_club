@@ -17,6 +17,8 @@ export default function SplashPage() {
 
   return (
     <div className={SplashPageCSS.container}>
+    {/* <div className="splash-page"> */}
+
       <OpenModalButton
         buttonText="Sign Up"
         onItemClick={closeMenu}
@@ -36,6 +38,7 @@ export default function SplashPage() {
       >
         Demo User
       </button>
+    {/* </div> */}
     </div>
   );
 }

@@ -1,1 +1,18 @@
 /* TODO Add site wide styles */
+body {
+    background-color: #1d1e26;
+    color: #f2eadf
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #577ef2;
+}
+
+/* .splash-page {
+    background-image: url(../assets/splash_page.jpg)
+} */

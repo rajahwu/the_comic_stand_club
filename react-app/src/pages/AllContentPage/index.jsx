@@ -9,7 +9,6 @@ export default function AllContentPage({ feedType }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [feedState, setFeedState] = useState({});
-  const [singlePageUrl, setSinglePageUrl] = useState("")
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
 
@@ -35,7 +34,11 @@ export default function AllContentPage({ feedType }) {
           key={index}
           contentType={feedType}
           currentContent={entry}
-          onClick={(e) => history.push(`${feedType.substring(0, feedType.length - 1)}/${entry.id}`)}
+          onClick={(e) =>
+            history.push(
+              `${feedType.substring(0, feedType.length - 1)}/${entry.id}`
+            )
+          }
         />
       ))}
       <Link to="/feed">Back to Feed</Link>
