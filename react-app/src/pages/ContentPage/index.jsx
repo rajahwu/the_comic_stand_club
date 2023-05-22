@@ -4,6 +4,22 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
 import { useBouncer } from "../../hooks";
 
+const ContentCard = ({ currentContent, contentType }) => {
+  return (
+    <div>
+      <div>
+        <h1>{currentContent?.name} content page</h1>
+        <p>
+          {contentType}Id : {currentContent.id}
+        </p>
+        <p>Description: {currentContent?.description}</p>
+      </div>
+
+      {/* <Link to="/feed">Back to feed</Link> */}
+    </div>
+  );
+};
+
 export default function ContentPage() {
   useBouncer("logout");
   const history = useHistory();
@@ -11,11 +27,11 @@ export default function ContentPage() {
   const dispatch = useDispatch();
 
   const contentType = locaton.pathname.split("/")[1];
-  const clubId = locaton.pathname[locaton.pathname.length - 1];
+  const id = locaton.pathname.split("/")[2];
   const clubs = useSelector((state) => state.clubs.allClubs);
+  const stands = useSelector((state) => state.stands.allStands);
 
-  const currentClub = clubs[clubId];
-
+  const currentContent = contentType === "club" ? clubs[id] : stands[id];
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
@@ -23,16 +39,16 @@ export default function ContentPage() {
 
   return (
     <div>
-      <h1>{currentClub?.name} content page</h1>
-      <p>Club Id : {clubId}</p>
-      <p>Description: {currentClub?.description}</p>
+      <ContentCard contentType={contentType} currentContent={currentContent} />
       <div>
-        <button onClick={(e) => history.push(`/${contentType}/${clubId}/edit`)}>
+
+
+        <button onClick={(e) => history.push(`/${contentType}/${id}/edit`)}>
           Edit
         </button>
         <button
           onClick={(e) => {
-            fetch(`/api/clubs/${clubId}`, {
+            fetch(`/api/${contentType}s/${id}`, {
               method: "DELETE",
             });
             history.push("/feed");

@@ -1,5 +1,5 @@
 import CharacterFeed from "./CharacterFeed";
-import ClubFeed from "./ClubFeed";
+import UserFeed from "./UserFeed";
 import NewsFeed from "./NewsFeed";
 
-export { CharacterFeed, ClubFeed, NewsFeed };
+export { CharacterFeed, UserFeed, NewsFeed };

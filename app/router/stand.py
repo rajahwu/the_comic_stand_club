@@ -12,15 +12,15 @@ def stands():
     return {'stands': [stand.to_dict() for stand in stands] }
 
 @stand_routes.route("/new", methods=["POST"])
-def new():
+def new_stand():
     form = CreateStandForm()
     
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        stand = CreateStandForm(
-            name=form.data["clubName"],
+        stand = Stand(
+            name=form.data["standName"],
             description=form.data["description"],
-            image_url=form.data["imageUrl"],
+            characters=form.data["characters"],
             owner_id=current_user.id
         )
         db.session.add(stand)
@@ -37,9 +37,9 @@ def edit_stand(id):
     form = CreateStandForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        stand.name=form.data["clubName"]
+        stand.name=form.data["standName"]
         stand.description=form.data["description"]
-        stand.image_url=form.data["imageUrl"]
+        stand.characters=form.data["characters"]
         db.session.commit()
       
         return stand.to_dict()

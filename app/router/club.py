@@ -14,7 +14,7 @@ def clubs():
     return {'clubs': [club.to_dict() for club in clubs] }
 
 @club_routes.route("/new", methods=["POST"])
-def new():
+def new_club():
     form = CreateClubForm()
     
     form['csrf_token'].data = request.cookies['csrf_token']

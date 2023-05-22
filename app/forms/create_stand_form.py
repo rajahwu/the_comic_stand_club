@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class CreateStandForm(FlaskForm):
-    clubName = StringField(
+    standName = StringField(
         'clubname', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
-    imageUrl = StringField('imageUrl')
+    characters = StringField('characters')

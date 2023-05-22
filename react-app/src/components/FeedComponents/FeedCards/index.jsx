@@ -1,14 +1,15 @@
 import { useHistory } from "react-router-dom";
 
-export default function FeedCard({ feed, feedUrl }) {
+
+export default function FeedCards({ feed, feedUrl }) {
     const history = useHistory()
   return (
     <div>
       {feed &&
-        Object.values(feed).map((club, index) => (
+        Object.values(feed).map((entry, index) => (
           <div
             key={index}
-            onClick={(e) => history.push(`${feedUrl}/${club.id}`)}
+            onClick={(e) => history.push(`${feedUrl}/${entry.id}`)}
             style={{
               width: "30vw",
               border: "3px solid black",
@@ -16,14 +17,14 @@ export default function FeedCard({ feed, feedUrl }) {
               cursor: "pointer",
             }}
           >
-            {/* <p>{club.id}</p> */}
+            {/* <p>{entry.id}</p> */}
             <p style={{ display: "inline-block" }}>
               <img
                 style={{ borderRadius: "50%" }}
                 width={50}
                 height={50}
-                src={club.imageUrl}
-                alt="club"
+                src={entry.imageUrl}
+                alt={entry.name}
               />
             </p>
             <p
@@ -33,9 +34,9 @@ export default function FeedCard({ feed, feedUrl }) {
                 fontSize: "2rem",
               }}
             >
-              {club.name}
+              {entry.name}
             </p>
-            <p>{club.description}</p>
+            <p>{entry.description}</p>
           </div>
         ))}
     </div>

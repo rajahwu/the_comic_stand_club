@@ -1,48 +1,53 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getAllClubsThunk } from "../../../store/club";
+import { getAllStandsThunk } from "../../../store/stand";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
-export default function ClubForm({ createForm }) {
+export default function StandForm({ createForm }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const clubs = useSelector((state) => state.clubs.allClubs);
-  const currentClub = clubs[createForm.id];
-  const [clubName, setClubName] = useState(currentClub ? currentClub.name : "");
-  const [description, setDescription] = useState(
-    currentClub ? currentClub.description : ""
+  const stands = useSelector(
+    (state) => state.stands.allStands
   );
-  const [imageUrl, setImageUrl] = useState(
-    currentClub ? currentClub.imageUrl : ""
+  const currentStand = stands[createForm.id] 
+  
+  const [standName, setStandName] = useState(
+    currentStand ? currentStand?.name : ""
+  );
+  const [description, setDescription] = useState(
+    currentStand ? currentStand?.description : ""
+  );
+  const [characters, setCharacters] = useState(
+    currentStand ? currentStand?.characters : []
   );
   const [errors, setErrors] = useState({
-    clubName: "",
+    standName: "",
     description: "",
-    imageUrl: "",
+    characters: "",
     errors: 0,
   });
 
   useEffect(() => {
-    dispatch(getAllClubsThunk());
+    dispatch(getAllStandsThunk());
   }, [dispatch]);
 
   const handlSubmit = (e) => {
     e.preventDefault();
     createForm.setFormData({
-      clubName,
+      standName,
       description,
-      imageUrl,
+      characters: "characters",
     });
 
     const formErrors = createForm.validate(errors);
     if (formErrors && Object.values(formErrors).length) {
-      if (errors.clubName) setClubName("");
+      if (errors.standName) setStandName("");
       if (errors.description) setDescription("");
-      if (errors.imageUrl) setImageUrl("");
+      if (errors.characters) setCharacters("");
       setErrors({ ...errors, ...formErrors });
-      console.error("validate club errors", errors);
+      console.error("validate stand errors", errors);
       return;
     }
 
@@ -57,13 +62,13 @@ export default function ClubForm({ createForm }) {
     }
 
     if (createForm.method === "new") {
-      // dispatch(createNewClubThunk(createForm.formData));
       const status = createForm.create()
-      if (status.errors) {
-        setErrors(status.errors)
+      if(status.errors) {
+        setErrors(status.error)
         return;
       }
-      console.log("Start a club forms data", createForm.formData);
+
+      console.log("Start a stand forms data", createForm.formData);
       history.push("/feed");
       return createForm.formData;
     }
@@ -74,27 +79,27 @@ export default function ClubForm({ createForm }) {
       <h1>{createForm.title}</h1>
       <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
         <label>
-          Club Image
-          {<p>{errors?.imageUrl}</p>}
+          Characters
+          {<p>{errors?.characters}</p>}
         </label>
         <input
           type="text"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          name="characters"
+          value={characters}
+          onChange={(e) => setCharacters(e.target.value)}
         />
         <label>
-          Club Name
-          {<p>{errors?.clubName}</p>}
+          Stand Name
+          {<p>{errors?.standName}</p>}
         </label>
         <input
           name="name"
           type="text"
-          value={clubName}
-          onChange={(e) => setClubName(e.target.value)}
+          value={standName}
+          onChange={(e) => setStandName(e.target.value)}
         />
         <label>
-          Club Description
+          Stand Description
           {<p>{errors?.description}</p>}
         </label>
         <textarea
@@ -106,9 +111,9 @@ export default function ClubForm({ createForm }) {
           type="submit"
           onClick={() => {
             setErrors({
-              clubName: "",
+              standName: "",
               description: "",
-              imageUrl: "",
+              characters: "",
               errors: 0,
             });
           }}
