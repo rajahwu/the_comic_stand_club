@@ -10,7 +10,7 @@ export default function FeedButtons({ children }) {
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
   const [activeFeed, setActiveFeed] = useState({ url: "/clubs", type: "club" });
-  const [feed, setFeed] = useState({})
+  const [feed, setFeed] = useState(clubs)
   const history = useHistory();
 
   useEffect(() => {
