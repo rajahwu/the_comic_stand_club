@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
 import FeedCards from "../FeedCards";
@@ -81,8 +81,9 @@ export default function FeedButtons() {
             cursor: "not-allowed",
           }}
           onClick={() => {
-            setActiveFeed({ type: "fourm", url: "/fourms" });
-            // if(feed !== fourm) setFeed(fourm)
+            // if (activeFeed.type === "fourm") history.push("/feed/fourms");
+            // setActiveFeed({ type: "fourm", url: "/fourms" });
+            // setFeed(fourms);
           }}
         >
           Fourms
