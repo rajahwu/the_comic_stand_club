@@ -7,9 +7,8 @@ export default function FeedCards({ feed, feedUrl }) {
     <div>
       {feed &&
         Object.values(feed).map((entry, index) => (
-          <div className={FeedCardsCSS.container}>
+          <div className={FeedCardsCSS.container} key={index}>
             <div
-              key={index}
               onClick={(e) => history.push(`${feedUrl}/${entry.id}`)}
               style={{
                 width: "30vw",
