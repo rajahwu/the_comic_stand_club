@@ -76,7 +76,7 @@ export class CreateForm {
     if (response.ok) {
       const success = await response.json()
       console.log("form create method created", success);
-      return success
+      return success;
     }
     const errors = response.json();
     console.log("form create method created errors", errors);
@@ -94,7 +94,7 @@ export class CreateForm {
     if (response.ok) {
       const success = await response.json()
       console.log("form update method updated", success)
-      return success
+      return success;
     }
     const errors = await response.json()
     console.log("form update method updated errors", errors);
