@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
 import FeedCards from "../FeedCards";
+import FeedButtonsCSS from "./FeedButtons.module.css"
 
 export default function FeedButtons({ children }) {
   const dispatch = useDispatch();
@@ -22,12 +23,13 @@ export default function FeedButtons({ children }) {
     <div className="clubs-feed">
       <h2>User Feed</h2>
       <button
+        className={FeedButtonsCSS["feed-btn"]}
         style={{
           borderRadius: "50%",
           height: "65px",
           width: "65px",
           margin: "5px",
-          backgroundColor: "red",
+          backgroundColor: "black",
           color: "white",
           cursor: "pointer",
         }}
@@ -40,12 +42,13 @@ export default function FeedButtons({ children }) {
         {activeFeed.type === "club" ? "View All Clubs" : "Clubs"}
       </button>
       <button
+        className={FeedButtonsCSS["feed-btn"]}
         style={{
           borderRadius: "50%",
           height: "65px",
           width: "65px",
           margin: "5px",
-          backgroundColor: "green",
+          backgroundColor: "black",
           color: "white",
           cursor: "pointer",
         }}
@@ -58,12 +61,13 @@ export default function FeedButtons({ children }) {
         {activeFeed.type === "stand" ? "View All Stands" : "Stands"}
       </button>
       <button
+        className={FeedButtonsCSS["feed-btn"]}
         style={{
           borderRadius: "50%",
           height: "65px",
           width: "65px",
           margin: "5px",
-          backgroundColor: "red",
+          backgroundColor: "black",
           color: "white",
           cursor: "not-allowed",
         }}
@@ -75,12 +79,13 @@ export default function FeedButtons({ children }) {
         Fourms
       </button>
       <button
+        className={FeedButtonsCSS["feed-btn"]}
         style={{
           borderRadius: "50%",
           height: "65px",
           width: "65px",
           margin: "5px",
-          backgroundColor: "green",
+          backgroundColor: "black",
           color: "white",
           cursor: "pointer",
         }}

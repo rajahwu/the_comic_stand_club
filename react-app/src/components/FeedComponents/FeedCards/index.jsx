@@ -12,7 +12,7 @@ export default function FeedCards({ feed, feedUrl }) {
             onClick={(e) => history.push(`${feedUrl}/${entry.id}`)}
             style={{
               width: "30vw",
-              border: "3px solid black",
+              // border: "3px solid black",
               margin: "15px",
               cursor: "pointer",
             }}
