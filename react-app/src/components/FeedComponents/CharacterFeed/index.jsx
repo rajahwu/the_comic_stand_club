@@ -19,7 +19,7 @@ const SearchBar = ({ searchTerms, setSearchTerms }) => {
           setSearchTerms({ ...searchTerms, ...{ startsWith: e.target.value } })
         }
       />
-      <button onClick={handleClick}>Search</button>
+      <button onClick={handleClick} style={{cursor: "not-allowed"}} disabled={true}>Search</button>
     </form>
   );
 };
