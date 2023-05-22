@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import { getAllClubsThunk } from "../../store/club";
+import { getAllStandsThunk } from "../../store/stand";
 import { useBouncer } from "../../hooks";
 import { ContentCard } from "../../components";
 
@@ -20,6 +21,7 @@ export default function ContentPage() {
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
+    dispatch(getAllStandsThunk())
   }, [dispatch]);
 
   return (

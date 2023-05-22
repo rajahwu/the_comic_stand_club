@@ -15,14 +15,14 @@ export default function AllContentPage({ feedType }) {
   useEffect(() => {
     if (feedType === "clubs") {
       dispatch(getAllClubsThunk());
-      setFeedState(clubs);
+      setFeedState({...clubs});
     }
 
     if (feedType === "stands") {
       dispatch(getAllStandsThunk());
-      setFeedState(stands);
+      setFeedState({...stands});
     }
-  }, []);
+  }, [dispatch, feedType]);
 
   return (
     <>

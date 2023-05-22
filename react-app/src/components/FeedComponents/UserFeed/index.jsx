@@ -1,4 +1,5 @@
 import FeedButtons from "../FeedButtons";
+import { useDispatch } from "react-redux";
 
 export default function UserFeed() {
   return (
