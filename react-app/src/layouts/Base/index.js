@@ -5,8 +5,8 @@ export default function BaseLayout({ isLoaded, children }) {
   return (
     <>
       <header className={BaseLayoutCSS.container}>
-        <h1>The Comic Stand Club</h1>
         <Navigation isLoaded={isLoaded} />
+        <h1>The Comic Stand Club</h1>
       </header>
       <div>{children}</div>
       <footer className={BaseLayoutCSS.container}>

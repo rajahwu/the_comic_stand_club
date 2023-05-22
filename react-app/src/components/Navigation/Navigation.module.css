@@ -21,3 +21,7 @@
   display: inline-block;
   margin-right: 100px;
 }
+
+.container {
+  pointer-events: auto;
+}

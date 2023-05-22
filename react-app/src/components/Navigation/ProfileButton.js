@@ -31,6 +31,7 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const handleLogout = (e) => {
+    console.log("logout clicked")
     e.preventDefault();
     dispatch(logout());
   };
@@ -39,11 +40,11 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <div>
+    <div className={NavigationCSS.container}>
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef} style={{backgroundColor: "black"}}>
+      <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
