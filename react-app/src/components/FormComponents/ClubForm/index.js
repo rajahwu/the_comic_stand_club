@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
+import { addClub } from "../../../store/club";
 
 export default function ClubForm({ createForm }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
   const currentClub = clubs[createForm.id];
   const [clubName, setClubName] = useState(currentClub ? currentClub.name : "");
@@ -45,6 +47,8 @@ export default function ClubForm({ createForm }) {
         setErrors(status.errors);
         return;
       }
+      const store = dispatch(addClub(status));
+      console.log("Edit club form addClub disptach", store.payload);
       history.push("/feed");
       return createForm.formData;
     }
@@ -55,7 +59,8 @@ export default function ClubForm({ createForm }) {
         setErrors(status.errors);
         return;
       }
-      console.log("Start a club forms data", createForm.formData);
+      const store = dispatch(addClub(status));
+      console.log("New club form addClub dispatch", store.payload);
       history.push("/feed");
       return createForm.formData;
     }

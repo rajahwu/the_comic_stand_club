@@ -72,7 +72,7 @@ export default function StandForm({ createForm }) {
     <>
       <h1>{createForm.title}</h1>
       <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
-        <label>
+        {/* <label>
           Characters
           {<p>{errors?.characters}</p>}
         </label>
@@ -81,7 +81,7 @@ export default function StandForm({ createForm }) {
           name="characters"
           value={characters}
           onChange={(e) => setCharacters(e.target.value)}
-        />
+        /> */}
         <label>
           Stand Name
           {<p>{errors?.standName}</p>}
