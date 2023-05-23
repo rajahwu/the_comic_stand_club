@@ -15,8 +15,23 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "2.5rem",
+    width: "5rem",
+    margin: 0,
+    color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
+  }
+
+
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <button 
+    style={{
+      ...btnStyles
+    }}
+    onClick={onClick}>{buttonText}</button>
   );
 }
 

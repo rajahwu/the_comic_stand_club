@@ -15,6 +15,17 @@ export default function SplashPage() {
     return;
   };
 
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "2.5rem",
+    width: "5rem",
+    margin: 0,
+    color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
+  }
+
+
   return (
     <div className={SplashPageCSS.container}>
       <div className="splash-page">
@@ -29,14 +40,23 @@ export default function SplashPage() {
           onItemClick={closeMenu}
           modalComponent={<LoginFormModal />}
         />
-
+        <div style={{
+          display: "flex",
+          justifyContent: "center"
+        }}>
         <button
+          style={{
+            ...btnStyles,
+            height: "1.5rem",
+            marginTop: "0.7rem"
+          }}
           onClick={() => {
             dispatch(login("demo@aa.io", "password"));
           }}
         >
-          Demo User
+          Demo
         </button>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 .profile-dropdown {
   position: absolute;
+  list-style: none;
+  background-color: hsla(0, 0%, 0%,0.45);
+  border-radius: 15px;
 }
+
 
 .hidden {
   display: none;
