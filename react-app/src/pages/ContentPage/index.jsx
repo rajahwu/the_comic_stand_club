@@ -5,6 +5,7 @@ import { getAllClubsThunk } from "../../store/club";
 import { getAllStandsThunk } from "../../store/stand";
 import { useBouncer } from "../../hooks";
 import { ContentCard } from "../../components";
+import { removeClub } from "../../store/club";
 import ContentCardCSS from "./ContentPage.module.css";
 
 export default function ContentPage() {
@@ -63,6 +64,7 @@ export default function ContentPage() {
             fetch(`/api/${contentType}s/${id}`, {
               method: "DELETE",
             });
+            dispatch(removeClub(id))
             history.push("/feed");
           }}
         >

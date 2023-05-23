@@ -1,5 +1,6 @@
 const GET_ALL_CLUBS = "clubs/GET_ALL_CLUBS";
 const ADD_CLUB = "clubs/CREATE_CLUB";
+const REMOVE_CLUB = "clubs/REMOVE_CLUB"
 
 export const getAllClubs = (clubs) => ({
   type: GET_ALL_CLUBS,
@@ -10,6 +11,11 @@ export const addClub = (club) => ({
   type: ADD_CLUB,
   payload: club,
 });
+
+export const removeClub = (clubId) => ({
+  type: REMOVE_CLUB,
+  payload: clubId
+})
 
 export const getAllClubsThunk = () => async (dispatch) => {
   const response = await fetch("/api/clubs", {
@@ -47,9 +53,17 @@ export default function reducer(state = initialState, action) {
         ...state,
         allClubs: { ...state.allClubs },
       };
-    console.log("ADD_CLUB reducer newState", newState)
      newState.allClubs[action.payload.id] = action.payload
       return newState;
+    }
+
+    case REMOVE_CLUB: {
+      const newState = {
+        ...state,
+        allClubs: { ...state.allClubs }
+      }
+      delete newState.allClubs[action.payload]
+      return newState
     }
 
     default:
