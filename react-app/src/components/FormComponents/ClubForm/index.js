@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 import { addClub } from "../../../store/club";
+import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
 export default function ClubForm({ createForm }) {
   const history = useHistory();
@@ -82,7 +82,10 @@ export default function ClubForm({ createForm }) {
         />
         <label>
           Club Name
+          <div  style={{color:"red", lineHeight:0}}>
           {<p>{errors?.clubName}</p>}
+          {<p>{(clubName.length <= 4 && clubName.length > 0) && "Club name must be 5 characters or more."}</p>}
+          </div>
         </label>
         <input
           name="name"
@@ -92,7 +95,10 @@ export default function ClubForm({ createForm }) {
         />
         <label>
           Club Description
+          <div style={{color:"red", lineHeight:0}}>
           {<p>{errors?.description}</p>}
+          {<p>{(description.length >= 2000) && "Description too long, must be less than 2000 characters."}</p>}
+          </div>
         </label>
         <textarea
           name="description"

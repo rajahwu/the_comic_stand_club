@@ -17,8 +17,18 @@ function SignupFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const errors = {}
+    if(password.length < 6) errors.password = "Password must be at least 6 characters long"
+    if(username.length < 5) errors.username = "Username must be at least 4 characters long"
+    if(username.length > 20) errors.username = "Username can not be greater than 20 characters"
+    if(!email.includes("@") || email.length < 4) errors.email = "Please enter a vaild email"
+    if(Object.values(errors).length > 0) {
+      setErrors([...Object.values(errors)])
+      return
+    } 
+
     if (password === confirmPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password))
       if (data) {
         setErrors(data);
       } else {

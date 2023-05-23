@@ -78,19 +78,12 @@ export default function StandForm({ createForm }) {
     <>
       <h1>{createForm.title}</h1>
       <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
-        {/* <label>
-          Characters
-          {<p>{errors?.characters}</p>}
-        </label>
-        <input
-          type="text"
-          name="characters"
-          value={characters}
-          onChange={(e) => setCharacters(e.target.value)}
-        /> */}
         <label>
           Stand Name
+          <div style={{color:"red", lineHeight:0}}>
           {<p>{errors?.standName}</p>}
+          {<p>{(standName.length <= 4 && standName.length > 0) && "Club name must be 5 characters or more."}</p>}
+          </div>
         </label>
         <input
           name="name"
@@ -100,7 +93,10 @@ export default function StandForm({ createForm }) {
         />
         <label>
           Stand Description
+          <div style={{color:"red", lineHeight:0}}>
           {<p>{errors?.description}</p>}
+          {<p>{(description.length >= 2000) && "Description too long, must be less than 2000 characters."}</p>}
+          </div>
         </label>
         <textarea
           name="description"
@@ -108,6 +104,7 @@ export default function StandForm({ createForm }) {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button
+          disabled={Object.values(errors).length}
           type="submit"
           onClick={() => {
             setErrors({
