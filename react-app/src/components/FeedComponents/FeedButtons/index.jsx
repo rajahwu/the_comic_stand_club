@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
@@ -21,7 +21,10 @@ export default function FeedButtons() {
 
   return (
     <div className="clubs-feed">
-      <h2>User Feed</h2>
+    <Link to={`/feed/${activeFeed.type}s`}>
+      <h2>My {activeFeed.type}s</h2>
+
+    </Link>
       <div style={{height: "100px"}}>
         <button
           className={FeedButtonsCSS["feed-btn"]}

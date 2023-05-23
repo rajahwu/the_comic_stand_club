@@ -19,7 +19,7 @@ export default function ContentPage() {
   const stands = useSelector((state) => state.stands.allStands);
   const characters = useSelector((state) => state.characters.characters);
 
-  const currentContent = clubs ? contentType === "club" ? clubs[id] : stands[id] : null;
+  const currentContent = contentType === "club" ? clubs[id] : stands[id];
 
   useEffect(() => {
     dispatch(getAllClubsThunk());
