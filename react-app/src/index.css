@@ -34,11 +34,3 @@ h6 {
   line-height: 1.5;
 }
 
-.page {
-  transition: transfrom 0.3, ease, opacity 0.3s ease;
-}
-
-.page:not(.active) {
-  opacity: 0;
-  transform: translateY(200px);
-}
