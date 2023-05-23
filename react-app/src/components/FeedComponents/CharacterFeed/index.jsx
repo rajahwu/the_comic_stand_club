@@ -2,14 +2,21 @@
 // TODO Get API Response (COMIC_CHARACTERS)
 
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { CharacterCard } from "../..";
 import { getMarvelCharacters } from "../../../resources/marvel";
+import { getCharacters } from "../../../store/characters";
 
-const SearchBar = ({ searchTerms, setSearchTerms }) => {
+const SearchBar = ({ searchTerms, setSearchTerms, comicCharacters }) => {
+  const dispatch = useDispatch()
   // TODO Handle Click
-  const handleClick = () => {};
+  const handleClick = (e) => {
+   e.preventDefault()
+    console.log(comicCharacters)
+    dispatch(getCharacters(comicCharacters))
+  } ;
   return (
-    <form>
+  <form>
       <input
         name="startsWith"
         type="text"
@@ -19,7 +26,7 @@ const SearchBar = ({ searchTerms, setSearchTerms }) => {
           setSearchTerms({ ...searchTerms, ...{ startsWith: e.target.value } })
         }
       />
-      <button onClick={handleClick}>Search</button>
+      <button onClick={handleClick} style={{cursor: "not-allowed"}} disabled={false}>Cache</button>
     </form>
   );
 };
@@ -27,14 +34,14 @@ const SearchBar = ({ searchTerms, setSearchTerms }) => {
 export default function CharacterFeed() {
   const [searchQueryString, setSearchQueryString] = useState({});
   const [comicCharacters, setComicCharacters] = useState([]);
-
+  
   useEffect(() => {
     const controller = new AbortController();
     const {signal} = controller
     const fetchMarvelCharacters = async () => {
       try {
-        const comiccharacters = await getMarvelCharacters(signal, searchQueryString);
-        setComicCharacters(comiccharacters.data.results);
+        const comiccharacters = await getMarvelCharacters(signal, searchQueryString)
+        setComicCharacters(comiccharacters.data.results)
       } catch (errors) {
         console.error(errors);
       }
@@ -50,6 +57,7 @@ export default function CharacterFeed() {
       <SearchBar
         searchTerms={searchQueryString}
         setSearchTerms={setSearchQueryString}
+        comicCharacters={comicCharacters}
       />
 
       {comicCharacters.slice(0, 5).map((entry, i) => (

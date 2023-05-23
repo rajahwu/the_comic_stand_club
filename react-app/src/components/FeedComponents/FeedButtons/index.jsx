@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClubsThunk } from "../../../store/club";
 import { getAllStandsThunk } from "../../../store/stand";
@@ -19,19 +19,25 @@ export default function FeedButtons() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "2.5rem",
+    width: "5rem",
+    margin: 0,
+    color: "white",
+  }
+
   return (
     <div className="clubs-feed">
-      <h2>User Feed</h2>
-      <div style={{height: "100px"}}>
+    <Link to={`/feed/${activeFeed.type}s`}>
+      <h2>My {activeFeed.type}s</h2>
+    </Link>
+      <div style={{display: "flex", justifyContent:"space-around"}}>
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+            ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             border:
               activeFeed.type === "club"
                 ? "1px solid yellow"
@@ -49,12 +55,8 @@ export default function FeedButtons() {
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+            ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             border:
               activeFeed.type === "stand"
                 ? "1px solid yellow"
@@ -72,12 +74,8 @@ export default function FeedButtons() {
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+            ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             cursor: "not-allowed",
           }}
           onClick={() => {
@@ -91,12 +89,8 @@ export default function FeedButtons() {
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+           ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             border: "1px solid green",
             cursor: "pointer",
           }}

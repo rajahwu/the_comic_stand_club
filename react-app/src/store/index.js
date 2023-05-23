@@ -3,11 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import clubs from './club'
 import stands from './stand'
+import characters from './characters'
 
 const rootReducer = combineReducers({
   session,
   clubs,
-  stands
+  stands,
+  characters
+  
 });
 
 

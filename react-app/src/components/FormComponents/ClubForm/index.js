@@ -21,7 +21,7 @@ export default function ClubForm({ createForm }) {
     errors: 0,
   });
 
-  const handlSubmit = (e) => {
+  const handlSubmit = async (e) => {
     e.preventDefault();
     createForm.setFormData({
       clubName,
@@ -40,7 +40,7 @@ export default function ClubForm({ createForm }) {
     }
 
     if (createForm.method === "edit") {
-      const status = createForm.update();
+      const status = await createForm.update();
       if (status.errors) {
         setErrors(status.errors);
         return;
@@ -50,7 +50,7 @@ export default function ClubForm({ createForm }) {
     }
 
     if (createForm.method === "new") {
-      const status = createForm.create();
+      const status = await createForm.create();
       if (status.errors) {
         setErrors(status.errors);
         return;
