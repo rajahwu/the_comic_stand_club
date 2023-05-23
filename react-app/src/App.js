@@ -21,9 +21,9 @@ function App() {
 
   return (
     <>
-      <a href="../docs/index.html" target="_blank">
+      {/* <a href="../docs/index.html" target="_blank">
         API_Docs
-      </a>
+      </a> */}
       {isLoaded && (
         <Switch>
           <BaseLayout isLoaded={isLoaded}>

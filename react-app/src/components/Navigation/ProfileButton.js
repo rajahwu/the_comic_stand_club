@@ -38,10 +38,23 @@ function ProfileButton({ user }) {
 
   const ulClassName = NavigationCSS["profile-dropdown"] + (showMenu ? "" : " " + NavigationCSS["hidden"]);
   const closeMenu = () => setShowMenu(false);
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "2.5rem",
+    width: "5rem",
+    margin: 0,
+    color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
+  }
 
   return (
     <div className={NavigationCSS.container}>
-      <button onClick={openMenu}>
+      <button style={{
+        ...btnStyles,
+        width: "2.5rem",
+        borderRadius: "50%"
+      }} onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
@@ -50,7 +63,10 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
-              <button onClick={handleLogout} style={{padding: "5px"}}>Log Out</button>
+              <button style={{
+                ...btnStyles,
+                height: "1.5rem"
+              }} onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (

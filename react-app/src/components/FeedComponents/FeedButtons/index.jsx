@@ -25,6 +25,8 @@ export default function FeedButtons() {
     width: "5rem",
     margin: 0,
     color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
   }
 
   return (
@@ -37,12 +39,10 @@ export default function FeedButtons() {
           className={FeedButtonsCSS["feed-btn"]}
           style={{
             ...btnStyles,
-            backgroundColor: "black",
             border:
               activeFeed.type === "club"
                 ? "1px solid yellow"
                 : "1px solid white",
-            cursor: "pointer",
           }}
           onClick={() => {
             if (activeFeed.type === "club") history.push("/feed/clubs");
@@ -56,12 +56,10 @@ export default function FeedButtons() {
           className={FeedButtonsCSS["feed-btn"]}
           style={{
             ...btnStyles,
-            backgroundColor: "black",
             border:
               activeFeed.type === "stand"
                 ? "1px solid yellow"
                 : "1px solid white",
-            cursor: "pointer",
           }}
           onClick={() => {
             if (activeFeed.type === "stand") history.push("/feed/stands");
@@ -75,7 +73,6 @@ export default function FeedButtons() {
           className={FeedButtonsCSS["feed-btn"]}
           style={{
             ...btnStyles,
-            backgroundColor: "black",
             cursor: "not-allowed",
           }}
           onClick={() => {
@@ -90,9 +87,7 @@ export default function FeedButtons() {
           className={FeedButtonsCSS["feed-btn"]}
           style={{
            ...btnStyles,
-            backgroundColor: "black",
             border: "1px solid green",
-            cursor: "pointer",
           }}
           onClick={() => history.push(`${activeFeed.url}-new`)}
         >

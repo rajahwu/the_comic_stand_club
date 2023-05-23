@@ -2,4 +2,12 @@
     background-image: url("../../assets/header.jpg");
     opacity: 0.7;
     pointer-events: none;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+}
+.header {
+    /* background-image: url("../../assets/header.jpg"); */
+    opacity: 1;
+    pointer-events: none;
+    border-bottom: 5px solid black;
 }
