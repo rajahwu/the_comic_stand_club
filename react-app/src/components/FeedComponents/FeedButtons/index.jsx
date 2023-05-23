@@ -19,22 +19,25 @@ export default function FeedButtons() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "2.5rem",
+    width: "5rem",
+    margin: 0,
+    color: "white",
+  }
+
   return (
     <div className="clubs-feed">
     <Link to={`/feed/${activeFeed.type}s`}>
       <h2>My {activeFeed.type}s</h2>
-
     </Link>
-      <div style={{height: "100px"}}>
+      <div style={{display: "flex", justifyContent:"space-around"}}>
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+            ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             border:
               activeFeed.type === "club"
                 ? "1px solid yellow"
@@ -52,12 +55,8 @@ export default function FeedButtons() {
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+            ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             border:
               activeFeed.type === "stand"
                 ? "1px solid yellow"
@@ -75,12 +74,8 @@ export default function FeedButtons() {
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+            ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             cursor: "not-allowed",
           }}
           onClick={() => {
@@ -94,12 +89,8 @@ export default function FeedButtons() {
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
-            borderRadius: "50%",
-            height: "65px",
-            width: "65px",
-            margin: "5px",
+           ...btnStyles,
             backgroundColor: "black",
-            color: "white",
             border: "1px solid green",
             cursor: "pointer",
           }}
