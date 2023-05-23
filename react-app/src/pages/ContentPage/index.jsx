@@ -28,7 +28,6 @@ export default function ContentPage() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
-
   return (
     <div className={ContentCardCSS.container}>
       <ContentCard contentType={contentType} currentContent={currentContent} />
@@ -37,11 +36,13 @@ export default function ContentPage() {
           <div>
             <select>
               <option value="">Add Character</option>
-              {Object.values(characters).slice(0, 5).map((character, i) => (
-                <option key={i} value={character?.id}>
-                  {character?.name}
-                </option>
-              ))}
+              {Object.values(characters)
+                .slice(0, 5)
+                .map((character, i) => (
+                  <option key={i} value={character?.id}>
+                    {character?.name}
+                  </option>
+                ))}
             </select>
             <br />
             {Object.values(characters)
@@ -61,14 +62,23 @@ export default function ContentPage() {
           Edit
         </button>
         <button
-          onClick={(e) => {
-            fetch(`/api/${contentType}s/${id}`, {
+          onClick={async (e) => {
+            const response = await fetch(`/api/${contentType}s/${id}`, {
               method: "DELETE",
             });
-            console.log("delete button", contentType)
-            if(contentType === "clubs") dispatch(removeClub(id))
-            if(contentType === "stands") dispatch(removeStand(id))
-            history.push("/feed");
+
+            if (response.ok) {
+              const success = await response.json();
+              console.log(`${contentType} delete success `, success);
+              if (contentType === "club") dispatch(removeClub(id));
+              if (contentType === "stand") dispatch(removeStand(id));
+              history.push("/feed");
+              return success
+            }
+            const errors = await response.json()
+            console.log(`${contentType} delete fail, `, errors)
+            return errors
+
           }}
         >
           Delete

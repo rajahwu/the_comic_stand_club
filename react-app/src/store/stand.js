@@ -53,18 +53,18 @@ export default function reducer(state = initialState, action) {
     case ADD_STAND: {
       const newState = {
         ...state,
-        allClubs: { ...state.allStands },
+        allStands: { ...state.allStands },
       };
-     newState.allClubs[action.payload.id] = action.payload
+     newState.allStands[action.payload.id] = action.payload
       return newState;
     }
 
     case REMOVE_STAND: {
       const newState = {
         ...state,
-        allClubs: { ...state.allStands }
+        allStands: { ...state.allStands }
       }
-      delete newState.allClubs[action.payload]
+      delete newState.allStands[action.payload]
       return newState
     }
 
