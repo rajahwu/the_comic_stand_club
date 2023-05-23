@@ -10,7 +10,7 @@ export class CreateForm {
         description: "description",
         imageUrl: "imageUrl"
       }
-      this.validator = validateForm;
+      this.validator = validateClub;
       this.component = <ClubForm createForm={this} />;
     }
     if (/\/club\/\d{1,3}\/edit/.test(location.pathname)) {
@@ -22,7 +22,7 @@ export class CreateForm {
         description: "description",
         imageUrl: "imageUrl"
       }
-      this.validator = validateForm;
+      this.validator = validateStand;
       this.id = location.pathname.split("/")[2];
       this.component = <ClubForm createForm={this} />;
     }
@@ -34,7 +34,7 @@ export class CreateForm {
         description: "description",
         characters: "characters"
       }
-      this.validator = validateForm;
+      this.validator = validateStand;
       this.component = <StandForm createForm={this} />;
     }
     if (/\/stand\/\d{1,3}\/edit/.test(location.pathname)) {
@@ -46,7 +46,7 @@ export class CreateForm {
         description: "description",
         characters: "characters"
       }
-      this.validator = validateForm;
+      this.validator = validateStand;
       this.id = location.pathname.split("/")[2];
       this.component = <StandForm createForm={this} />;
     }
@@ -102,7 +102,28 @@ export class CreateForm {
   };
 }
 
-function validateForm(formData, errors) {
+function validateClub(formData, errors) {
+  if (formData[this.state.name]?.length <= 4) {
+    errors[this.state.name] = "Club name length must be greater than 4 characters";
+    errors.errors ? (errors.errors += 1) : (errors.errors = 1);
+  }
+
+  if (formData[this.state.description]?.length > 2000) {
+    errors[this.state.description] = "Description must be less than 2000 characters";
+    errors.errors ? (errors.errors += 1) : (errors.errors = 1);
+  }
+  if (formData[this.state.description]?.length <= 0) {
+    errors[this.state.description] = "Description must be greater than 0 characters";
+    errors.errors ? (errors.errors += 1) : (errors.errors = 1);
+  }
+
+  if (errors.errors) {
+    return errors;
+  }
+  return null;
+}
+
+function validateStand(formData, errors) {
   if (formData[this.state.name]?.length <= 0) {
     errors[this.state.name] = "Club name length must be greater than zero";
     errors.errors ? (errors.errors += 1) : (errors.errors = 1);
