@@ -20,10 +20,12 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         # undo_memberships()
+        undo_stands()
         undo_clubs()
         undo_users()
     seed_users()
     seed_clubs()
+    seed_stands()
     # Add other seed functions here
 
 
