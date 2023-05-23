@@ -1,15 +1,21 @@
 const GET_ALL_CLUBS = "clubs/GET_ALL_CLUBS";
-const CREATE_CLUB = "clubs/CREATE_CLUB";
+const ADD_CLUB = "clubs/CREATE_CLUB";
+const REMOVE_CLUB = "clubs/REMOVE_CLUB"
 
-const getAllClubs = (clubs) => ({
+export const getAllClubs = (clubs) => ({
   type: GET_ALL_CLUBS,
   payload: clubs,
 });
 
-const createNewClub = (club) => ({
-  type: CREATE_CLUB,
+export const addClub = (club) => ({
+  type: ADD_CLUB,
   payload: club,
 });
+
+export const removeClub = (clubId) => ({
+  type: REMOVE_CLUB,
+  payload: clubId
+})
 
 export const getAllClubsThunk = () => async (dispatch) => {
   const response = await fetch("/api/clubs", {
@@ -26,22 +32,6 @@ export const getAllClubsThunk = () => async (dispatch) => {
   }
 };
 
-export const createNewClubThunk = (club) => async (dispatch) => {
-  const response = await fetch("/api/clubs/new", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(club),
-  });
-  if (response.ok) {
-    const data = await response.json();
-    if (data.errors) {
-      return;
-    }
-    dispatch(createNewClub);
-  }
-};
 const initialState = { allClubs: {} };
 
 export default function reducer(state = initialState, action) {
@@ -49,7 +39,7 @@ export default function reducer(state = initialState, action) {
     case GET_ALL_CLUBS: {
       const newState = {
         ...state,
-        allClubs: { ...state.clubs },
+        allClubs: { ...state.allClubs },
       };
       action.payload.clubs.forEach(
         (club) => (newState.allClubs[club.id] = club)
@@ -58,13 +48,22 @@ export default function reducer(state = initialState, action) {
     }
 
 
-    case CREATE_CLUB: {
+    case ADD_CLUB: {
       const newState = {
         ...state,
-        allClubs: { ...state.clubs },
+        allClubs: { ...state.allClubs },
       };
-     newState.allClubs[action.payload.club.id] = action.payload.club
+     newState.allClubs[action.payload.id] = action.payload
       return newState;
+    }
+
+    case REMOVE_CLUB: {
+      const newState = {
+        ...state,
+        allClubs: { ...state.allClubs }
+      }
+      delete newState.allClubs[action.payload]
+      return newState
     }
 
     default:

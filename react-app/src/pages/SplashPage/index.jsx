@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
+import { getAllClubsThunk } from "../../store/club";
+import { getAllStandsThunk } from "../../store/stand";
 import { useBouncer } from "../../hooks";
 import {
   LoginFormModal,
@@ -7,6 +9,7 @@ import {
   OpenModalButton,
 } from "../../components";
 import SplashPageCSS from "./SplashPage.module.css";
+import { useEffect } from "react";
 
 export default function SplashPage() {
   useBouncer("login");
@@ -14,6 +17,11 @@ export default function SplashPage() {
   const closeMenu = () => {
     return;
   };
+
+  useEffect(() => {
+    dispatch(getAllClubsThunk());
+    dispatch(getAllStandsThunk());
+  }, [dispatch]);
 
   const btnStyles = {
     borderRadius: "7px",
@@ -23,8 +31,7 @@ export default function SplashPage() {
     color: "white",
     backgroundColor: "black",
     cursor: "pointer",
-  }
-
+  };
 
   return (
     <div className={SplashPageCSS.container}>
@@ -40,22 +47,24 @@ export default function SplashPage() {
           onItemClick={closeMenu}
           modalComponent={<LoginFormModal />}
         />
-        <div style={{
-          display: "flex",
-          justifyContent: "center"
-        }}>
-        <button
+        <div
           style={{
-            ...btnStyles,
-            height: "1.5rem",
-            marginTop: "0.7rem"
-          }}
-          onClick={() => {
-            dispatch(login("demo@aa.io", "password"));
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          Demo
-        </button>
+          <button
+            style={{
+              ...btnStyles,
+              height: "1.5rem",
+              marginTop: "0.7rem",
+            }}
+            onClick={() => {
+              dispatch(login("demo@aa.io", "password"));
+            }}
+          >
+            Demo
+          </button>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ export default function ContentCard({ currentContent, contentType }) {
     style={{cursor: "pointer"}}
       onClick={(e) =>
         history.push(
-          `/${contentType.substring(0, contentType.length - 1)}/${
+          `/${contentType[contentType.length - 1] === "s" ? contentType.substring(0, contentType.length - 1) : contentType}/${
             currentContent.id
           }`
         )
