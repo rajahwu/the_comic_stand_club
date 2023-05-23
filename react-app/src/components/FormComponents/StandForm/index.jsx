@@ -1,10 +1,12 @@
 import { useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { addStand } from "../../../store/stand";
 import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
 export default function StandForm({ createForm }) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const stands = useSelector(
     (state) => state.stands.allStands
@@ -51,16 +53,20 @@ export default function StandForm({ createForm }) {
         setErrors(status.errors);
         return;
       }
+      const store = dispatch(addStand(status))
+      console.log("Edit stand form addStand disptach", store.payload);
       history.push("/feed");
       return createForm.formData;
     }
-
+    
     if (createForm.method === "new") {
       const status = createForm.create()
       if(status.errors) {
         setErrors(status.error)
         return;
       }
+      const store = dispatch(addStand(status))
+      console.log("New stand form addStand disptach", store.payload);
 
       console.log("Start a stand forms data", createForm.formData);
       history.push("/feed");

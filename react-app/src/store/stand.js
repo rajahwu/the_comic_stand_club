@@ -1,9 +1,22 @@
 const GET_ALL_STANDS = "stands/GET_ALL_STANDS";
+const ADD_STAND = "stands/CREATE_STAND";
+const REMOVE_STAND = "stands/REMOVE_STAND"
+
 
 const getAllStands = (stands) => ({
   type: GET_ALL_STANDS,
   payload: stands,
 });
+
+export const addStand = (stand) => ({
+  type: ADD_STAND,
+  payload: stand
+})
+
+export const removeStand = (standId) => ({
+  type: REMOVE_STAND,
+  payload: standId
+})
 
 
 export const getAllStandsThunk = () => async (dispatch) => {
@@ -29,13 +42,32 @@ export default function reducer(state = initialState, action) {
     case GET_ALL_STANDS: {
       const newState = {
         ...state,
-        allStands: { ...state.stands },
+        allStands: { ...state.allStands },
       };
       action.payload.stands.forEach(
         (stand) => (newState.allStands[stand.id] = stand)
       );
       return newState;
     }
+
+    case ADD_STAND: {
+      const newState = {
+        ...state,
+        allClubs: { ...state.allStands },
+      };
+     newState.allClubs[action.payload.id] = action.payload
+      return newState;
+    }
+
+    case REMOVE_STAND: {
+      const newState = {
+        ...state,
+        allClubs: { ...state.allStands }
+      }
+      delete newState.allClubs[action.payload]
+      return newState
+    }
+
 
     default:
       return state;
