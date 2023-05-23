@@ -37,7 +37,7 @@ export default function AllContentPage({ feedType }) {
           currentContent={entry}
           onClick={(e) =>
             history.push(
-              `${feedType.substring(0, feedType.length - 1)}/${entry.id}`
+              `${feedType}/${entry.id}`
             )
           }
         />
