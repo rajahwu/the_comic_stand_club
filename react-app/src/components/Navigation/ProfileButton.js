@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -8,6 +9,7 @@ import NavigationCSS from "./Navigation.module.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -36,7 +38,11 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const ulClassName = NavigationCSS["profile-dropdown"] + (showMenu ? "" : " " + NavigationCSS["hidden"]);
+  
+  let ulClassName 
+  if(location.pathname === "/")  ulClassName =  NavigationCSS["profile-dropdown-login"] + (showMenu ? "" : " " + NavigationCSS["hidden"])
+  else ulClassName = NavigationCSS["profile-dropdown"] + (showMenu ? "" : " " + NavigationCSS["hidden"])
+    
   const closeMenu = () => setShowMenu(false);
   const btnStyles = {
     borderRadius: "7px",

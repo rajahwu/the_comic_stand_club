@@ -12,7 +12,7 @@ export default function StandForm({ createForm }) {
   const currentStand = stands[createForm.id];
 
   const [standName, setStandName] = useState(
-    currentStand ? currentStand?.standName : ""
+    currentStand ? currentStand?.name : ""
   );
   const [description, setDescription] = useState(
     currentStand ? currentStand?.description : ""

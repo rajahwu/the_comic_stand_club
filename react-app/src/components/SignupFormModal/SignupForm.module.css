@@ -1,0 +1,32 @@
+.container {
+    background-color: #1d1e26;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* display: flex; */
+    /* align-items: center; */
+}
+
+.container li {
+    margin-left: 0;
+    text-align: left;
+}
+
+.container form {
+    background-color: #1d1e26;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container input {
+    margin-top: 15px;
+    background-color: #d9b811;
+}
+
+.container label {
+    /* border: 5px solid salmon; */
+}
+
+
+/* style={{backgroundColor: "#1d1e26"}} */
+/* style={{display: "flex", flexDirection: "column"}} */
