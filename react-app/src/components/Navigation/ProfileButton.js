@@ -33,7 +33,6 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const handleLogout = (e) => {
-    console.log("logout clicked")
     e.preventDefault();
     dispatch(logout());
   };

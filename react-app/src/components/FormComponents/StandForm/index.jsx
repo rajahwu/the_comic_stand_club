@@ -51,8 +51,7 @@ export default function StandForm({ createForm }) {
         setErrors(status.errors);
         return;
       }
-      const store = dispatch(addStand(status));
-      console.log("Edit stand form addStand disptach", store.payload);
+      dispatch(addStand(status));
       history.push("/feed");
       return createForm.formData;
     }
@@ -63,10 +62,7 @@ export default function StandForm({ createForm }) {
         setErrors(status.error);
         return;
       }
-      const store = dispatch(addStand(status));
-      console.log("New stand form addStand disptach", store.payload);
-
-      console.log("Start a stand forms data", createForm.formData);
+      dispatch(addStand(status));
       history.push("/feed");
       return createForm.formData;
     }

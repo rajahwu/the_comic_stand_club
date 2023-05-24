@@ -65,7 +65,6 @@ export class CreateForm {
   }
 
   create = async () => {
-    console.log("create method", this.method)
     if (this.method !== "new") return;
     const response = await fetch(`/api/${this.name}s/new`, {
       method: "POST",
@@ -75,11 +74,11 @@ export class CreateForm {
 
     if (response.ok) {
       const success = await response.json()
-      console.log("form create method created", success);
+      // console.log("form create method created", success);
       return success;
     }
     const errors = response.json();
-    console.log("form create method created errors", errors);
+    console.error("form create method created errors", errors);
     return errors;
   };
 
@@ -93,11 +92,11 @@ export class CreateForm {
 
     if (response.ok) {
       const success = await response.json()
-      console.log("form update method updated", success)
+      // console.log("form update method updated", success)
       return success;
     }
     const errors = await response.json()
-    console.log("form update method updated errors", errors);
+    console.error("form update method updated errors", errors);
     return errors;
   };
 }

@@ -12,7 +12,6 @@ const SearchBar = ({ searchTerms, setSearchTerms, comicCharacters }) => {
   // TODO Handle Click
   const handleClick = (e) => {
    e.preventDefault()
-    console.log(comicCharacters)
     dispatch(getCharacters(comicCharacters))
   } ;
   // const btnStyles = {

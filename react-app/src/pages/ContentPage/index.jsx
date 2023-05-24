@@ -84,14 +84,14 @@ export default function ContentPage() {
 
             if (response.ok) {
               const success = await response.json();
-              console.log(`${contentType} delete success `, success);
+              // console.log(`${contentType} delete success `, success);
               if (contentType === "club") dispatch(removeClub(id));
               if (contentType === "stand") dispatch(removeStand(id));
               history.push("/feed");
               return success;
             }
             const errors = await response.json();
-            console.log(`${contentType} delete fail, `, errors);
+            console.error(`${contentType} delete fail, `, errors);
             return errors;
           }}
         >
