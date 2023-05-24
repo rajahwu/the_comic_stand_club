@@ -15,6 +15,16 @@ const SearchBar = ({ searchTerms, setSearchTerms, comicCharacters }) => {
     console.log(comicCharacters)
     dispatch(getCharacters(comicCharacters))
   } ;
+  const btnStyles = {
+    borderRadius: "3px",
+    height: "1.5rem",
+    width: "3.3rem",
+    border: "1px solid green",
+    margin: 0,
+    color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
+  }
   return (
   <form>
       <input
@@ -26,7 +36,13 @@ const SearchBar = ({ searchTerms, setSearchTerms, comicCharacters }) => {
           setSearchTerms({ ...searchTerms, ...{ startsWith: e.target.value } })
         }
       />
-      <button onClick={handleClick} style={{cursor: "not-allowed"}} disabled={false}>Cache</button>
+      <button
+       onClick={handleClick} 
+       style={{
+        ...btnStyles,
+        marginLeft: "5px",
+        cursor: "not-allowed"
+        }} disabled={false}>Cache</button>
     </form>
   );
 };
