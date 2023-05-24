@@ -92,14 +92,14 @@ export default function StandForm({ createForm }) {
       <div className="form">
         <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
           <label>
-            Stand Name
+            Roster Name
             <div style={{ color: "red", lineHeight: 0 }}>
               {<p>{errors?.standName}</p>}
               {
                 <p>
                   {standName.length <= 4 &&
                     standName.length > 0 &&
-                    "Club name must be 5 characters or more."}
+                    "Roster name must be 5 characters or more."}
                 </p>
               }
             </div>
@@ -111,7 +111,7 @@ export default function StandForm({ createForm }) {
             onChange={(e) => setStandName(e.target.value)}
           />
           <label>
-            Stand Description
+            Roster Description
             <div style={{ color: "red", lineHeight: 0 }}>
               {<p>{errors?.description}</p>}
               {

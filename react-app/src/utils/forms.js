@@ -28,7 +28,7 @@ export class CreateForm {
     }
     if (/\/stands-new/.test(location.pathname)) {
       this.type = ["stand", "new"];
-      this.title = "Build a new stand";
+      this.title = "Build a new roster";
       this.state = {
         name: "standName",
         description: "description",
@@ -39,7 +39,7 @@ export class CreateForm {
     }
     if (/\/stand\/\d{1,3}\/edit/.test(location.pathname)) {
       this.type = ["stand", "edit"];
-      this.title = "Edit stand";
+      this.title = "Edit roster";
       this.state = {
         id: location.pathname.split("/")[2],
         name: "standName",

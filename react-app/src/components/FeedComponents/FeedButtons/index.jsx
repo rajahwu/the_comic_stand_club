@@ -31,8 +31,6 @@ export default function FeedButtons() {
   };
 
   const handleMouseEnter = (e) => {
-    console.log(e.target.style)
-    console.log("height", e.target.style["height"], "boxShadow", e.target.style["width"])
     e.target.style.color = "#f2eadf";
     e.target.style["box-shadow"] = "2px 2px 2px hsl(120, 64%, 17%)";
     e.target.style["height"] = "2.7rem";
@@ -51,7 +49,7 @@ export default function FeedButtons() {
   return (
     <div className="clubs-feed">
       <Link to={`/feed/${activeFeed.type}s`}>
-        <h2 className={FeedButtonsCSS["title"]}>My {activeFeed.type}s</h2>
+        <h2 className={FeedButtonsCSS["title"]}>My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s</h2>
       </Link>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <button
@@ -91,7 +89,7 @@ export default function FeedButtons() {
             setFeed(stands);
           }}
         >
-          {activeFeed.type === "stand" ? "View All Stands" : "Stands"}
+          {activeFeed.type === "stand" ? "View All Rosters" : "Rosters"}
         </button>
         <button
           className={FeedButtonsCSS["feed-btn"]}
@@ -117,7 +115,7 @@ export default function FeedButtons() {
           onMouseLeave={handleMouseLeave}
           onClick={() => history.push(`${activeFeed.url}-new`)}
         >
-          {activeFeed.type === "stand" ? "Create New Stand" : "Create New Club"}
+          {activeFeed.type === "stand" ? "Build New Roster" : "Start New Club"}
         </button>
       </div>
 
