@@ -1,15 +1,22 @@
 /* TODO Add site wide styles */
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Figtree&family=Mynerve&family=PT+Serif&family=Ultra&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald&family=Roboto&display=swap');
+:root {
+  --title-font:  'Bangers', cursive;
+  --primary-font: 'Roboto', sans-serif;
+  --secondary-font: 'Oswald', sans-serif;
+}
+
 
 body {
   background-color: #1d1e26;
   color: #f2eadf;
   filter: grayscale(65%);
   font-size: 18px;
+  font-family: var(--primary-font);
 }
 
 a {
-  color: white;
+  color: #f2eadf;
   text-decoration: none;
 }
 
@@ -27,10 +34,56 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Bangers", cursive;
+  font-family: var(--title-font);
   color: #d9b811;
   filter: brightness(200%);
   letter-spacing: 0.3rem;
   line-height: 1.5;
 }
+
+.form {
+  background-color: hsla(225, 86%, 65%, 0.5);
+  border-radius: 15px 15px 0 0;
+}
+
+form {
+  font-family: var(--secondary-font);
+  letter-spacing: 0.2rem;
+}
+
+form p {
+  color: red;
+  letter-spacing: 0.5;
+  line-height: 1.3;
+  margin-bottom: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+label {
+  margin: 0;
+  line-height: 0;
+  font-size: 1.3rem;
+}
+
+input, textarea {
+  background-color: #d9b811;
+}
+
+input {
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+textarea {
+  border-radius: 5px 5px 0 0;
+}
+
+button {
+  font-family: inherit;
+  background-color: hsl(240, 5%, 4%),
+
+}
+
 

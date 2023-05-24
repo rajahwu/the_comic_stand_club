@@ -17,7 +17,7 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(["Credential invalid"]);
     } else {
       closeModal();
       return history.push("/feed");

@@ -1,6 +1,5 @@
 // TODO GET ViewState / POST Reactions(comment)
 import FeedPageCSS from "./FeedPage.module.css"
-
 import { CharacterFeed, UserFeed, NewsFeed } from "../../components";
 import { useBouncer } from "../../hooks";
 

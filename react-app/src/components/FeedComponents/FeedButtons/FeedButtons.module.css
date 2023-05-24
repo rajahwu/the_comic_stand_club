@@ -1,8 +1,9 @@
-/* .feed-btn {
-    border-radius: "50%";
-    height: "65px";
-    width: "65px";
-    margin: "5px";
-    background-color: "black";
-    color: "white";
-} */
+.feed-btn {
+    transition-property: all;
+    transition-duration: 250ms;
+    color: hsl(120, 64%, 17%);
+}
+
+.title:hover {
+    color: #f2eadf;
+}

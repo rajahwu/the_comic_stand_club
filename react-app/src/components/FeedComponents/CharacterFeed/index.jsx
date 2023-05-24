@@ -15,8 +15,36 @@ const SearchBar = ({ searchTerms, setSearchTerms, comicCharacters }) => {
     console.log(comicCharacters)
     dispatch(getCharacters(comicCharacters))
   } ;
+  // const btnStyles = {
+  //   borderRadius: "3px",
+  //   height: "1.5rem",
+  //   width: "3.3rem",
+  //   border: "1px solid green",
+  //   margin: 0,
+  //   color: "white",
+  //   backgroundColor: "black",
+  //   cursor: "pointer",
+  // }
+
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "1.8rem",
+    width: "5rem",
+    margin: 0,
+    color: "#d2b811",
+    backgroundColor: " hsl(240, 5%, 4%)",
+    cursor: "pointer",
+    opacity: 0.8
+  };
+
   return (
-  <form>
+    <div >
+
+  <form style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start"
+    }}>
       <input
         name="startsWith"
         type="text"
@@ -26,8 +54,15 @@ const SearchBar = ({ searchTerms, setSearchTerms, comicCharacters }) => {
           setSearchTerms({ ...searchTerms, ...{ startsWith: e.target.value } })
         }
       />
-      <button onClick={handleClick} style={{cursor: "not-allowed"}} disabled={false}>Cache</button>
+      <button
+       onClick={handleClick} 
+       style={{
+        ...btnStyles,
+        // marginLeft: "5px",
+        cursor: "not-allowed"
+        }} disabled={false}>Cache</button>
     </form>
+    </div>
   );
 };
 
@@ -52,7 +87,7 @@ export default function CharacterFeed() {
 
   return (
     <div className="character-feed" style={{ width: "25vw" }}>
-      <h2>Character Select</h2>
+      <h2>New Recruits</h2>
 
       <SearchBar
         searchTerms={searchQueryString}

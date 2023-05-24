@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 import { addClub } from "../../../store/club";
+import CreatePageCSS from "../../../pages/CreatePage/CreatePage.module.css";
 
 export default function ClubForm({ createForm }) {
   const history = useHistory();
@@ -66,54 +66,99 @@ export default function ClubForm({ createForm }) {
     }
   };
 
+  const btnStyles = {
+    borderRadius: "3px",
+    height: "2rem",
+    margin: 0,
+    color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
+  };
+
+  const inputStyles = {
+    backgroundColor: "#d9b811",
+    height: "1.3rem",
+  };
+
   return (
-    <>
+    <div
+      style={{
+        width: "50vw",
+        marginLeft: "25px",
+      }}
+    >
       <h1>{createForm.title}</h1>
-      <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
-        <label>
-          Club Image
-          {<p>{errors?.imageUrl}</p>}
-        </label>
-        <input
-          type="text"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-        <label>
-          Club Name
-          {<p>{errors?.clubName}</p>}
-        </label>
-        <input
-          name="name"
-          type="text"
-          value={clubName}
-          onChange={(e) => setClubName(e.target.value)}
-        />
-        <label>
-          Club Description
-          {<p>{errors?.description}</p>}
-        </label>
-        <textarea
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button
-          type="submit"
-          onClick={() => {
-            setErrors({
-              clubName: "",
-              description: "",
-              imageUrl: "",
-              errors: 0,
-            });
-          }}
-        >
-          {createForm.title}
-        </button>
-      </form>
+      <div className="form">
+        <form className={CreatePageCSS.createForm} onSubmit={handlSubmit}>
+          <label>
+            Club Image
+            {<p>{errors?.imageUrl}</p>}
+          </label>
+          <input
+            style={{ ...inputStyles }}
+            type="text"
+            name="imageUrl"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
+          <label>
+            Club Name
+            <div style={{ color: "red", lineHeight: 0 }}>
+              {<p>{errors?.clubName}</p>}
+              {
+                <p>
+                  {clubName.length <= 4 &&
+                    clubName.length > 0 &&
+                    "Club name must be 5 characters or more."}
+                </p>
+              }
+            </div>
+          </label>
+          <input
+            style={{ ...inputStyles }}
+            name="name"
+            type="text"
+            value={clubName}
+            onChange={(e) => setClubName(e.target.value)}
+          />
+          <label>
+            Club Description
+            <div style={{ color: "red", lineHeight: 0 }}>
+              {<p>{errors?.description}</p>}
+              {
+                <p>
+                  {description.length >= 2000 &&
+                    "Description too long, must be less than 2000 characters."}
+                </p>
+              }
+            </div>
+          </label>
+          <textarea
+            style={{ ...inputStyles, height: "5rem" }}
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button
+            style={{
+              ...btnStyles,
+              width: "100%",
+            }}
+            type="submit"
+            onClick={() => {
+              setErrors({
+                clubName: "",
+                description: "",
+                imageUrl: "",
+                errors: 0,
+              });
+            }}
+          >
+            {createForm.title}
+          </button>
+        </form>
+      </div>
       <Link to="/feed">Back to Feed</Link>
-    </>
+    </div>
   );
 }
