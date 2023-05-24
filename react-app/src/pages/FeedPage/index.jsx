@@ -7,6 +7,7 @@ export default function FeedPage() {
   useBouncer("logout");
 
   return (
+    
     <div className={FeedPageCSS.container} style={{ display: "flex"}}>
       <CharacterFeed />
       <UserFeed />

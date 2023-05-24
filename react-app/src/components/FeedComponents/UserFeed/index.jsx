@@ -9,7 +9,7 @@ export default function UserFeed() {
         padding: "0px",
       }}
     >
-      <FeedButtons />;
+      <FeedButtons />
     </div>
   );
 }

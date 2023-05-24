@@ -27,7 +27,7 @@ export default function FeedButtons() {
     color: "#d2b811",
     backgroundColor: " hsl(240, 5%, 4%)",
     cursor: "pointer",
-    opacity: 0.8
+    opacity: 0.8,
   };
 
   const handleMouseEnter = (e) => {
@@ -35,7 +35,7 @@ export default function FeedButtons() {
     e.target.style["box-shadow"] = "2px 2px 2px hsl(120, 64%, 17%)";
     e.target.style["height"] = "2.7rem";
     e.target.style["width"] = "5.3rem";
-    e.target.style["opacity"] = 1
+    e.target.style["opacity"] = 1;
   };
   const handleMouseLeave = (e) => {
     e.target.style.color = "#d2b811";
@@ -48,7 +48,13 @@ export default function FeedButtons() {
 
   return (
     <div className="clubs-feed">
-      <div style={{ display: "flex", justifyContent: "space-around", marginTop:"25px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          marginTop: "25px",
+        }}
+      >
         <button
           className={FeedButtonsCSS["feed-btn"]}
           style={{
@@ -72,7 +78,7 @@ export default function FeedButtons() {
           className={FeedButtonsCSS["feed-btn"]}
           style={{
             ...btnStyles,
-           
+
             border:
               activeFeed.type === "stand"
                 ? "1px solid yellow"
@@ -117,7 +123,9 @@ export default function FeedButtons() {
       </div>
 
       <Link to={`/feed/${activeFeed.type}s`}>
-        <h2 className={FeedButtonsCSS["title"]}>My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s</h2>
+        <h2 className={FeedButtonsCSS["title"]}>
+          My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s
+        </h2>
       </Link>
 
       <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
