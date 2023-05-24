@@ -3,7 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
-import "./LoginForm.css";
+import LoginFormCSS from "./LoginForm.module.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -25,33 +25,38 @@ function LoginFormModal() {
   };
 
   return (
-    <div style={{backgroundColor: "#1d1e26"}}>
+    <div className={LoginFormCSS["container"]}>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <div style={{ listStyle: "none", color: "red", margin: "20px" }}>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <p key={idx}>{error}</p>
           ))}
-        </ul>
+        </div>
         <label>
           Email
+        </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
         <label>
           Password
+        </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Log In</button>
+        <button
+          style={{ backgroundColor: "black", color: "white", padding: "10px", marginBottom: "10px"}}
+          type="submit"
+        >
+          Log In
+        </button>
       </form>
     </div>
   );

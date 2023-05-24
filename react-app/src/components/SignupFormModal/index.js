@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import { useHistory } from "react-router-dom";
-import "./SignupForm.css";
+import SignupFormCSS from "./SignupForm.module.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -43,51 +43,53 @@ function SignupFormModal() {
   };
 
   return (
-    <div style={{backgroundColor: "#1d1e26"}}>
+    <div className={SignupFormCSS["container"]}>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
+      <form 
+     
+      onSubmit={handleSubmit}>
+        <div style={{listStyle: "none", color: "red", margin: "20px"}}>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <p key={idx}>{error}</p>
           ))}
-        </ul>
+        </div>
         <label>
           Email
+        </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
         <label>
           Username
+        </label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
         <label>
           Password
+        </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
         <label>
           Confirm Password
+        </label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Sign Up</button>
+        <button style={{backgroundColor: "black", color: "white", padding: "7px", marginBottom: "10px"}} type="submit">Sign Up</button>
       </form>
     </div>
   );

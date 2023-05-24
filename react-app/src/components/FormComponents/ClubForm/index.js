@@ -47,8 +47,7 @@ export default function ClubForm({ createForm }) {
         setErrors(status.errors);
         return;
       }
-      const store = dispatch(addClub(status));
-      console.log("Edit club form addClub disptach", store.payload);
+      dispatch(addClub(status));
       history.push("/feed");
       return createForm.formData;
     }
@@ -59,8 +58,7 @@ export default function ClubForm({ createForm }) {
         setErrors(status.errors);
         return;
       }
-      const store = dispatch(addClub(status));
-      console.log("New club form addClub dispatch", store.payload);
+      dispatch(addClub(status));
       history.push("/feed");
       return createForm.formData;
     }

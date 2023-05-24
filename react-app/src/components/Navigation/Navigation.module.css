@@ -5,6 +5,13 @@
   border-radius: 15px;
 }
 
+.profile-dropdown-login {
+  position: absolute;
+  list-style: none;
+  /* background-color: hsla(0, 0%, 0%); */
+  border-radius: 15px;
+}
+
 
 .hidden {
   display: none;

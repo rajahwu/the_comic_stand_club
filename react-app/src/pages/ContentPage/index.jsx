@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, Link } from "react-router-dom";
-import { getAllClubsThunk } from "../../store/club";
-import { getAllStandsThunk } from "../../store/stand";
+import { getAllClubsThunk, removeClub } from "../../store/club";
+import { getAllStandsThunk, removeStand } from "../../store/stand";
 import { useBouncer } from "../../hooks";
 import { ContentCard } from "../../components";
-import { removeClub } from "../../store/club";
-import { removeStand } from "../../store/stand";
 import ContentCardCSS from "./ContentPage.module.css";
 
 export default function ContentPage() {
@@ -28,23 +26,23 @@ export default function ContentPage() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
+  const btnStyles = {
+    borderRadius: "7px",
+    height: "2.5rem",
+    width: "5rem",
+    margin: 0,
+    color: "#d2b811",
+    backgroundColor: " hsl(240, 5%, 4%)",
+    cursor: "pointer",
+    opacity: 0.8,
+  };
+
   return (
     <div className={ContentCardCSS.container}>
       <ContentCard contentType={contentType} currentContent={currentContent} />
       <div>
         {contentType === "stand" && (
           <div>
-            <select>
-              <option value="">Add Character</option>
-              {Object.values(characters)
-                .slice(0, 5)
-                .map((character, i) => (
-                  <option key={i} value={character?.id}>
-                    {character?.name}
-                  </option>
-                ))}
-            </select>
-            <br />
             {Object.values(characters)
               .slice(0, 5)
               .map((character, i) => (
@@ -56,12 +54,29 @@ export default function ContentPage() {
                   height="75px"
                 />
               ))}
+            <br />
+            {Object.values(characters).length > 0 && (
+              <select>
+                <option value="">Roster</option>
+                {Object.values(characters)
+                  .slice(0, 5)
+                  .map((character, i) => (
+                    <option key={i} value={character?.id}>
+                      {character?.name}
+                    </option>
+                  ))}
+              </select>
+            )}
           </div>
         )}
-        <button onClick={(e) => history.push(`/${contentType}/${id}/edit`)}>
+        <button
+          style={{ ...btnStyles }}
+          onClick={(e) => history.push(`/${contentType}/${id}/edit`)}
+        >
           Edit
         </button>
         <button
+          style={{ ...btnStyles }}
           onClick={async (e) => {
             const response = await fetch(`/api/${contentType}s/${id}`, {
               method: "DELETE",
@@ -69,16 +84,15 @@ export default function ContentPage() {
 
             if (response.ok) {
               const success = await response.json();
-              console.log(`${contentType} delete success `, success);
+              // console.log(`${contentType} delete success `, success);
               if (contentType === "club") dispatch(removeClub(id));
               if (contentType === "stand") dispatch(removeStand(id));
               history.push("/feed");
-              return success
+              return success;
             }
-            const errors = await response.json()
-            console.log(`${contentType} delete fail, `, errors)
-            return errors
-
+            const errors = await response.json();
+            console.error(`${contentType} delete fail, `, errors);
+            return errors;
           }}
         >
           Delete
