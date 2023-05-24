@@ -19,7 +19,7 @@ function SignupFormModal() {
     e.preventDefault();
     const errors = {}
     if(password.length < 6) errors.password = "Password must be at least 6 characters long"
-    if(username.length < 5) errors.username = "Username must be at least 4 characters long"
+    if(username.length < 4) errors.username = "Username must be at least 4 characters long"
     if(username.length > 20) errors.username = "Username can not be greater than 20 characters"
     if(!email.includes("@") || email.length < 4) errors.email = "Please enter a vaild email"
     if(Object.values(errors).length > 0) {
