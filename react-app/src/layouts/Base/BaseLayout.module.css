@@ -5,9 +5,20 @@
     border-bottom: 5px solid black;
     border-top: 5px solid black;
 }
+
 .header {
     /* background-image: url("../../assets/header.jpg"); */
     opacity: 1;
     pointer-events: none;
     border-bottom: 5px solid black;
+}
+
+.title {
+    filter: drop-shadow(5px 5px 5px hsla(225, 86%, 65%, 0.7));
+}
+
+.title-span {
+    color: hsl(60, 100%, 60%);
+    filter: brightness(115%);
+    font-size: 3rem;
 }

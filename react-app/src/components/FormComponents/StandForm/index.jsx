@@ -129,7 +129,7 @@ export default function StandForm({ createForm }) {
           />
           <button
             style={{ ...btnStyles }}
-            disabled={Object.values(errors).length}
+            // disabled={Object.values(errors).length > 0}
             type="submit"
             onClick={() => {
               setErrors({
