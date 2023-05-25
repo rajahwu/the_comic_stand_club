@@ -23,6 +23,11 @@ export default function ClubForm({ createForm }) {
     errors: 0,
   });
 
+  const [descriptionCharCount, setDescriptionCharCount] = useState(
+    description.length
+  );
+  const [clubNameCharCount, setClubNameCharCount] = useState(clubName.length);
+
   const handlSubmit = async (e) => {
     e.preventDefault();
     createForm.setFormData({
@@ -109,15 +114,35 @@ export default function ClubForm({ createForm }) {
                     "Club name must be 5 characters or more."}
                 </p>
               }
+              {clubName.length > 150 && (
+                <p>Club Name must be less than 150 characters.</p>
+              )}
             </div>
           </label>
           <input
-            style={{ ...inputStyles }}
+            style={{
+              ...inputStyles,
+              marginBottom: clubNameCharCount >= 5 ? 0 : "15px",
+            }}
             name="name"
             type="text"
             value={clubName}
-            onChange={(e) => setClubName(e.target.value)}
+            onChange={(e) => {
+              setClubName(e.target.value);
+              setClubNameCharCount(e.target.value.length);
+            }}
           />
+          {clubNameCharCount >= 5 && (
+            <p
+              style={{
+                marginTop: 0,
+                marginBottom: "15px",
+                color: clubNameCharCount > 150 ? "red" : "green",
+              }}
+            >
+              {clubNameCharCount}/150
+            </p>
+          )}
           <label>
             Club Description
             <div style={{ color: "red", lineHeight: 0 }}>
@@ -128,14 +153,30 @@ export default function ClubForm({ createForm }) {
                     "Description too long, must be less than 2000 characters."}
                 </p>
               }
+              {description.length > 250 && (
+                <p>Club description must be less than 250 characters.</p>
+              )}
             </div>
           </label>
           <textarea
             style={{ ...inputStyles, height: "5rem" }}
             name="description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value);
+              setDescriptionCharCount(e.target.value.length);
+            }}
           />
+          {descriptionCharCount > 0 && (
+            <p
+              style={{
+                marginTop: 0,
+                color: descriptionCharCount > 250 ? "red" : "green",
+              }}
+            >
+              {descriptionCharCount}/250
+            </p>
+          )}
           <button
             style={{
               ...btnStyles,
@@ -150,6 +191,7 @@ export default function ClubForm({ createForm }) {
                 errors: 0,
               });
             }}
+            disabled={descriptionCharCount > 250 || clubNameCharCount > 150}
           >
             {createForm.title}
           </button>

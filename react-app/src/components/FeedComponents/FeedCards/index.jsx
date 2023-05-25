@@ -20,7 +20,7 @@ export default function FeedCards({ feed, feedUrl }) {
                 cursor: "pointer",
               }}
             >
-              <p style={{ display: "flex", flexDirection:"row" }}>
+              <div style={{ display: "flex", flexDirection:"row" }}>
                 {contentType === "club" && (
                   <img
                     style={{ 
@@ -35,6 +35,7 @@ export default function FeedCards({ feed, feedUrl }) {
                     alt={entry.name}
                   />
                 )}
+              
               <h3
                 style={{
                   display: "inline-block",
@@ -46,7 +47,7 @@ export default function FeedCards({ feed, feedUrl }) {
               >
                 {entry.name}
               </h3>
-              </p>
+              </div>
 
               {contentType === "stand" && (
                 <div>
