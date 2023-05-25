@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
+import { useModal } from "../../../context/Modal";
+import { signUp } from "../../../store/session";
 import { useHistory } from "react-router-dom";
 import SignupFormCSS from "./SignupForm.module.css";
 
@@ -95,4 +95,4 @@ function SignupFormModal() {
   );
 }
 
-export default SignupFormModal;
+export default SignupFormModal

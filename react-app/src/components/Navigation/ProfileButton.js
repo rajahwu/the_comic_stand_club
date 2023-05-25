@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import { SignupFormModal, LoginFormModal } from "../session";
 import NavigationCSS from "./Navigation.module.css";
 
 function ProfileButton({ user }) {

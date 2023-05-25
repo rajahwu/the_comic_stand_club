@@ -7,6 +7,14 @@ export default function CharacterCard({
   description,
   urls,
 }) {
+
+    // const handleClick = (e) => {
+  //   getMarvelCharactersById(contentId).then((data) =>
+  //     console.log("Character Page Resource", data.data.results[0])
+  //   );
+  //   return navigate(`/characters/${contentId}`);
+  // };
+
   return (
     <div
       className="container"

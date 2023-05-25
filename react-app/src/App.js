@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
-import { SignupFormPage, LoginFormPage } from "./components";
+// import { SignupFormPage, LoginFormPage } from "./components";
 import {
   SplashPage,
   FeedPage,
@@ -57,12 +57,12 @@ function App() {
             <Route path="/feed/stands">
               <AllContentPage feedType="stands" />
             </Route>
-            <Route path="/login">
+            {/* <Route path="/login">
               <LoginFormPage />
             </Route>
             <Route path="/signup">
               <SignupFormPage />
-            </Route>
+            </Route> */}
           </BaseLayout>
         </Switch>
       )}

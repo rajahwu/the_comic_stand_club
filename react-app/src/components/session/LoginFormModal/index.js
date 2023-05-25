@@ -1,57 +1,65 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import './LoginForm.css';
+import { login } from "../../../store/session";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../../context/Modal";
+import { useHistory } from "react-router-dom";
+import LoginFormCSS from "./LoginForm.module.css";
 
-function LoginFormPage() {
+function LoginFormModal() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  if (sessionUser) return <Redirect to="/" />;
+  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(["Credential invalid"]);
+    } else {
+      closeModal();
+      return history.push("/feed");
     }
   };
 
   return (
-    <>
+    <div className={LoginFormCSS["container"]}>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <div style={{ listStyle: "none", color: "red", margin: "20px" }}>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <p key={idx}>{error}</p>
           ))}
-        </ul>
+        </div>
         <label>
           Email
+        </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
         <label>
           Password
+        </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Log In</button>
+        <button
+          style={{ backgroundColor: "black", color: "white", padding: "10px", marginBottom: "10px"}}
+          type="submit"
+        >
+          Log In
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 
-export default LoginFormPage;
+export default LoginFormModal;
