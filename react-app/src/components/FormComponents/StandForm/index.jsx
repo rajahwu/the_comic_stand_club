@@ -27,6 +27,13 @@ export default function StandForm({ createForm }) {
     errors: 0,
   });
 
+  
+  const [descriptionCharCount, setDescriptionCharCount] = useState(
+    description.length
+  );
+  const [standNameCharCount, setStandNameCharCount] = useState(standName.length);
+
+
   const handlSubmit = async (e) => {
     e.preventDefault();
     createForm.setFormData({
@@ -98,14 +105,31 @@ export default function StandForm({ createForm }) {
                     "Roster name must be 5 characters or more."}
                 </p>
               }
+              {standName.length > 150 && (
+                <p>Stand Name must be less than 150 characters.</p>
+              )}
             </div>
           </label>
           <input
             name="name"
             type="text"
             value={standName}
-            onChange={(e) => setStandName(e.target.value)}
+            onChange={(e) => {
+              setStandName(e.target.value)
+              setStandNameCharCount(e.target.value.length)
+              }}
           />
+          {standNameCharCount >= 5 && (
+            <p
+              style={{
+                marginTop: 0,
+                marginBottom: "15px",
+                color: standNameCharCount > 150 ? "red" : "green",
+              }}
+            >
+              {standNameCharCount}/150
+            </p>
+          )}
           <label>
             Roster Description
             <div style={{ color: "red", lineHeight: 0 }}>
@@ -116,13 +140,29 @@ export default function StandForm({ createForm }) {
                     "Description too long, must be less than 2000 characters."}
                 </p>
               }
+              {description.length > 250 && (
+                <p>Club description must be less than 250 characters.</p>
+              )}
             </div>
           </label>
           <textarea
             name="description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value)
+              setDescriptionCharCount(e.target.value.length)
+              }}
           />
+          {descriptionCharCount > 0 && (
+            <p
+              style={{
+                marginTop: 0,
+                color: descriptionCharCount > 250 ? "red" : "green",
+              }}
+            >
+              {descriptionCharCount}/250
+            </p>
+          )}
           <button
             style={{ ...btnStyles }}
             // disabled={Object.values(errors).length > 0}
@@ -135,6 +175,8 @@ export default function StandForm({ createForm }) {
                 errors: 0,
               });
             }}
+            disabled={descriptionCharCount > 250 || standNameCharCount > 150}
+
           >
             {createForm.title}
           </button>
