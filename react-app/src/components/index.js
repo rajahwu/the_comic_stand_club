@@ -1,7 +1,6 @@
 import Navigation from "./Navigation";
-import SignupFormModal from "./SignupFormModal";
+import { SignupFormModal, LoginFormModal } from "./session";
 import SignupFormPage from "./SignupFormPage";
-import LoginFormModal from "./LoginFormModal";
 import LoginFormPage from "./LoginFormPage";
 import OpenModalButton from "./OpenModalButton";
 import CharacterCard from "./CharacterCard";
