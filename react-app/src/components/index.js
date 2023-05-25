@@ -1,22 +1,17 @@
 import Navigation from "./Navigation";
-import { SignupFormModal, LoginFormModal } from "./session";
-import SignupFormPage from "./SignupFormPage";
-import LoginFormPage from "./LoginFormPage";
 import OpenModalButton from "./OpenModalButton";
-import CharacterCard from "./CharacterCard";
-import ContentCard from "./ContentCard";
-import { CharacterFeed, UserFeed, NewsFeed } from "./FeedComponents";
+import { SignupFormModal, LoginFormModal } from "./session";
+import { CharacterFeed, UserFeed, NewsFeed } from "./feed";
+import { CharacterCard, ContentCard } from "./cards";
 
 export {
-  SignupFormModal,
-  SignupFormPage,
-  LoginFormModal,
-  LoginFormPage,
-  OpenModalButton,
   Navigation,
-  CharacterCard,
-  ContentCard,
+  OpenModalButton,
+  SignupFormModal,
+  LoginFormModal,
   CharacterFeed,
   UserFeed,
   NewsFeed,
+  CharacterCard,
+  ContentCard,
 };
