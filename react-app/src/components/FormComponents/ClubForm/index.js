@@ -33,7 +33,7 @@ export default function ClubForm({ createForm }) {
     createForm.setFormData({
       clubName,
       description,
-      imageUrl,
+      imageUrl
     });
     const formErrors = createForm.validate(errors);
     if (formErrors && Object.values(formErrors).length) {

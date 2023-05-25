@@ -174,7 +174,7 @@ export default function StandForm({ createForm }) {
                 errors: 0,
               });
             }}
-            disabled={descriptionCharCount > 250 || standNameCharCount > 150}
+            disabled={descriptionCharCount > 250 || (standNameCharCount > 150 || standNameCharCount < 5)}
 
           >
             {createForm.title}

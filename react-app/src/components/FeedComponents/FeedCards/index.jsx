@@ -20,33 +20,37 @@ export default function FeedCards({ feed, feedUrl }) {
                 cursor: "pointer",
               }}
             >
-              <div style={{ display: "flex", flexDirection:"row" }}>
+              <div style={{ display: "flex", flexDirection: "row" }}>
                 {contentType === "club" && (
                   <img
-                    style={{ 
-                      borderRadius: "50%", 
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "https://images.unsplash.com/photo-1684871431939-7ea664ac1eb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60";
+                    }}
+                    style={{
+                      borderRadius: "50%",
                       border: "1px solid #d9b811",
                       maxWidth: "50px",
-                      maxHeight: "50px"
-                       }}
+                      maxHeight: "50px",
+                    }}
                     width={50}
                     height={50}
                     src={entry.imageUrl}
                     alt={entry.name}
                   />
                 )}
-              
-              <h3
-                style={{
-                  display: "inline-block",
-                  marginLeft: "50px",
-                  fontSize: "2rem",
-                  maxWidth: "20vw",
-                  overflowWrap: "break-word"
-                }}
-              >
-                {entry.name}
-              </h3>
+
+                <h3
+                  style={{
+                    display: "inline-block",
+                    marginLeft: "50px",
+                    fontSize: "2rem",
+                    maxWidth: "20vw",
+                    overflowWrap: "break-word",
+                  }}
+                >
+                  {entry.name}
+                </h3>
               </div>
 
               {contentType === "stand" && (
@@ -75,7 +79,7 @@ export default function FeedCards({ feed, feedUrl }) {
                     ))}
                 </div>
               )}
-              <p style={{overflowWrap: "break-word"}}>{entry.description}</p>
+              <p style={{ overflowWrap: "break-word" }}>{entry.description}</p>
             </div>
           </div>
         ))}
