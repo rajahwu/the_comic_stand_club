@@ -17,9 +17,9 @@ export default function StandForm({ createForm }) {
   const [description, setDescription] = useState(
     currentStand ? currentStand?.description : ""
   );
-  const [characters, setCharacters] = useState(
-    currentStand ? currentStand?.characters : []
-  );
+  // const [characters, setCharacters] = useState(
+  //   currentStand ? currentStand?.characters : []
+  // );
   const [errors, setErrors] = useState({
     standName: "",
     description: "",
@@ -46,7 +46,6 @@ export default function StandForm({ createForm }) {
     if (formErrors && Object.values(formErrors).length) {
       if (errors.standName) setStandName("");
       if (errors.description) setDescription("");
-      if (errors.characters) setCharacters("");
       setErrors({ ...errors, ...formErrors });
       console.error("validate stand errors", errors);
       return formErrors;
