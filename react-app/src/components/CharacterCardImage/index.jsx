@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { getMarvelCharactersById } from "../../resources/marvel";
+// import { getMarvelCharactersById } from "../../resources/marvel";
 
 export default function CharacterCardImage({ imageUrl, contentId }) {
   // const navigate = useNavigate();

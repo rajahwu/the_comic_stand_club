@@ -1,4 +1,4 @@
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { addClub } from "../../../store/club";
@@ -33,7 +33,7 @@ export default function ClubForm({ createForm }) {
     createForm.setFormData({
       clubName,
       description,
-      imageUrl,
+      imageUrl
     });
     const formErrors = createForm.validate(errors);
     if (formErrors && Object.values(formErrors).length) {
