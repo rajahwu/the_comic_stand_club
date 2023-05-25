@@ -42,28 +42,28 @@ export default function StandForm({ createForm }) {
       if (errors.characters) setCharacters("");
       setErrors({ ...errors, ...formErrors });
       console.error("validate stand errors", errors);
-      return;
+      return formErrors;
     }
 
     if (createForm.method === "edit") {
       const status = await createForm.update();
       if (status.errors) {
         setErrors(status.errors);
-        return;
+        return status;
       }
       dispatch(addStand(status));
-      history.push("/feed");
-      return createForm.formData;
+      history.push(`/stand/${status.id}`);
+      return status;
     }
 
     if (createForm.method === "new") {
       const status = await createForm.create();
       if (status.errors) {
         setErrors(status.error);
-        return;
+        return status;
       }
       dispatch(addStand(status));
-      history.push("/feed");
+      history.push(`/stand/${status.id}`);
       return createForm.formData;
     }
   };
