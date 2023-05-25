@@ -3,9 +3,8 @@ import { SignupFormModal, LoginFormModal } from "./session";
 import SignupFormPage from "./SignupFormPage";
 import LoginFormPage from "./LoginFormPage";
 import OpenModalButton from "./OpenModalButton";
-import CharacterCard from "./CharacterCard";
-import ContentCard from "./ContentCard";
-import { CharacterFeed, UserFeed, NewsFeed } from "./FeedComponents";
+import { CharacterCard, ContentCard } from "./cards";
+import { CharacterFeed, UserFeed, NewsFeed } from "./feed";
 
 export {
   SignupFormModal,

@@ -1,4 +1,4 @@
-import { ClubForm, StandForm } from "../components/FormComponents";
+import { ClubForm, StandForm } from "../components/forms";
 
 export class CreateForm {
   constructor(location, formData = {}) {
