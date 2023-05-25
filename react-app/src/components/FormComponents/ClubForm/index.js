@@ -112,6 +112,7 @@ export default function ClubForm({ createForm }) {
                     "Club name must be 5 characters or more."}
                 </p>
               }
+              {clubName.length > 150 && <p>Club Name must be less than 150 characters.</p>}
             </div>
           </label>
           <input
@@ -140,6 +141,7 @@ export default function ClubForm({ createForm }) {
                     "Description too long, must be less than 2000 characters."}
                 </p>
               }
+              {description.length > 250 && <p>Club description must be less than 250 characters.</p>}
             </div>
           </label>
           <textarea
