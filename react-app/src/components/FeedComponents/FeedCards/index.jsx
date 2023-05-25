@@ -20,26 +20,34 @@ export default function FeedCards({ feed, feedUrl }) {
                 cursor: "pointer",
               }}
             >
-              <p style={{ display: "inline-block" }}>
+              <p style={{ display: "flex", flexDirection:"row" }}>
                 {contentType === "club" && (
                   <img
-                    style={{ borderRadius: "50%", border: "1px solid #d9b811" }}
+                    style={{ 
+                      borderRadius: "50%", 
+                      border: "1px solid #d9b811",
+                      maxWidth: "50px",
+                      maxHeight: "50px"
+                       }}
                     width={50}
                     height={50}
                     src={entry.imageUrl}
                     alt={entry.name}
                   />
                 )}
-              </p>
               <h3
                 style={{
                   display: "inline-block",
                   marginLeft: "50px",
                   fontSize: "2rem",
+                  maxWidth: "20vw",
+                  overflowWrap: "break-word"
                 }}
               >
                 {entry.name}
               </h3>
+              </p>
+
               {contentType === "stand" && (
                 <div>
                   {/* <select>
@@ -66,7 +74,7 @@ export default function FeedCards({ feed, feedUrl }) {
                     ))}
                 </div>
               )}
-              <p>{entry.description}</p>
+              <p style={{overflowWrap: "break-word"}}>{entry.description}</p>
             </div>
           </div>
         ))}
