@@ -37,18 +37,18 @@ export default function ClubForm({ createForm }) {
       if (errors.imageUrl) setImageUrl("");
       setErrors({ ...errors, ...formErrors });
       console.error("validate club errors", errors);
-      return;
+      return formErrors;
     }
 
     if (createForm.method === "edit") {
       const status = await createForm.update();
       if (status.errors) {
         setErrors(status.errors);
-        return;
+        return status;
       }
       dispatch(addClub(status));
-      history.push("/feed");
-      return createForm.formData;
+      history.push(`/club/${status.id}`);
+      return status;
     }
 
     if (createForm.method === "new") {
@@ -58,8 +58,8 @@ export default function ClubForm({ createForm }) {
         return;
       }
       dispatch(addClub(status));
-      history.push("/feed");
-      return createForm.formData;
+      history.push(`/club/${status.id}`);
+      return status;
     }
   };
 
