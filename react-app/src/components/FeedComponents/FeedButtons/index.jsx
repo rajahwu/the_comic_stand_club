@@ -121,14 +121,13 @@ export default function FeedButtons() {
           {activeFeed.type === "stand" ? "Build New Roster" : "Start New Club"}
         </button>
       </div>
-
       <Link to={`/feed/${activeFeed.type}s`}>
         <h2 className={FeedButtonsCSS["title"]}>
           My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s
         </h2>
       </Link>
 
-      <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
+        <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
     </div>
   );
 }

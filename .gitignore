@@ -6,3 +6,4 @@ __pycache__/
 .vscode/
 node_modules
 notes.md
+test_input.txt
