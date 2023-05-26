@@ -1,5 +1,10 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+}
 
-.title:hover {
+.user-feed h2:hover {
     color: #f2eadf;
 }
 

@@ -19,15 +19,15 @@ export default function FeedButtons() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
- 
   return (
     <div className={FeedButtonsCSS["user-feed"]}>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "25px",
-        }}
+      className={FeedButtonsCSS["container"]}
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "space-around",
+        //   marginTop: "25px",
+        // }}
       >
         <button
           style={{
@@ -81,9 +81,7 @@ export default function FeedButtons() {
         </button>
       </div>
       <Link to={`/feed/${activeFeed.type}s`}>
-        <h2 className={FeedButtonsCSS["title"]}>
-          My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s
-        </h2>
+        <h2>My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s</h2>
       </Link>
 
       <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
