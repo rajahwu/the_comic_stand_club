@@ -23,10 +23,10 @@ export default function ClubForm({ createForm }) {
     errors: 0,
   });
 
+  const [clubNameCharCount, setClubNameCharCount] = useState(clubName.length);
   const [descriptionCharCount, setDescriptionCharCount] = useState(
     description.length
   );
-  const [clubNameCharCount, setClubNameCharCount] = useState(clubName.length);
 
   const handlSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +35,7 @@ export default function ClubForm({ createForm }) {
       description,
       imageUrl
     });
+
     const formErrors = createForm.validate(errors);
     if (formErrors && Object.values(formErrors).length) {
       if (errors.clubName) setClubName("");
@@ -77,11 +78,6 @@ export default function ClubForm({ createForm }) {
     cursor: "pointer",
   };
 
-  const inputStyles = {
-    backgroundColor: "#d9b811",
-    height: "1.3rem",
-  };
-
   return (
     <div
       style={{
@@ -97,7 +93,6 @@ export default function ClubForm({ createForm }) {
             {<p>{errors?.imageUrl}</p>}
           </label>
           <input
-            style={{ ...inputStyles }}
             type="text"
             name="imageUrl"
             value={imageUrl}
@@ -121,7 +116,6 @@ export default function ClubForm({ createForm }) {
           </label>
           <input
             style={{
-              ...inputStyles,
               marginBottom: clubNameCharCount >= 5 ? 0 : "15px",
             }}
             name="name"
@@ -159,7 +153,6 @@ export default function ClubForm({ createForm }) {
             </div>
           </label>
           <textarea
-            style={{ ...inputStyles, height: "5rem" }}
             name="description"
             value={description}
             onChange={(e) => {
