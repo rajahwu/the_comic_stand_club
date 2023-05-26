@@ -61,7 +61,7 @@ export default function ClubForm({ createForm }) {
       const status = await createForm.create();
       if (status.errors) {
         setErrors(status.errors);
-        return;
+        return status;
       }
       dispatch(addClub(status));
       history.push(`/club/${status.id}`);

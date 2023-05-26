@@ -17,7 +17,7 @@ export default function StandForm({ createForm }) {
   const [description, setDescription] = useState(
     currentStand ? currentStand?.description : ""
   );
- 
+
   const [errors, setErrors] = useState({
     standName: "",
     description: "",
@@ -25,12 +25,12 @@ export default function StandForm({ createForm }) {
     errors: 0,
   });
 
-  
-  const [standNameCharCount, setStandNameCharCount] = useState(standName.length);
+  const [standNameCharCount, setStandNameCharCount] = useState(
+    standName.length
+  );
   const [descriptionCharCount, setDescriptionCharCount] = useState(
     description.length
   );
-
 
   const handlSubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +72,6 @@ export default function StandForm({ createForm }) {
     }
   };
 
-
   return (
     <div
       style={{
@@ -104,9 +103,9 @@ export default function StandForm({ createForm }) {
             type="text"
             value={standName}
             onChange={(e) => {
-              setStandName(e.target.value)
-              setStandNameCharCount(e.target.value.length)
-              }}
+              setStandName(e.target.value);
+              setStandNameCharCount(e.target.value.length);
+            }}
           />
           {standNameCharCount >= 5 && (
             <p
@@ -138,9 +137,9 @@ export default function StandForm({ createForm }) {
             name="description"
             value={description}
             onChange={(e) => {
-              setDescription(e.target.value)
-              setDescriptionCharCount(e.target.value.length)
-              }}
+              setDescription(e.target.value);
+              setDescriptionCharCount(e.target.value.length);
+            }}
           />
           {descriptionCharCount > 0 && (
             <p
@@ -162,7 +161,11 @@ export default function StandForm({ createForm }) {
                 errors: 0,
               });
             }}
-            disabled={descriptionCharCount > 250 || (standNameCharCount > 150 || (standNameCharCount < 5 && standNameCharCount > 0))}
+            disabled={
+              descriptionCharCount > 250 ||
+              standNameCharCount > 150 ||
+              (standNameCharCount < 5 && standNameCharCount > 0)
+            }
           >
             {createForm.title}
           </button>
