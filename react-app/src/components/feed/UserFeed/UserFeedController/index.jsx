@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClubsThunk } from "../../../store/club";
-import { getAllStandsThunk } from "../../../store/stand";
-import FeedCards from "../FeedCards";
-import FeedButtonsCSS from "./FeedButtons.module.css";
+import { getAllClubsThunk } from "../../../../store/club";
+import { getAllStandsThunk } from "../../../../store/stand";
+import UserFeedContentCards from "../UserFeedContentCards";
+import FeedButtonsCSS from "./UserFeedController.module.css";
 
-export default function FeedButtons() {
+export default function UserFeedController() {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
@@ -77,7 +77,7 @@ export default function FeedButtons() {
         <h2>My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s</h2>
       </Link>
 
-      <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
+      <UserFeedContentCards feed={feed} feedUrl={`/${activeFeed.type}`} />
     </div>
   );
 }

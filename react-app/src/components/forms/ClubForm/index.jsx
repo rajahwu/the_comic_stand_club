@@ -33,7 +33,7 @@ export default function ClubForm({ createForm }) {
     createForm.setFormData({
       clubName,
       description,
-      imageUrl
+      imageUrl,
     });
 
     const formErrors = createForm.validate(errors);
@@ -162,10 +162,7 @@ export default function ClubForm({ createForm }) {
             </p>
           )}
           <button
-            style={{
-              // ...btnStyles,
-              width: "100%",
-            }}
+            style={{ width: "100%" }}
             type="submit"
             onClick={() => {
               setErrors({

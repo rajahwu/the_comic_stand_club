@@ -152,6 +152,7 @@ export default function StandForm({ createForm }) {
             </p>
           )}
           <button
+            style={{ width: "100%" }}
             type="submit"
             onClick={() => {
               setErrors({

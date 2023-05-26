@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import FeedCardsCSS from "./FeedCards.module.css";
+import FeedCardsCSS from "./UserFeedContentCards.module.css";
 
-export default function FeedCards({ feed, feedUrl }) {
+export default function UserFeedContentCards({ feed, feedUrl }) {
   const history = useHistory();
   const characters = useSelector((state) => state.characters.characters);
 
