@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { getAllClubsThunk, removeClub } from "../../store/club";
 import { getAllStandsThunk, removeStand } from "../../store/stand";
 import { useBouncer } from "../../hooks";
@@ -27,13 +27,8 @@ export default function ContentPage() {
   }, [dispatch]);
 
   const btnStyles = {
-    borderRadius: "7px",
-    height: "2.5rem",
-    width: "5rem",
-    margin: 0,
     color: "#d2b811",
     backgroundColor: " hsl(240, 5%, 4%)",
-    cursor: "pointer",
     opacity: 0.8,
   };
 
@@ -84,7 +79,6 @@ export default function ContentPage() {
 
             if (response.ok) {
               const success = await response.json();
-              // console.log(`${contentType} delete success `, success);
               if (contentType === "club") dispatch(removeClub(id));
               if (contentType === "stand") dispatch(removeStand(id));
               history.push("/feed");

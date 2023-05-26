@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { getAllClubsThunk } from "../../store/club";
@@ -9,7 +10,6 @@ import {
   OpenModalButton,
 } from "../../components";
 import SplashPageCSS from "./SplashPage.module.css";
-import { useEffect } from "react";
 
 export default function SplashPage() {
   useBouncer("login");
@@ -23,15 +23,6 @@ export default function SplashPage() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
-  const btnStyles = {
-    borderRadius: "7px",
-    height: "2.5rem",
-    width: "5rem",
-    margin: 0,
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
-  };
 
   return (
     <div className={SplashPageCSS.container}>
@@ -55,7 +46,6 @@ export default function SplashPage() {
         >
           <button
             style={{
-              ...btnStyles,
               height: "1.5rem",
               marginTop: "0.7rem",
             }}

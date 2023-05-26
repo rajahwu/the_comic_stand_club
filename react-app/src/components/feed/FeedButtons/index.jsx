@@ -21,14 +21,7 @@ export default function FeedButtons() {
 
   return (
     <div className={FeedButtonsCSS["user-feed"]}>
-      <div
-      className={FeedButtonsCSS["container"]}
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-around",
-        //   marginTop: "25px",
-        // }}
-      >
+      <div className={FeedButtonsCSS["container"]}>
         <button
           style={{
             border:
