@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import FeedCardsCSS from "./FeedCards.module.css";
+import FeedCardsCSS from "./UserFeedContentCards.module.css";
 
-export default function FeedCards({ feed, feedUrl }) {
+export default function UserFeedContentCards({ feed, feedUrl }) {
   const history = useHistory();
   const characters = useSelector((state) => state.characters.characters);
 
@@ -55,17 +55,6 @@ export default function FeedCards({ feed, feedUrl }) {
 
               {contentType === "stand" && (
                 <div>
-                  {/* <select>
-                    <option value="">Add Character</option>
-                    {Object.values(characters)
-                      .slice(0, 5)
-                      .map((character, i) => (
-                        <option key={i} value={character?.id}>
-                          {character?.name}
-                        </option>
-                      ))}
-                  </select>
-                  <br /> */}
                   {Object.values(characters)
                     .slice(0, 5)
                     .map((character, i) => (

@@ -1,4 +1,4 @@
-import FeedButtons from "../FeedButtons";
+import UserFeedController from "./UserFeedController";
 
 export default function UserFeed() {
   return (
@@ -9,7 +9,7 @@ export default function UserFeed() {
         padding: "0px",
       }}
     >
-      <FeedButtons />
+      <UserFeedController />
     </div>
   );
 }

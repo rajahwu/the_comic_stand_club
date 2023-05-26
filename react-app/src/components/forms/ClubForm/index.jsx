@@ -23,18 +23,19 @@ export default function ClubForm({ createForm }) {
     errors: 0,
   });
 
+  const [clubNameCharCount, setClubNameCharCount] = useState(clubName.length);
   const [descriptionCharCount, setDescriptionCharCount] = useState(
     description.length
   );
-  const [clubNameCharCount, setClubNameCharCount] = useState(clubName.length);
 
   const handlSubmit = async (e) => {
     e.preventDefault();
     createForm.setFormData({
       clubName,
       description,
-      imageUrl
+      imageUrl,
     });
+
     const formErrors = createForm.validate(errors);
     if (formErrors && Object.values(formErrors).length) {
       if (errors.clubName) setClubName("");
@@ -60,26 +61,12 @@ export default function ClubForm({ createForm }) {
       const status = await createForm.create();
       if (status.errors) {
         setErrors(status.errors);
-        return;
+        return status;
       }
       dispatch(addClub(status));
       history.push(`/club/${status.id}`);
       return status;
     }
-  };
-
-  const btnStyles = {
-    borderRadius: "3px",
-    height: "2rem",
-    margin: 0,
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
-  };
-
-  const inputStyles = {
-    backgroundColor: "#d9b811",
-    height: "1.3rem",
   };
 
   return (
@@ -97,7 +84,6 @@ export default function ClubForm({ createForm }) {
             {<p>{errors?.imageUrl}</p>}
           </label>
           <input
-            style={{ ...inputStyles }}
             type="text"
             name="imageUrl"
             value={imageUrl}
@@ -121,7 +107,6 @@ export default function ClubForm({ createForm }) {
           </label>
           <input
             style={{
-              ...inputStyles,
               marginBottom: clubNameCharCount >= 5 ? 0 : "15px",
             }}
             name="name"
@@ -159,7 +144,6 @@ export default function ClubForm({ createForm }) {
             </div>
           </label>
           <textarea
-            style={{ ...inputStyles, height: "5rem" }}
             name="description"
             value={description}
             onChange={(e) => {
@@ -178,10 +162,7 @@ export default function ClubForm({ createForm }) {
             </p>
           )}
           <button
-            style={{
-              ...btnStyles,
-              width: "100%",
-            }}
+            style={{ width: "100%" }}
             type="submit"
             onClick={() => {
               setErrors({

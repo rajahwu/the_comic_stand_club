@@ -17,9 +17,7 @@ export default function StandForm({ createForm }) {
   const [description, setDescription] = useState(
     currentStand ? currentStand?.description : ""
   );
-  // const [characters, setCharacters] = useState(
-  //   currentStand ? currentStand?.characters : []
-  // );
+
   const [errors, setErrors] = useState({
     standName: "",
     description: "",
@@ -27,12 +25,12 @@ export default function StandForm({ createForm }) {
     errors: 0,
   });
 
-  
+  const [standNameCharCount, setStandNameCharCount] = useState(
+    standName.length
+  );
   const [descriptionCharCount, setDescriptionCharCount] = useState(
     description.length
   );
-  const [standNameCharCount, setStandNameCharCount] = useState(standName.length);
-
 
   const handlSubmit = async (e) => {
     e.preventDefault();
@@ -74,15 +72,6 @@ export default function StandForm({ createForm }) {
     }
   };
 
-  const btnStyles = {
-    borderRadius: "3px",
-    height: "2rem",
-    margin: 0,
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
-  };
-
   return (
     <div
       style={{
@@ -114,9 +103,9 @@ export default function StandForm({ createForm }) {
             type="text"
             value={standName}
             onChange={(e) => {
-              setStandName(e.target.value)
-              setStandNameCharCount(e.target.value.length)
-              }}
+              setStandName(e.target.value);
+              setStandNameCharCount(e.target.value.length);
+            }}
           />
           {standNameCharCount >= 5 && (
             <p
@@ -148,9 +137,9 @@ export default function StandForm({ createForm }) {
             name="description"
             value={description}
             onChange={(e) => {
-              setDescription(e.target.value)
-              setDescriptionCharCount(e.target.value.length)
-              }}
+              setDescription(e.target.value);
+              setDescriptionCharCount(e.target.value.length);
+            }}
           />
           {descriptionCharCount > 0 && (
             <p
@@ -163,8 +152,7 @@ export default function StandForm({ createForm }) {
             </p>
           )}
           <button
-            style={{ ...btnStyles }}
-            // disabled={Object.values(errors).length > 0}
+            style={{ width: "100%" }}
             type="submit"
             onClick={() => {
               setErrors({
@@ -174,8 +162,11 @@ export default function StandForm({ createForm }) {
                 errors: 0,
               });
             }}
-            disabled={descriptionCharCount > 250 || (standNameCharCount > 150 || standNameCharCount < 5)}
-
+            disabled={
+              descriptionCharCount > 250 ||
+              standNameCharCount > 150 ||
+              (standNameCharCount < 5 && standNameCharCount > 0)
+            }
           >
             {createForm.title}
           </button>

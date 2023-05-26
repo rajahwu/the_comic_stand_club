@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClubsThunk } from "../../../store/club";
-import { getAllStandsThunk } from "../../../store/stand";
-import FeedCards from "../FeedCards";
-import FeedButtonsCSS from "./FeedButtons.module.css";
+import { getAllClubsThunk } from "../../../../store/club";
+import { getAllStandsThunk } from "../../../../store/stand";
+import UserFeedContentCards from "../UserFeedContentCards";
+import FeedButtonsCSS from "./UserFeedController.module.css";
 
-export default function FeedButtons() {
+export default function UserFeedController() {
   const dispatch = useDispatch();
   const clubs = useSelector((state) => state.clubs.allClubs);
   const stands = useSelector((state) => state.stands.allStands);
@@ -19,53 +19,16 @@ export default function FeedButtons() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
-  const btnStyles = {
-    borderRadius: "7px",
-    height: "2.5rem",
-    width: "5rem",
-    margin: 0,
-    color: "#d2b811",
-    backgroundColor: " hsl(240, 5%, 4%)",
-    cursor: "pointer",
-    opacity: 0.8,
-  };
-
-  const handleMouseEnter = (e) => {
-    e.target.style.color = "#f2eadf";
-    e.target.style["box-shadow"] = "2px 2px 2px hsl(120, 64%, 17%)";
-    e.target.style["height"] = "2.7rem";
-    e.target.style["width"] = "5.3rem";
-    e.target.style["opacity"] = 1;
-  };
-  const handleMouseLeave = (e) => {
-    e.target.style.color = "#d2b811";
-    e.target.style.border = "1px solid #fee52e";
-    e.target.style["box-shadow"] = "";
-    e.target.style["height"] = "2.5rem";
-    e.target.style["width"] = "5rem";
-    e.target.style["opacity"] = 0.8;
-  };
-
   return (
-    <div className="clubs-feed">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "25px",
-        }}
-      >
+    <div className={FeedButtonsCSS["user-feed"]}>
+      <div className={FeedButtonsCSS["container"]}>
         <button
-          className={FeedButtonsCSS["feed-btn"]}
           style={{
-            ...btnStyles,
             border:
               activeFeed.type === "club"
                 ? "1px solid yellow"
                 : "1px solid white",
           }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           onClick={() => {
             if (activeFeed.type === "club") history.push("/feed/clubs");
             setActiveFeed({ type: "club", url: "/clubs" });
@@ -75,17 +38,12 @@ export default function FeedButtons() {
           {activeFeed.type === "club" ? "View All Clubs" : "Clubs"}
         </button>
         <button
-          className={FeedButtonsCSS["feed-btn"]}
           style={{
-            ...btnStyles,
-
             border:
               activeFeed.type === "stand"
                 ? "1px solid yellow"
                 : "1px solid white",
           }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           onClick={() => {
             if (activeFeed.type === "stand") history.push("/feed/stands");
             setActiveFeed({ type: "stand", url: "/stands" });
@@ -95,9 +53,7 @@ export default function FeedButtons() {
           {activeFeed.type === "stand" ? "View All Rosters" : "Rosters"}
         </button>
         <button
-          className={FeedButtonsCSS["feed-btn"]}
           style={{
-            ...btnStyles,
             cursor: "not-allowed",
           }}
           onClick={() => {
@@ -109,25 +65,19 @@ export default function FeedButtons() {
           Fourms
         </button>
         <button
-          className={FeedButtonsCSS["feed-btn"]}
           style={{
-            ...btnStyles,
             border: "1px solid #d2b811",
           }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           onClick={() => history.push(`${activeFeed.url}-new`)}
         >
           {activeFeed.type === "stand" ? "Build New Roster" : "Start New Club"}
         </button>
       </div>
       <Link to={`/feed/${activeFeed.type}s`}>
-        <h2 className={FeedButtonsCSS["title"]}>
-          My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s
-        </h2>
+        <h2>My {activeFeed.type === "stand" ? "Roster" : activeFeed.type}s</h2>
       </Link>
 
-        <FeedCards feed={feed} feedUrl={`/${activeFeed.type}`} />
+      <UserFeedContentCards feed={feed} feedUrl={`/${activeFeed.type}`} />
     </div>
   );
 }

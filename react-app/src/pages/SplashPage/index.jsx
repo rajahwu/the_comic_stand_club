@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { getAllClubsThunk } from "../../store/club";
@@ -9,7 +10,6 @@ import {
   OpenModalButton,
 } from "../../components";
 import SplashPageCSS from "./SplashPage.module.css";
-import { useEffect } from "react";
 
 export default function SplashPage() {
   useBouncer("login");
@@ -23,19 +23,14 @@ export default function SplashPage() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
-  const btnStyles = {
-    borderRadius: "7px",
-    height: "2.5rem",
-    width: "5rem",
-    margin: 0,
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
+  const btnStyleOverwrite = {
+    height: "1.5rem",
+    marginTop: "0.7rem",
   };
 
   return (
-    <div className={SplashPageCSS.container}>
-      <div className="splash-page">
+    <div className={SplashPageCSS["container"]}>
+      <div>
         <OpenModalButton
           buttonText="Sign Up"
           onItemClick={closeMenu}
@@ -47,18 +42,9 @@ export default function SplashPage() {
           onItemClick={closeMenu}
           modalComponent={<LoginFormModal />}
         />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div className={SplashPageCSS["demo-btn-container"]}>
           <button
-            style={{
-              ...btnStyles,
-              height: "1.5rem",
-              marginTop: "0.7rem",
-            }}
+            style={{ ...btnStyleOverwrite }}
             onClick={() => {
               dispatch(login("demo@aa.io", "password"));
             }}
