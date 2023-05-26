@@ -23,10 +23,14 @@ export default function SplashPage() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
+  const btnStyleOverwrite = {
+    height: "1.5rem",
+    marginTop: "0.7rem",
+  };
 
   return (
-    <div className={SplashPageCSS.container}>
-      <div className="splash-page">
+    <div className={SplashPageCSS["container"]}>
+      <div>
         <OpenModalButton
           buttonText="Sign Up"
           onItemClick={closeMenu}
@@ -38,17 +42,9 @@ export default function SplashPage() {
           onItemClick={closeMenu}
           modalComponent={<LoginFormModal />}
         />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div className={SplashPageCSS["demo-btn-container"]}>
           <button
-            style={{
-              height: "1.5rem",
-              marginTop: "0.7rem",
-            }}
+            style={{ ...btnStyleOverwrite }}
             onClick={() => {
               dispatch(login("demo@aa.io", "password"));
             }}

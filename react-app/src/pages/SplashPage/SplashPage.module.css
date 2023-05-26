@@ -6,3 +6,8 @@
     align-items: center;
     background-image: url("../../assets/splash_page.jpg");
 }
+
+.demo-btn-container {
+    display: flex;
+    justify-content: center;
+}

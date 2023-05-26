@@ -26,7 +26,7 @@ export default function ContentPage() {
     dispatch(getAllStandsThunk());
   }, [dispatch]);
 
-  const btnStyles = {
+  const btnStyleOverwrite = {
     color: "#d2b811",
     backgroundColor: " hsl(240, 5%, 4%)",
     opacity: 0.8,
@@ -65,13 +65,13 @@ export default function ContentPage() {
           </div>
         )}
         <button
-          style={{ ...btnStyles }}
+          style={{ ...btnStyleOverwrite }}
           onClick={(e) => history.push(`/${contentType}/${id}/edit`)}
         >
           Edit
         </button>
         <button
-          style={{ ...btnStyles }}
+          style={{ ...btnStyleOverwrite }}
           onClick={async (e) => {
             const response = await fetch(`/api/${contentType}s/${id}`, {
               method: "DELETE",
