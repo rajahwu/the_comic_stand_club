@@ -74,14 +74,6 @@ export default function StandForm({ createForm }) {
     }
   };
 
-  const btnStyles = {
-    borderRadius: "3px",
-    height: "2rem",
-    margin: 0,
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
-  };
 
   return (
     <div
@@ -163,7 +155,7 @@ export default function StandForm({ createForm }) {
             </p>
           )}
           <button
-            style={{ ...btnStyles }}
+            // style={{ ...btnStyles }}
             // disabled={Object.values(errors).length > 0}
             type="submit"
             onClick={() => {

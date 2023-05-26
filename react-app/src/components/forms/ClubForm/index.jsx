@@ -69,15 +69,6 @@ export default function ClubForm({ createForm }) {
     }
   };
 
-  const btnStyles = {
-    borderRadius: "3px",
-    height: "2rem",
-    margin: 0,
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
-  };
-
   return (
     <div
       style={{
@@ -172,7 +163,7 @@ export default function ClubForm({ createForm }) {
           )}
           <button
             style={{
-              ...btnStyles,
+              // ...btnStyles,
               width: "100%",
             }}
             type="submit"
