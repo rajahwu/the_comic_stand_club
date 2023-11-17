@@ -11,6 +11,13 @@ WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Run Flask migrations and upgrade
+RUN flask db migrate
+RUN flask db upgrade
+
+# Run Flask seeders
+RUN flask seed all
+
 # Final stage: Combine frontend and backend
 FROM backend AS final
 COPY --from=frontend /app/build /app/react-app/build
