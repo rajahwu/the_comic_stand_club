@@ -1,18 +1,24 @@
-# Stage 1: Build React frontend
+# Use an official Node.js runtime as a parent image for building frontend
 FROM node:16 AS frontend
 WORKDIR /app
 COPY react-app /app
 RUN npm install
 RUN npm run build
 
-# Stage 2: Build Flask backend
+# Use an official Python runtime as a parent image
 FROM python:3.8 AS backend
 WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Final stage: Combine frontend and backend
-FROM backend AS final
+# Run Flask migrations and upgrade
+RUN flask db migrate
+RUN flask db upgrade
+
+# Run Flask seeders
+RUN flask seed all
+
+# Copy the built frontend into the backend container
 COPY --from=frontend /app/build /app/react-app/build
 
 # Set environment variables
