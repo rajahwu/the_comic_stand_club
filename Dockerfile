@@ -14,4 +14,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Final stage: Combine frontend and backend
 FROM backend AS final
 COPY --from=frontend /app/build /app/react-app/build
-CMD ["flask", "run"]
+
+# Set environment variables
+ENV FLASK_APP=app
+ENV FLASK_RUN_HOST=0.0.0.0
+
+# Install Gunicorn
+RUN pip install gunicorn
+
+# Start Gunicorn
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5000"]
