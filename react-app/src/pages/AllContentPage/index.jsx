@@ -23,7 +23,7 @@ export default function AllContentPage({ feedType }) {
       dispatch(getAllStandsThunk());
       setFeedState({...stands});
     }
-  }, [dispatch, feedType]);
+  }, [dispatch, feedType, clubs, stands]);
 
   return (
     <div className={AllContentPageCSS.container}>

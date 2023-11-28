@@ -32,6 +32,7 @@ export default function NewsFeed() {
       isMounted = false;
     };
   }, []);
+  if(rssFeed.length === 0 || !rssFeed) return <div>Loading...</div>
   return (
     <div className="news-feed">
       <h2>News Feed</h2>

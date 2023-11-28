@@ -64,12 +64,13 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li className={NavigationCSS["profile-li"]}>{user.username}</li>
+            <li className={NavigationCSS["profile-li"]}>{user.email}</li>
             <li>
               <button style={{
                 ...btnStyles,
-                height: "1.5rem"
+                height: "1.5rem",
+                margin: "auto",
               }} onClick={handleLogout}>Log Out</button>
             </li>
           </>

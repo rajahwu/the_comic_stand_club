@@ -1,8 +1,12 @@
 .profile-dropdown {
   position: absolute;
   list-style: none;
-  background-color: hsla(0, 0%, 0%,0.45);
+  background-color: hsla(0, 0%, 0%, 1);
+  border: 1px solid #d2b811;
   border-radius: 15px;
+  padding: 25px;
+  right: 40px;
+  top: 15px;
 }
 
 .profile-dropdown-login {
@@ -35,4 +39,8 @@
 
 .container {
   pointer-events: auto;
+}
+
+.profile-li {
+  margin: 5px;
 }
